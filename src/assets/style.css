@@ -1,12 +1,4 @@
 .bg-color {
   background-color: aqua;
-}
-
-.navbar.center .navbar-inner {
-  text-align: center;
-}
-
-.navbar.center .navbar-inner .nav {
-  display: inline-block;
-  float: none;
+  width: 1000;
 }
