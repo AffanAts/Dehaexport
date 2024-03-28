@@ -1,5 +1,9 @@
+// app.js
+import React from "react"; // Mengimport React
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./page/Main";
+import About from "./page/About";
 import Header from "./components/navbar/Header";
 
 function App() {
@@ -8,7 +12,9 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route path="/" exact element={<Main />} />
+          <Route path="/" element={<Main />} /> {/* Menghapus 'exact' */}
+          <Route path="/about" element={<About />} />{" "}
+          {/* Mengubah path menjadi '/about' */}
         </Routes>
       </BrowserRouter>
     </div>
