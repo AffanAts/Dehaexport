@@ -11,9 +11,7 @@ function App() {
       <Header />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Main />} /> {/* Menghapus 'exact' */}
-          {/* <Route path="/about" element={<About />} />{" "} */}
-          {/* Mengubah path menjadi '/about' */}
+          <Route path="/" element={<Main />} />
         </Routes>
       </BrowserRouter>
     </div>
