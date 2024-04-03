@@ -10,8 +10,6 @@ export default function Header() {
   return (
     <nav className="navbar navbar-expand-lg bg-color container-fluid">
       <div className="container text-center">
-        {" "}
-        {/* Added text-center class */}
         <button
           className="navbar-toggler ms-auto"
           type="button"
@@ -31,7 +29,7 @@ export default function Header() {
             <a
               className="nav-link active mx-auto px-3"
               aria-current="page"
-              href="#"
+              href="#Definition"
             >
               About
             </a>

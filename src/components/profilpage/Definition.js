@@ -9,8 +9,10 @@ export default function Definition() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        flexWrap: "wrap", // Allow items to wrap onto multiple lines
+        backgroundColor: "white",
+        height: "60vh", // membuat tinggi latar belakang penuh ke atas
       }}
+      id="Definition"
     >
       <div style={{ width: "100%", maxWidth: "600px", padding: "0 10px" }}>
         <h2>Spices is Indonesia’s fourth largest export commodity</h2>

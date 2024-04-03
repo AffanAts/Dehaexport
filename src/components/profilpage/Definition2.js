@@ -9,7 +9,9 @@ export default function Definition() {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
-        flexWrap: "wrap", // Allow items to wrap onto multiple lines
+        flexWrap: "wrap",
+        backgroundColor: "white",
+        height: "60vh", // Allow items to wrap onto multiple lines
       }}
     >
       <div

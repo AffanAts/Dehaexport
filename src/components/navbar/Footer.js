@@ -8,6 +8,13 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 export default function Footer() {
+  const isWorkingHours = () => {
+    const currentDate = new Date();
+    const dayOfWeek = currentDate.getDay();
+    const hour = currentDate.getHours();
+    return dayOfWeek >= 1 && dayOfWeek <= 5 && hour >= 9 && hour < 17;
+  };
+
   return (
     <footer style={{ backgroundColor: "#f0f0f0", padding: "20px" }}>
       <div className="container">
@@ -36,7 +43,7 @@ export default function Footer() {
               +991-0123456789
             </a>
           </div>
-          <div className="col-md-3 d-flex justify-content-between">
+          <div className="col-md-3 d-flex justify-content-between flex-column flex-md-row">
             <div>
               <h5>Working Hours</h5>
               <div>
@@ -48,9 +55,9 @@ export default function Footer() {
                 <p>We Are Closed!</p>
               </div>
             </div>
-            <div>
+            <div className="social-media">
               <h5>Social Media</h5>
-              <div style={{ display: "flex", flexDirection: "row" }}>
+              <div style={{ display: isWorkingHours() ? "flex" : "block" }}>
                 <FontAwesomeIcon icon={faYoutube} className="me-2" />
                 <FontAwesomeIcon icon={faInstagram} className="me-2" />
                 <FontAwesomeIcon icon={faTiktok} className="me-2" />

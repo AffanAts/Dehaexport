@@ -5,7 +5,7 @@ import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
 export default function Video() {
   return (
     <div>
-      <a href="https://template94.webekspor.com/">
+      <a href="https://www.youtube.com/watch?v=V0Enmg432fA">
         <div
           style={{
             backgroundImage: `url(${homeBackground})`,
