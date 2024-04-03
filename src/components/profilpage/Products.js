@@ -8,77 +8,93 @@ export default function Product() {
   return (
     <>
       <center>
-        <div className="py-2" style={{ backgroundColor: "whitesmoke" }}>
+        <div
+          className="py-2 px-5"
+          style={{
+            backgroundColor: "whitesmoke",
+            width: "100%",
+          }}
+        >
           <h1>Products</h1>
           <p>
             Learn more about our product. You can see our product here, click to
             see more detail about our product.
           </p>
-          <div id="carouselExampleIndicators" className="carousel slide px-5">
-            <div className="carousel-indicators">
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to={0}
-                className="active"
-                aria-current="true"
-                aria-label="Slide 1"
-              />
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to={1}
-                aria-label="Slide 2"
-              />
-              <button
-                type="button"
-                data-bs-target="#carouselExampleIndicators"
-                data-bs-slide-to={2}
-                aria-label="Slide 3"
-              />
-            </div>
-            <div className="carousel-inner">
-              <div
-                className="carousel-item active px-5"
-                style={{ display: "flex", flexDirection: "row" }}
-              >
-                <img
-                  src={profilePict}
-                  className="d-block w-75 mx-auto py-5"
-                  alt="..."
-                  style={{
-                    height: "500px",
-                  }}
-                />
-                <img
-                  src={pictHome}
-                  className="d-block w-75 mx-auto py-5"
-                  alt="..."
-                  style={{
-                    height: "500px",
-                  }}
-                />
+          <div id="carouselExampleIndicators" className="carousel slide">
+            <div className="carousel-inner" style={{ margin: "0 -15px" }}>
+              <div className="carousel-item active">
+                <div className="d-flex justify-content-around">
+                  <img
+                    src={profilePict}
+                    className="img-fluid rounded"
+                    alt="..."
+                    style={{
+                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
+                      maxWidth: "30%", // Mengatur lebar maksimum gambar
+                      objectFit: "cover", // Memastikan gambar tetap proporsional
+                      margin: "0 5px", // Menambahkan jarak antara gambar
+                    }}
+                  />
+                  <img
+                    src={pictHome}
+                    className="img-fluid rounded"
+                    alt="..."
+                    style={{
+                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
+                      maxWidth: "30%", // Mengatur lebar maksimum gambar
+                      objectFit: "cover", // Memastikan gambar tetap proporsional
+                      margin: "0 5px", // Menambahkan jarak antara gambar
+                    }}
+                  />
+                  <img
+                    src={profilePict}
+                    className="img-fluid rounded"
+                    alt="..."
+                    style={{
+                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
+                      maxWidth: "30%", // Mengatur lebar maksimum gambar
+                      objectFit: "cover", // Memastikan gambar tetap proporsional
+                      margin: "0 5px", // Menambahkan jarak antara gambar
+                    }}
+                  />
+                </div>
               </div>
-              <div
-                className="carousel-item active px-5"
-                style={{ display: "flex", flexDirection: "row" }}
-              >
-                <img
-                  src={profilePict}
-                  className="d-block w-75 mx-auto py-5"
-                  alt="..."
-                  style={{
-                    height: "500px",
-                  }}
-                />
-                <img
-                  src={pictHome}
-                  className="d-block w-75 mx-auto py-5"
-                  alt="..."
-                  style={{
-                    height: "500px",
-                  }}
-                />
+              <div className="carousel-item">
+                <div className="d-flex justify-content-around">
+                  <img
+                    src={pictHome}
+                    className="img-fluid rounded"
+                    alt="..."
+                    style={{
+                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
+                      maxWidth: "30%", // Mengatur lebar maksimum gambar
+                      objectFit: "cover", // Memastikan gambar tetap proporsional
+                      margin: "0 5px", // Menambahkan jarak antara gambar
+                    }}
+                  />
+                  <img
+                    src={profilePict}
+                    className="img-fluid rounded"
+                    alt="..."
+                    style={{
+                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
+                      maxWidth: "30%", // Mengatur lebar maksimum gambar
+                      objectFit: "cover", // Memastikan gambar tetap proporsional
+                      margin: "0 5px", // Menambahkan jarak antara gambar
+                    }}
+                  />
+                  <img
+                    src={pictHome}
+                    className="img-fluid rounded"
+                    alt="..."
+                    style={{
+                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
+                      maxWidth: "30%", // Mengatur lebar maksimum gambar
+                      objectFit: "cover", // Memastikan gambar tetap proporsional
+                      margin: "0 5px", // Menambahkan jarak antara gambar
+                    }}
+                  />
+                </div>
               </div>
             </div>
 
@@ -101,7 +117,7 @@ export default function Product() {
               <span className="visually-hidden">Next</span>
             </button>
           </div>
-          <button type="button" class="btn btn-secondary my-5">
+          <button type="button" className="btn btn-secondary my-5">
             <center>
               <FontAwesomeIcon icon={faDownload} className="px-2" />
               Download Catalogue

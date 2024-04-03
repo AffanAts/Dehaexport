@@ -12,58 +12,32 @@ export default function Amount() {
           left: 0,
           width: "100%",
           height: "100%",
-          zIndex: -1, // Ensure the background is behind other content
+          zIndex: -1,
           backgroundImage: `url(${imageAmount})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div style={{ paddingTop: "100vh" }}>
-        {/* Content goes here */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignItems: "center",
-            padding: "5rem 0",
-            color: "white",
-          }}
-        >
-          <h1>
-            <CountUp start={0} end={125} duration={2} delay={0} />
-          </h1>
-          <p>Project Client</p>
-        </div>
-        <div
-          style={{
-            flex: "1",
-            textAlign: "center",
-            padding: "0 1rem",
-          }}
-        >
-          <h1>125+</h1>
-          <p>Project Client</p>
-        </div>
-        <div
-          style={{
-            flex: "1",
-            textAlign: "center",
-            padding: "0 1rem",
-          }}
-        >
-          <h1>125+</h1>
-          <p>Project Client</p>
-        </div>
-        <div
-          style={{
-            flex: "1",
-            textAlign: "center",
-            padding: "0 1rem",
-          }}
-        >
-          <h1>125+</h1>
-          <p>Project Client</p>
+      <div className="container-fluid pt-5">
+        <div className="row justify-content-center text-white">
+          <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
+            <h1 className="display-4">
+              <CountUp start={0} end={125} duration={2} delay={0} />
+            </h1>
+            <p>Project Client</p>
+          </div>
+          <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
+            <h1 className="display-4">125+</h1>
+            <p>Project Client</p>
+          </div>
+          <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
+            <h1 className="display-4">125+</h1>
+            <p>Project Client</p>
+          </div>
+          <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
+            <h1 className="display-4">125+</h1>
+            <p>Project Client</p>
+          </div>
         </div>
       </div>
     </>
