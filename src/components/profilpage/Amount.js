@@ -1,5 +1,6 @@
 import React from "react";
 import imageAmount from "../../assets/img/home.jpg";
+import CountUp from "react-countup";
 
 export default function Amount() {
   return (
@@ -24,7 +25,9 @@ export default function Amount() {
             padding: "0 1rem",
           }}
         >
-          <h1>125+</h1>
+          <h1>
+            <CountUp start={0} end={125} duration={2} delay={0}/>
+          </h1>
           <p>Project Client</p>
         </div>
         <div
