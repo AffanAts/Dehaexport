@@ -1,4 +1,5 @@
-import React from "react";
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
@@ -7,8 +8,35 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 export default function Header() {
+  useEffect(() => {
+    let prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+      const currentScrollPos = window.pageYOffset;
+      const navbar = document.getElementById("navbar");
+      if (prevScrollpos > currentScrollPos) {
+        navbar.style.top = "0";
+        navbar.style.opacity = "1"; // Menampilkan header saat scrolling ke atas
+        navbar.style.background = "rgba(0, 0, 0, 0.9)"; // Latar belakang transparan hitam saat muncul
+      } else {
+        navbar.style.top = "-80px"; // Menyembunyikan header saat scrolling ke bawah
+        navbar.style.opacity = "0"; // Menghilangkan header saat scrolling ke bawah
+        navbar.style.background = "transparent"; // Hapus latar belakang transparan hitam saat menyembunyikan header
+      }
+      prevScrollpos = currentScrollPos;
+    };
+  }, []);
+
   return (
-    <nav className="navbar navbar-expand-lg bg-color container-fluid">
+    <nav
+      id="navbar"
+      className="navbar navbar-expand-lg bg-color sticky-top"
+      style={{ 
+        transition: "top 0.3s, opacity 0.3s, background 0.3s",
+        zIndex: 1000, // Menetapkan z-index agar header berada di depan halaman lainnya
+        position: "fixed", // Menetapkan posisi header
+        width: "100%" // Menetapkan lebar header
+      }} 
+    >
       <div className="container text-center">
         <button
           className="navbar-toggler ms-auto"
@@ -30,25 +58,26 @@ export default function Header() {
               className="nav-link active mx-auto px-3"
               aria-current="page"
               href="#Definition"
+              style={{ color: "rgba(255, 255, 255, 0.84)", fontFamily: "Inter, sans-serif", fontWeight: "normal", fontSize: "16px", lineHeight: "75px" }}
             >
               About
             </a>
-            <a className="nav-link mx-auto px-3" href="#">
+            <a className="nav-link mx-auto px-3" href="#" style={{ color: "rgba(255, 255, 255, 0.84)", fontFamily: "Inter, sans-serif", fontWeight: "normal", fontSize: "16px", lineHeight: "75px" }}>
               Gallery
             </a>
-            <a className="nav-link mx-auto px-3" href="#">
+            <a className="nav-link mx-auto px-3" href="#" style={{ color: "rgba(255, 255, 255, 0.84)", fontFamily: "Inter, sans-serif", fontWeight: "normal", fontSize: "16px", lineHeight: "75px" }}>
               Products
             </a>
-            <a className="navbar-brand mx-auto px-4" href="#">
+            <a className="navbar-brand mx-auto px-4" href="#" style={{ color: "rgba(255, 255, 255, 0.84)", fontFamily: "Inter, sans-serif", fontWeight: "normal", fontSize: "16px", lineHeight: "75px" }}>
               Web Export
             </a>
-            <a className="nav-link mx-auto px-3" href="#">
+            <a className="nav-link mx-auto px-3" href="#" style={{ color: "rgba(255, 255, 255, 0.84)", fontFamily: "Inter, sans-serif", fontWeight: "normal", fontSize: "16px", lineHeight: "75px" }}>
               Team
             </a>
-            <a className="nav-link disabled mx-auto" aria-disabled="true">
+            <a className="nav-link disabled mx-auto" aria-disabled="true" style={{ color: "rgba(255, 255, 255, 0.84)", fontFamily: "Inter, sans-serif", fontWeight: "normal", fontSize: "16px", lineHeight: "75px" }}>
               Blog
             </a>
-            <a className="nav-link mx-auto px-3" href="#">
+            <a className="nav-link mx-auto px-3" href="#" style={{ color: "rgba(255, 255, 255, 0.84)", fontFamily: "Inter, sans-serif", fontWeight: "normal", fontSize: "16px", lineHeight: "75px" }}>
               Team
             </a>
             <div className="ms-auto py-2 mx-auto" style={{}}>
