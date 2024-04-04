@@ -9,7 +9,7 @@ import Blog from "../components/profilpage/OurBlog";
 export default function Main() {
   return (
     <>
-      <LandingPage />
+      <LandingPage />  
       <Definition />
       <Amount />
       <Definition2 />
