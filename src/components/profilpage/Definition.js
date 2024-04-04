@@ -59,8 +59,8 @@ export default function Definition() {
           className="order-md-1"
           style={{ maxWidth: "600px", padding: "0 10px" }}
         >
-          <h2>Spices is Indonesia’s fourth largest export commodity</h2>
-          <p>
+          <h2 style={titleStyle}>Spices is Indonesia’s fourth largest export commodity</h2>
+          <p style={textStyle}>
             The largest exporter of spice and spice items. Spices is Indonesia’s
             fourth largest export commodity, after shrimp, fish and coffee. As
             one of the world’s spice producers, Indonesia has a great
