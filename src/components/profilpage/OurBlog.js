@@ -2,7 +2,7 @@ import profilePict from "../../assets/img/home.jpg";
 
 export default function Blog() {
   return (
-    <div className="py-5 px-5">
+    <div className="py-5 px-5" style={{ backgroundColor: "white" }}>
       <center>
         <h1>Our Blog</h1>
         <p>
@@ -16,7 +16,7 @@ export default function Blog() {
         >
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <div className="row row-cols-1 row-cols-md-3 g-4">
+              <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-4">
                 <div className="col">
                   <div className="card">
                     <img src={profilePict} className="card-img-top" alt="..." />
@@ -30,7 +30,7 @@ export default function Blog() {
                     </div>
                   </div>
                 </div>
-                <div className="col">
+                <div className="col d-none d-md-block">
                   <div className="card">
                     <img src={profilePict} className="card-img-top" alt="..." />
                     <div className="card-body">
@@ -43,7 +43,7 @@ export default function Blog() {
                     </div>
                   </div>
                 </div>
-                <div className="col">
+                <div className="col d-none d-md-block">
                   <div className="card">
                     <img src={profilePict} className="card-img-top" alt="..." />
                     <div className="card-body">
@@ -58,7 +58,7 @@ export default function Blog() {
               </div>
             </div>
             <div className="carousel-item">
-              <div className="row row-cols-1 row-cols-md-3 g-4">
+              <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-4">
                 <div className="col">
                   <div className="card">
                     <img src={profilePict} className="card-img-top" alt="..." />
@@ -72,7 +72,7 @@ export default function Blog() {
                     </div>
                   </div>
                 </div>
-                <div className="col">
+                <div className="col d-none d-md-block">
                   <div className="card">
                     <img src={profilePict} className="card-img-top" alt="..." />
                     <div className="card-body">
@@ -85,7 +85,7 @@ export default function Blog() {
                     </div>
                   </div>
                 </div>
-                <div className="col">
+                <div className="col d-none d-md-block">
                   <div className="card">
                     <img src={profilePict} className="card-img-top" alt="..." />
                     <div className="card-body">

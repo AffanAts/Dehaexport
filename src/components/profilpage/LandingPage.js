@@ -7,7 +7,7 @@ export default function LandingPage() {
         backgroundImage: `url(${homeBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        width: "100vw", // Set width to viewport width
+        width: "99vw", // Set width to viewport width
         height: "100vh", // Set height to viewport height
         padding: 0,
         margin: 0,

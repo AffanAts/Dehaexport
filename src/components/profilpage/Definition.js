@@ -30,15 +30,21 @@ export default function Definition() {
             </Col>
           </Row>
         </Col>
-        <Col xs={12} md={6} className="order-md-1" style={{ maxWidth: "600px", padding: "0 10px" }}>
+        <Col
+          xs={12}
+          md={6}
+          className="order-md-1"
+          style={{ maxWidth: "600px", padding: "0 10px" }}
+        >
           <h2>Spices is Indonesia’s fourth largest export commodity</h2>
           <p>
             The largest exporter of spice and spice items. Spices is Indonesia’s
-            fourth largest export commodity, after shrimp, fish and coffee. As one
-            of the world’s spice producers, Indonesia has a great opportunity as a
-            supplier of the world’s spices to contribute to the Indonesian
-            economy. Spices is a plant species that has a strong taste and aroma
-            and also serves as a flavor and food flavor enhancer.
+            fourth largest export commodity, after shrimp, fish and coffee. As
+            one of the world’s spice producers, Indonesia has a great
+            opportunity as a supplier of the world’s spices to contribute to the
+            Indonesian economy. Spices is a plant species that has a strong
+            taste and aroma and also serves as a flavor and food flavor
+            enhancer.
           </p>
         </Col>
       </Row>
