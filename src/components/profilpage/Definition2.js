@@ -9,7 +9,7 @@ const titleStyle = {
   fontWeight: 600,
   fontSize: "44px",
   lineHeight: "57px",
-  color: "#000000"
+  color: "#000000",
 };
 
 const textStyle = {
@@ -17,16 +17,12 @@ const textStyle = {
   fontWeight: 300,
   fontSize: "14px",
   lineHeight: "24px",
-  color: "#000000"
+  color: "#000000",
 };
 
 export default function Definition2() {
   return (
-    <Container
-      fluid
-      className="py-5 px-5"
-      style={{ backgroundColor: "white" }}
-    >
+    <Container fluid className="py-5 px-5" style={{ backgroundColor: "white" }}>
       <Row className="justify-content-between align-items-center">
         <Col xs={12} md={6} className="d-flex justify-content-center">
           <Row className="justify-content-center">
@@ -35,7 +31,12 @@ export default function Definition2() {
                 src={profilePict}
                 alt="Your Image"
                 className="img-fluid"
-                style={{ objectFit: "cover", width: "300px", height: "350px", marginRight:"-11px" }}
+                style={{
+                  objectFit: "cover",
+                  width: "300px",
+                  height: "350px",
+                  marginRight: "-11px",
+                }}
               />
             </Col>
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
@@ -43,20 +44,32 @@ export default function Definition2() {
                 src={profilePict}
                 alt="Your Image"
                 className="img-fluid"
-                style={{ objectFit: "cover", width: "300px", height: "350px", marginLeft:"-11px" }}
+                style={{
+                  objectFit: "cover",
+                  width: "300px",
+                  height: "350px",
+                  marginLeft: "-11px",
+                }}
               />
             </Col>
           </Row>
         </Col>
-        <Col xs={12} md={6} style={{ maxWidth: "600px", padding: "0 10px" }}>
-          <h2 style={titleStyle}>Spices is Indonesia’s fourth largest export commodity</h2>
+        <Col
+          xs={12}
+          md={6}
+          style={{ maxWidth: "600px", padding: "0 10px", marginRight: 100 }}
+        >
+          <h2 style={titleStyle}>
+            Spices is Indonesia’s fourth largest export commodity
+          </h2>
           <p style={textStyle}>
             The largest exporter of spice and spice items. Spices is Indonesia’s
-            fourth largest export commodity, after shrimp, fish and coffee. As one
-            of the world’s spice producers, Indonesia has a great opportunity as a
-            supplier of the world’s spices to contribute to the Indonesian
-            economy. Spices is a plant species that has a strong taste and aroma
-            and also serves as a flavor and food flavor enhancer.
+            fourth largest export commodity, after shrimp, fish and coffee. As
+            one of the world’s spice producers, Indonesia has a great
+            opportunity as a supplier of the world’s spices to contribute to the
+            Indonesian economy. Spices is a plant species that has a strong
+            taste and aroma and also serves as a flavor and food flavor
+            enhancer.
           </p>
         </Col>
       </Row>
