@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import profilePict from "../../assets/img/home.jpg";
 
-// Definisikan kelas CSS untuk gaya teks
 const titleStyle = {
   fontFamily: "'Bad Script', sans-serif",
   fontWeight: 600,
@@ -20,11 +18,11 @@ const textStyle = {
   color: "#000000",
 };
 
-export default function Definition2() {
+export default function Definition() {
   return (
     <Container fluid className="py-5 px-5" style={{ backgroundColor: "white" }}>
-      <Row className="justify-content-between align-items-center">
-        <Col xs={12} md={6} className="d-flex justify-content-center">
+      <Row className="justify-content-between align-items-center py-5">
+        <Col xs={12} md={6} className="order-md-1">
           <Row className="justify-content-center">
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img
@@ -48,7 +46,7 @@ export default function Definition2() {
                   objectFit: "cover",
                   width: "300px",
                   height: "350px",
-                  marginLeft: "-11px",
+                  marginRight: "-11px",
                 }}
               />
             </Col>
@@ -57,7 +55,13 @@ export default function Definition2() {
         <Col
           xs={12}
           md={6}
-          style={{ maxWidth: "600px", padding: "0 10px", marginRight: 100 }}
+          className="order-md-2"
+          style={{
+            maxWidth: "600px",
+            padding: "0 10px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
         >
           <h2 style={titleStyle}>
             Spices is Indonesia’s fourth largest export commodity

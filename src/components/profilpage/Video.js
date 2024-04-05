@@ -24,7 +24,7 @@ export default function Video() {
         style={{
           position: "relative",
           width: "100%", // Changed width to 100%
-          height: "100vh",
+          height: "85vh",
           backgroundImage: `url(${homeBackground})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -33,16 +33,21 @@ export default function Video() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
+          minHeight: "70vh",
+          paddingBottom: "100px", // Moved paddingBottom here to maintain space
         }}
         onClick={openModal}
       >
         <h1
           style={{
             color: "white",
-            fontSize: "calc(8px + 2vw)", // Adjusted font size to be responsive
             textAlign: "center", // Centered text horizontally
             maxWidth: "90%", // Added maxWidth to prevent text overflow
             marginBottom: "20px", // Added margin bottom to create space between text and button
+            fontFamily: "Bad Script, sans-serif",
+            fontWeight: "600",
+            fontSize: "70px",
+            lineHeight: "20px",
           }}
         >
           The World Class Spices from Indonesia

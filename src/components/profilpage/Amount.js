@@ -8,6 +8,10 @@ const amountStyle = {
   fontSize: "69px",
   lineHeight: "69px",
   color: "#000000",
+  "@media (max-width: 768px)": {
+    // aturan media queries
+    fontSize: "50px", // Ubah ukuran teks sesuai kebutuhan
+  },
 };
 
 const amountTitleStyle = {
@@ -34,56 +38,28 @@ export default function Amount() {
           backgroundPosition: "center",
         }}
       />
-      <div className="container-fluid pt-5">
+      <div className="container-fluid px-5" style={{ paddingTop: "100px" }}>
         <div className="row justify-content-center text-black">
           <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
-            <h1
-              className="display-4"
-              style={{
-                ...amountStyle,
-                fontSize: "69px",
-                lineHeight: "69px",
-              }}
-            >
+            <h1 className="display-4" style={amountStyle}>
               <CountUp start={0} end={125} duration={2} delay={0} />+
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
           <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
-            <h1
-              className="display-4"
-              style={{
-                ...amountStyle,
-                fontSize: "69px",
-                lineHeight: "69px",
-              }}
-            >
+            <h1 className="display-4" style={amountStyle}>
               <CountUp start={0} end={125} duration={2} delay={0} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
           <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
-            <h1
-              className="display-4"
-              style={{
-                ...amountStyle,
-                fontSize: "69px",
-                lineHeight: "69px",
-              }}
-            >
+            <h1 className="display-4" style={amountStyle}>
               <CountUp start={0} end={125} duration={2} delay={0} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
           <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
-            <h1
-              className="display-4"
-              style={{
-                ...amountStyle,
-                fontSize: "69px",
-                lineHeight: "69px",
-              }}
-            >
+            <h1 className="display-4" style={amountStyle}>
               <CountUp start={0} end={125} duration={2} delay={0} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>

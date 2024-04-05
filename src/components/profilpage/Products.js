@@ -15,8 +15,28 @@ export default function Product() {
             width: "100%",
           }}
         >
-          <h1>Products</h1>
-          <p>
+          <h1
+            style={{
+              fontFamily: "Bad Script, sans-serif",
+              fontWeight: 600,
+              fontSize: "38px",
+              lineHeight: "49px",
+            }}
+            className="pt-5"
+          >
+            Products
+          </h1>
+          <p
+            style={{
+              fontFamily: "Inter, sans-serif",
+              fontWeight: 400,
+              fontSize: "14px",
+              lineHeight: "20px",
+              maxWidth: 500,
+              minWidth: 200,
+            }}
+            className="pb-3"
+          >
             Learn more about our product. You can see our product here, click to
             see more detail about our product.
           </p>
