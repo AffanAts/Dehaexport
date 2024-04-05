@@ -11,6 +11,7 @@ export default function Header() {
   useEffect(() => {
     let prevScrollpos = window.pageYOffset;
     let isScrolledToTop = true; // Menyimpan status apakah sudah scroll ke atas atau belum
+
     window.onscroll = function () {
       const currentScrollPos = window.pageYOffset;
       const navbar = document.getElementById("navbar");
@@ -198,4 +199,3 @@ export default function Header() {
     </nav>
   );
 }
-D;
