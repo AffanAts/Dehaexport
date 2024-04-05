@@ -31,9 +31,9 @@ export default function Definition() {
                 className="img-fluid"
                 style={{
                   objectFit: "cover",
-                  width: "100%",
-                  maxWidth: "300px",
-                  height: "auto",
+                  width: "300px",
+                  height: "350px",
+                  marginRight: "-11px",
                 }}
               />
             </Col>
@@ -44,9 +44,9 @@ export default function Definition() {
                 className="img-fluid"
                 style={{
                   objectFit: "cover",
-                  width: "100%",
-                  maxWidth: "300px",
-                  height: "auto",
+                  width: "300px",
+                  height: "350px",
+                  marginRight: "-11px",
                 }}
               />
             </Col>
