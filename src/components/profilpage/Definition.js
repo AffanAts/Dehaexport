@@ -58,9 +58,11 @@ export default function Definition() {
           xs={12}
           md={6}
           className="order-md-1"
-          style={{ maxWidth: "600px", padding: "0 10px" }}
+          style={{ maxWidth: "600px", padding: "0 10px", marginLeft: 100 }}
         >
-          <h2 style={titleStyle}>Spices is Indonesia’s fourth largest export commodity</h2>
+          <h2 style={titleStyle}>
+            Spices is Indonesia’s fourth largest export commodity
+          </h2>
           <p style={textStyle}>
             The largest exporter of spice and spice items. Spices is Indonesia’s
             fourth largest export commodity, after shrimp, fish and coffee. As
