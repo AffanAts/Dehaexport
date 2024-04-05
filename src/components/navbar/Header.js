@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
@@ -8,30 +8,39 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 export default function Header() {
-  const [prevScrollpos, setPrevScrollpos] = useState(window.pageYOffset);
-
   useEffect(() => {
-    const handleScroll = () => {
+    let prevScrollpos = window.pageYOffset;
+    let isScrolledToTop = true; // Menyimpan status apakah sudah scroll ke atas atau belum
+
+    window.onscroll = function () {
       const currentScrollPos = window.pageYOffset;
       const navbar = document.getElementById("navbar");
-      if (prevScrollpos > currentScrollPos || currentScrollPos === 0) {
+
+      // Memeriksa apakah scroll ke atas atau ke bawah
+      if (prevScrollpos > currentScrollPos) {
         navbar.style.top = "0";
         navbar.style.opacity = "1";
-        navbar.style.background = "rgba(0, 0, 0, 0.9)";
+        if (isScrolledToTop) {
+          navbar.style.background = "rgba(0, 0, 0, 0.9)";
+          navbar.style.height = "75px"; // Mengatur tinggi transparan hitam menjadi 75px
+        }
       } else {
         navbar.style.top = "-80px";
         navbar.style.opacity = "0";
-        navbar.style.background = "transparent";
+        navbar.style.background = "rgba(0, 0, 0, 0.9)"; // Ubah kembali menjadi transparan hitam
+        isScrolledToTop = false;
       }
-      setPrevScrollpos(currentScrollPos);
-    };
 
-    window.addEventListener("scroll", handleScroll);
+      // Memeriksa apakah sudah scroll ke atas sampai ujung
+      if (currentScrollPos === 0) {
+        isScrolledToTop = true;
+        navbar.style.background = "rgba(0, 0, 0, 0)"; // Ubah menjadi transparan hijau saat di atas
+        navbar.style.height = "75px"; // Mengatur tinggi transparan hitam menjadi 75px
+      }
 
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
+      prevScrollpos = currentScrollPos;
     };
-  }, [prevScrollpos]);
+  }, []);
 
   return (
     <nav
@@ -42,10 +51,14 @@ export default function Header() {
         zIndex: 1000,
         position: "fixed",
         width: "100%",
-        height: "10%",
+        height: "75px", // Menentukan tinggi transparan hitam secara default
+        display: "flex",
+        justifyContent: "space-between",
+        alignItems: "center",
+        padding: "0 20px",
       }}
     >
-      <div className="container-fluid text-center">
+      <div className="container text-center">
         <button
           className="navbar-toggler ms-auto"
           type="button"
@@ -103,7 +116,7 @@ export default function Header() {
               Products
             </a>
             <a
-              className="navbar-brand mx-auto px-3"
+              className="navbar-brand mx-auto px-4"
               href="#"
               style={{
                 color: "rgba(255, 255, 255, 0.84)",
@@ -129,7 +142,7 @@ export default function Header() {
               Team
             </a>
             <a
-              className="nav-link disabled mx-auto px-3"
+              className="nav-link disabled mx-auto"
               aria-disabled="true"
               style={{
                 color: "rgba(255, 255, 255, 0.84)",
@@ -142,8 +155,8 @@ export default function Header() {
               Blog
             </a>
             <a
-              className="nav-link mx-auto px-3"
-              href="#"
+              className="nav-link mx-auto px-1"
+              href="https://template94.webekspor.com/"
               style={{
                 color: "rgba(255, 255, 255, 0.84)",
                 fontFamily: "Inter, sans-serif",
@@ -152,41 +165,34 @@ export default function Header() {
                 lineHeight: "75px",
               }}
             >
-              Team
+              <FontAwesomeIcon icon={faInstagram} />
             </a>
-            <div className="ms-auto py-4 mx-auto" style={{ paddingTop: 100 }}>
-              <a
-                href="https://template94.webekspor.com/"
-                style={{
-                  color: "white",
-                }}
-              >
-                <FontAwesomeIcon
-                  icon={faInstagram}
-                  size="lg"
-                  className="mx-auto"
-                  style={{
-                    color: "white",
-                  }}
-                />
-              </a>
-              <FontAwesomeIcon
-                icon={faFacebook}
-                size="lg"
-                className="mx-auto px-3"
-                style={{
-                  color: "white",
-                }}
-              />
-              <FontAwesomeIcon
-                icon={faSquareTwitter}
-                size="lg"
-                className="mx-auto"
-                style={{
-                  color: "white",
-                }}
-              />
-            </div>
+            <a
+              className="nav-link mx-auto px-1"
+              href="https://template94.webekspor.com/"
+              style={{
+                color: "rgba(255, 255, 255, 0.84)",
+                fontFamily: "Inter, sans-serif",
+                fontWeight: "normal",
+                fontSize: "16px",
+                lineHeight: "75px",
+              }}
+            >
+              <FontAwesomeIcon icon={faFacebook} />
+            </a>
+            <a
+              className="nav-link mx-auto px-1"
+              href="https://template94.webekspor.com/"
+              style={{
+                color: "rgba(255, 255, 255, 0.84)",
+                fontFamily: "Inter, sans-serif",
+                fontWeight: "normal",
+                fontSize: "16px",
+                lineHeight: "75px",
+              }}
+            >
+              <FontAwesomeIcon icon={faSquareTwitter} />
+            </a>
           </div>
         </div>
       </div>

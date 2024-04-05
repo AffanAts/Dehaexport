@@ -7,31 +7,34 @@ export default function LandingPage() {
         backgroundImage: `url(${homeBackground})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        width: "99vw", // Set width to viewport width
-        height: "100vh", // Set height to viewport height
+        width: "100%", // Change to 100% for responsiveness
+        height: "100vh",
         padding: 0,
         margin: 0,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         flexDirection: "column",
+        overflowX: "hidden", // Hide horizontal overflow
       }}
     >
       <h1
         style={{
-          fontSize: 50,
-          color: "white", // Text color
+          fontSize: "calc(14px + 2vw)", // Responsive font size
+          color: "white",
           textAlign: "center",
+          maxWidth: "90%", // Responsive width
         }}
       >
         The World Class Spices from Indonesia
       </h1>
       <p
         style={{
-          color: "white", // Text color
+          color: "white",
           textAlign: "center",
-          maxWidth: 600, // Limiting width of text
-          padding: "0 20px", // Adding padding for better readability
+          maxWidth: "90%", // Responsive width
+          padding: "0 20px",
+          fontSize: "calc(10px + 1vw)", // Responsive font size
         }}
       >
         Spices are Indonesia’s fourth largest export commodity, after shrimp,

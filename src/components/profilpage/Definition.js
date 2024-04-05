@@ -1,9 +1,7 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import profilePict from "../../assets/img/home.jpg";
 
-// Definisikan kelas CSS untuk gaya teks
 const titleStyle = {
   fontFamily: "'Bad Script', sans-serif",
   fontWeight: 600,
@@ -33,9 +31,9 @@ export default function Definition() {
                 className="img-fluid"
                 style={{
                   objectFit: "cover",
-                  width: "300px",
-                  height: "350px",
-                  marginRight: "-11px",
+                  width: "100%",
+                  maxWidth: "300px",
+                  height: "auto",
                 }}
               />
             </Col>
@@ -46,9 +44,9 @@ export default function Definition() {
                 className="img-fluid"
                 style={{
                   objectFit: "cover",
-                  width: "300px",
-                  height: "350px",
-                  marginLeft: "-11px",
+                  width: "100%",
+                  maxWidth: "300px",
+                  height: "auto",
                 }}
               />
             </Col>
@@ -58,7 +56,12 @@ export default function Definition() {
           xs={12}
           md={6}
           className="order-md-1"
-          style={{ maxWidth: "600px", padding: "0 10px", marginLeft: 100 }}
+          style={{
+            maxWidth: "600px",
+            padding: "0 10px",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
         >
           <h2 style={titleStyle}>
             Spices is Indonesia’s fourth largest export commodity
