@@ -4,7 +4,7 @@ import listBlog from "../dummy/ListBlog";
 
 export default function SimpleSlider() {
   var settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 3,
@@ -39,7 +39,7 @@ export default function SimpleSlider() {
   };
 
   return (
-    <div className="mx-auto" style={{width:"72%"}}>
+    <div className="mx-auto" style={{ width: "72%" }}>
       <Slider {...settings}>
         {listBlog.map((blog) => (
           <div key={blog.id}>

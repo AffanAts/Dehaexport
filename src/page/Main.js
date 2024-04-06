@@ -11,7 +11,7 @@ export default function Main() {
   return (
     <>
       <LandingPage />
-      {/* <Definition /> */}
+      <Definition />
       <Amount />
       <Definition2 />
       <Product />
