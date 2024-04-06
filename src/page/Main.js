@@ -16,7 +16,7 @@ export default function Main() {
       <Definition2 />
       <Product />
       <Video />
-      <Blog2 />
+      <Blog />
     </>
   );
 }
