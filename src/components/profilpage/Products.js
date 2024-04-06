@@ -140,7 +140,16 @@ export default function Product() {
           <button type="button" className="btn btn-secondary my-5">
             <center>
               <FontAwesomeIcon icon={faDownload} className="px-2" />
-              Download Catalogue
+              <a
+                style={{
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  lineHeight: "14px",
+                }}
+              >
+                Download Catalog
+              </a>
             </center>
           </button>
         </div>
