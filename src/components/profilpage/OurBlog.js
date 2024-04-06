@@ -1,4 +1,6 @@
 import profilePict from "../../assets/img/home.jpg";
+import card from "../profilpage/mockCard";
+import Slider from "react-slick";
 
 const cardTitle = {
   fontFamily: "Inter, sans-serif",
@@ -17,6 +19,13 @@ const cardText = {
 };
 
 export default function Blog() {
+  var settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
   return (
     <div className="py-5 px-5" style={{ backgroundColor: "white" }}>
       <center>
@@ -45,181 +54,27 @@ export default function Blog() {
           You can see our blog here, click to see blog detail. You can see our
           daily activity or news about exported, product process and many more.
         </p>
-        <div
-          id="carouselExample"
-          className="carousel slide py-3 px-5"
-          data-bs-ride="carousel"
-        >
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-4">
-                <div className="col">
-                  <div
-                    className="card"
-                    style={{ maxWidth: 400, minWidth: 200 }}
-                  >
-                    <img
-                      src={profilePict}
-                      className="card-img-top"
-                      alt="..."
-                      style={{ height: "350px" }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title" style={cardTitle}>
-                        Card title 1
-                      </h5>
-                      <p className="card-text" style={cardText}>
-                        This is a longer card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col d-none d-md-block">
-                  <div
-                    className="card"
-                    style={{ maxWidth: 400, minWidth: 200 }}
-                  >
-                    <img
-                      src={profilePict}
-                      className="card-img-top"
-                      alt="..."
-                      style={{ height: "350px" }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title" style={cardTitle}>
-                        Card title 2
-                      </h5>
-                      <p className="card-text" style={cardText}>
-                        This is a longer card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col d-none d-md-block">
-                  <div
-                    className="card"
-                    style={{ maxWidth: 400, minWidth: 200 }}
-                  >
-                    <img
-                      src={profilePict}
-                      className="card-img-top"
-                      alt="..."
-                      style={{ height: "350px" }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title" style={cardTitle}>
-                        Card title 3
-                      </h5>
-                      <p className="card-text" style={cardText}>
-                        This is a longer card with supporting text below as a
-                        natural lead-in to additional content.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+        <div>
+          <Slider {...settings}>
+            <div>
+              <h3>1</h3>
             </div>
-            <div className="carousel-item">
-              <div className="row row-cols-1 row-cols-sm-1 row-cols-md-3 g-4">
-                <div className="col">
-                  <div
-                    className="card"
-                    style={{ maxWidth: 400, minWidth: 200 }}
-                  >
-                    <img
-                      src={profilePict}
-                      className="card-img-top"
-                      alt="..."
-                      style={{ height: "350px" }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title" style={cardTitle}>
-                        Card title 4
-                      </h5>
-                      <p className="card-text" style={cardText}>
-                        This is a longer card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col d-none d-md-block">
-                  <div
-                    className="card"
-                    style={{ maxWidth: 400, minWidth: 200 }}
-                  >
-                    <img
-                      src={profilePict}
-                      className="card-img-top"
-                      alt="..."
-                      style={{ height: "350px" }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title" style={cardTitle}>
-                        Card title 5
-                      </h5>
-                      <p className="card-text" style={cardText}>
-                        This is a longer card with supporting text below as a
-                        natural lead-in to additional content. This content is a
-                        little bit longer.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div className="col d-none d-md-block">
-                  <div
-                    className="card"
-                    style={{ maxWidth: 400, minWidth: 200 }}
-                  >
-                    <img
-                      src={profilePict}
-                      className="card-img-top"
-                      alt="..."
-                      style={{ height: "350px" }}
-                    />
-                    <div className="card-body">
-                      <h5 className="card-title" style={cardTitle}>
-                        Card title 6
-                      </h5>
-                      <p className="card-text" style={cardText}>
-                        This is a longer card with supporting text below as a
-                        natural lead-in to additional content.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div>
+              <h3>2</h3>
             </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExample"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Next</span>
-          </button>
+            <div>
+              <h3>3</h3>
+            </div>
+            <div>
+              <h3>4</h3>
+            </div>
+            <div>
+              <h3>5</h3>
+            </div>
+            <div>
+              <h3>6</h3>
+            </div>
+          </Slider>
         </div>
       </center>
     </div>
