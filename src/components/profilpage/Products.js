@@ -1,11 +1,55 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from "react";
 import profilePict from "../../assets/img/home.jpg";
 import pictHome from "../../assets/img/home2.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { Row, Col } from "react-bootstrap";
+import Slider from "react-slick";
 
 export default function Product() {
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+  };
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          backgroundColor: "grey",
+          borderRadius: "10px",
+          width: "19px",
+          height: "18px",
+          paddingRight: "9px",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          backgroundColor: "grey",
+          borderRadius: "10px",
+          width: "19px",
+          height: "18px",
+          paddingRight: "9px",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
   return (
     <>
       <center>
@@ -41,103 +85,67 @@ export default function Product() {
             Learn more about our product. You can see our product here, click to
             see more detail about our product.
           </p>
-          <div id="carouselExampleIndicators" className="carousel slide">
-            <div className="carousel-inner" style={{ margin: "0 -15px" }}>
-              <div className="carousel-item active">
-                <div className="d-flex justify-content-around">
-                  <img
-                    src={profilePict}
-                    className="img-fluid rounded"
-                    alt="..."
-                    style={{
-                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
-                      maxWidth: "30%", // Mengatur lebar maksimum gambar
-                      objectFit: "cover", // Memastikan gambar tetap proporsional
-                      margin: "0 5px", // Menambahkan jarak antara gambar
-                    }}
-                  />
-                  <img
-                    src={pictHome}
-                    className="img-fluid rounded"
-                    alt="..."
-                    style={{
-                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
-                      maxWidth: "30%", // Mengatur lebar maksimum gambar
-                      objectFit: "cover", // Memastikan gambar tetap proporsional
-                      margin: "0 5px", // Menambahkan jarak antara gambar
-                    }}
-                  />
-                  <img
-                    src={profilePict}
-                    className="img-fluid rounded"
-                    alt="..."
-                    style={{
-                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
-                      maxWidth: "30%", // Mengatur lebar maksimum gambar
-                      objectFit: "cover", // Memastikan gambar tetap proporsional
-                      margin: "0 5px", // Menambahkan jarak antara gambar
-                    }}
-                  />
-                </div>
+          <div className="slider-container" style={{ width: "78%" }}>
+            <Slider {...settings}>
+              <div>
+                <Row>
+                  <Col xs="12" sm="6">
+                    <img
+                      src={profilePict}
+                      alt="Profile Picture"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxHeight: "400px",
+                        minHeight: "300px",
+                      }}
+                    />
+                  </Col>
+                  <Col xs="12" sm="6">
+                    <img
+                      src={pictHome}
+                      alt="Home Picture"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxHeight: "400px",
+                        minHeight: "200px",
+                      }}
+                    />
+                  </Col>
+                </Row>
               </div>
-              <div className="carousel-item">
-                <div className="d-flex justify-content-around">
-                  <img
-                    src={pictHome}
-                    className="img-fluid rounded"
-                    alt="..."
-                    style={{
-                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
-                      maxWidth: "30%", // Mengatur lebar maksimum gambar
-                      objectFit: "cover", // Memastikan gambar tetap proporsional
-                      margin: "0 5px", // Menambahkan jarak antara gambar
-                    }}
-                  />
-                  <img
-                    src={profilePict}
-                    className="img-fluid rounded"
-                    alt="..."
-                    style={{
-                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
-                      maxWidth: "30%", // Mengatur lebar maksimum gambar
-                      objectFit: "cover", // Memastikan gambar tetap proporsional
-                      margin: "0 5px", // Menambahkan jarak antara gambar
-                    }}
-                  />
-                  <img
-                    src={pictHome}
-                    className="img-fluid rounded"
-                    alt="..."
-                    style={{
-                      maxHeight: "300px", // Mengatur tinggi maksimum gambar
-                      maxWidth: "30%", // Mengatur lebar maksimum gambar
-                      objectFit: "cover", // Memastikan gambar tetap proporsional
-                      margin: "0 5px", // Menambahkan jarak antara gambar
-                    }}
-                  />
-                </div>
+              <div>
+                <Row>
+                  <Col xs="12" sm="6">
+                    <img
+                      src={pictHome}
+                      alt="Profile Picture"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxHeight: "400px",
+                        minHeight: "200px",
+                      }}
+                    />
+                  </Col>
+                  <Col xs="12" sm="6">
+                    <img
+                      src={profilePict}
+                      alt="Home Picture"
+                      style={{
+                        width: "100%",
+                        height: "auto",
+                        maxHeight: "400px",
+                        minHeight: "300px",
+                      }}
+                    />
+                  </Col>
+                </Row>
               </div>
-            </div>
-
-            <button
-              className="carousel-control-prev"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="prev"
-            >
-              <span className="carousel-control-prev-icon" aria-hidden="true" />
-              <span className="visually-hidden">Previous</span>
-            </button>
-            <button
-              className="carousel-control-next"
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide="next"
-            >
-              <span className="carousel-control-next-icon" aria-hidden="true" />
-              <span className="visually-hidden">Next</span>
-            </button>
+            </Slider>
           </div>
+
           <button type="button" className="btn btn-secondary my-5">
             <center>
               <FontAwesomeIcon icon={faDownload} className="px-2" />

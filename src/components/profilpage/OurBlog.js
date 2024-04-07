@@ -4,6 +4,8 @@ import listBlog from "../dummy/ListBlog";
 
 export default function SimpleSlider() {
   var settings = {
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     dots: false,
     infinite: true,
     speed: 500,
@@ -37,15 +39,66 @@ export default function SimpleSlider() {
       },
     ],
   };
-
+  function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          backgroundColor: "grey",
+          borderRadius: "10px",
+          width: "19px",
+          height: "18px",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
+  function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+      <div
+        className={className}
+        style={{
+          ...style,
+          backgroundColor: "grey",
+          borderRadius: "10px",
+          width: "19px",
+          height: "18px",
+        }}
+        onClick={onClick}
+      />
+    );
+  }
   return (
-    <div style={{ backgroundColor: "grey" }}>
+    <div style={{ backgroundColor: "white" }}>
       <div
         className="mx-auto text-center"
         style={{ width: "78%", paddingTop: 50, paddingBottom: 150 }}
       >
-        <h4>Our Blog</h4>
-        <p>
+        <h4
+          style={{
+            fontFamily: "Bad Script, sans-serif",
+            fontWeight: 600,
+            fontSize: "38px",
+            lineHeight: "49px",
+          }}
+        >
+          Our Blog
+        </h4>
+        <p
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 400,
+            fontSize: "14px",
+            lineHeight: "21px",
+            margin: "auto",
+            paddingBottom: "20px",
+            maxWidth: 600,
+            minWidth: 200,
+          }}
+        >
           You can see our blog here, click to see blog detail. You can see our
           daily activity or news about exported, product process and many more.
         </p>
@@ -63,7 +116,15 @@ export default function SimpleSlider() {
                   style={{ height: 300 }}
                 />
                 <div class="card-body">
-                  <p class="card-text">
+                  <p
+                    class="card-text"
+                    style={{
+                      fontFamily: "Inter",
+                      fontWeight: 400,
+                      fontSize: "16px",
+                      lineHeight: "22px",
+                    }}
+                  >
                     Some quick example text to build on the card title and make
                     up the bulk of the card's content.
                   </p>
