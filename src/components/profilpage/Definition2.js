@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from "react";
+import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import profilePict from "../../assets/img/home.jpg";
+import AOS from "aos";
+import "aos/dist/aos";
 
 const titleStyle = {
   fontFamily: "'Bad Script', sans-serif",
@@ -20,11 +22,14 @@ const textStyle = {
 };
 
 export default function Definition() {
+  useEffect(() => {
+    AOS.init({ duration: 1500 });
+  }, []);
   return (
     <Container fluid className="py-5 px-5" style={{ backgroundColor: "white" }}>
       <Row className="justify-content-between align-items-center py-5">
         <Col xs={12} md={6} className="order-md-1">
-          <Row className="justify-content-center">
+          <Row className="justify-content-center" data-aos="fade-right">
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img
                 src={profilePict}
@@ -64,18 +69,20 @@ export default function Definition() {
             marginRight: "auto",
           }}
         >
-          <h2 style={titleStyle}>
-            Spices is Indonesia’s fourth largest export commodity
-          </h2>
-          <p style={textStyle}>
-            The largest exporter of spice and spice items. Spices is Indonesia’s
-            fourth largest export commodity, after shrimp, fish and coffee. As
-            one of the world’s spice producers, Indonesia has a great
-            opportunity as a supplier of the world’s spices to contribute to the
-            Indonesian economy. Spices is a plant species that has a strong
-            taste and aroma and also serves as a flavor and food flavor
-            enhancer.
-          </p>
+          <div data-aos="fade-left">
+            <h2 style={titleStyle}>
+              Spices is Indonesia’s fourth largest export commodity
+            </h2>
+            <p style={textStyle}>
+              The largest exporter of spice and spice items. Spices is
+              Indonesia’s fourth largest export commodity, after shrimp, fish
+              and coffee. As one of the world’s spice producers, Indonesia has a
+              great opportunity as a supplier of the world’s spices to
+              contribute to the Indonesian economy. Spices is a plant species
+              that has a strong taste and aroma and also serves as a flavor and
+              food flavor enhancer.
+            </p>
+          </div>
         </Col>
       </Row>
     </Container>

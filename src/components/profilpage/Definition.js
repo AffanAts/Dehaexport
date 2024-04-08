@@ -27,10 +27,7 @@ export default function Definition() {
   }, []);
   return (
     <Container fluid className="py-5 px-5" style={{ backgroundColor: "white" }}>
-      <Row
-        className="justify-content-between align-items-center py-5"
-        data-aos="fade-right"
-      >
+      <Row className="justify-content-between align-items-center py-5">
         <Col
           xs={12}
           md={6}
@@ -41,6 +38,7 @@ export default function Definition() {
             marginLeft: "auto",
             marginRight: "auto",
           }}
+          data-aos="fade-right"
         >
           <h2 style={titleStyle}>
             Spices is Indonesia’s fourth largest export commodity

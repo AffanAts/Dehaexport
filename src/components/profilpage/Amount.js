@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import imageAmount from "../../assets/img/home.jpg";
 import CountUp from "react-countup";
+import AOS from "aos";
+import "aos/dist/aos.css";
 
 const amountStyle = {
   fontFamily: "Inter, sans-serif",
@@ -9,8 +11,7 @@ const amountStyle = {
   lineHeight: "69px",
   color: "#000000",
   "@media (max-width: 768px)": {
-    // aturan media queries
-    fontSize: "50px", // Ubah ukuran teks sesuai kebutuhan
+    fontSize: "50px",
   },
 };
 
@@ -23,6 +24,9 @@ const amountTitleStyle = {
 };
 
 export default function Amount() {
+  useEffect(() => {
+    AOS.init({});
+  }, []);
   return (
     <>
       <div
@@ -31,7 +35,7 @@ export default function Amount() {
           top: 0,
           left: 0,
           width: "100%",
-          height: "100%", // Set a specific height, you can adjust this value as needed
+          height: "100%",
           zIndex: -1,
           backgroundImage: `url(${imageAmount})`,
           backgroundSize: "cover",
@@ -40,27 +44,47 @@ export default function Amount() {
       />
       <div className="container-fluid px-5" style={{ paddingTop: "100px" }}>
         <div className="row justify-content-center text-black">
-          <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
+          <div
+            className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5"
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="0"
+          >
             <h1 className="display-4" style={amountStyle}>
-              <CountUp start={0} end={125} duration={2} delay={0} />+
+              <CountUp start={0} end={125} duration={4} delay={0} />+
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
-          <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
+          <div
+            className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5"
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="1000"
+          >
             <h1 className="display-4" style={amountStyle}>
-              <CountUp start={0} end={125} duration={2} delay={0} />
+              <CountUp start={0} end={135} duration={4} delay={0} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
-          <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
+          <div
+            className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5"
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="2000"
+          >
             <h1 className="display-4" style={amountStyle}>
-              <CountUp start={0} end={125} duration={2} delay={0} />
+              <CountUp start={0} end={145} duration={5} delay={0} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
-          <div className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5">
+          <div
+            className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5"
+            data-aos="fade-up"
+            data-aos-duration="2000"
+            data-aos-delay="3000"
+          >
             <h1 className="display-4" style={amountStyle}>
-              <CountUp start={0} end={125} duration={2} delay={0} />
+              <CountUp start={0} end={125} duration={7} delay={0} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
