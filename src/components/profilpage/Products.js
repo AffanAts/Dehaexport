@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import profilePict from "../../assets/img/home.jpg";
 import pictHome from "../../assets/img/home2.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { Row, Col } from "react-bootstrap";
 import Slider from "react-slick";
+import AOS from "aos";
+import "aos/dist/aos";
 
 export default function Product() {
   const settings = {
@@ -50,6 +52,10 @@ export default function Product() {
       />
     );
   }
+
+  useEffect(() => {
+    AOS.init({ duration: 1500 });
+  }, []);
   return (
     <>
       <center>
@@ -68,6 +74,7 @@ export default function Product() {
               lineHeight: "49px",
             }}
             className="pt-5"
+            data-aos="fade-up"
           >
             Products
           </h1>
@@ -81,11 +88,16 @@ export default function Product() {
               minWidth: 200,
             }}
             className="pb-3"
+            data-aos="fade-up"
           >
             Learn more about our product. You can see our product here, click to
             see more detail about our product.
           </p>
-          <div className="slider-container" style={{ width: "78%" }}>
+          <div
+            className="slider-container"
+            style={{ width: "78%" }}
+            data-aos="fade-up"
+          >
             <Slider {...settings}>
               <div>
                 <Row>
@@ -146,7 +158,11 @@ export default function Product() {
             </Slider>
           </div>
 
-          <button type="button" className="btn btn-secondary my-5">
+          <button
+            type="button"
+            className="btn btn-secondary my-5"
+            data-aos="zoom-in"
+          >
             <center>
               <FontAwesomeIcon icon={faDownload} className="px-2" />
               <a

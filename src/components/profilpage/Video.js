@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import homeBackground from "../../assets/img/home.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay } from "@fortawesome/free-solid-svg-icons";
+import AOS from "aos";
+import "aos/dist/aos";
 
 export default function Video() {
   // State to manage whether the modal is open or not
@@ -16,7 +18,9 @@ export default function Video() {
   const closeModal = () => {
     setModalOpen(false);
   };
-
+  useEffect(() => {
+    AOS.init({ duration: 1500 });
+  }, []);
   return (
     <div>
       {/* Thumbnail */}
@@ -49,6 +53,7 @@ export default function Video() {
             fontSize: "70px",
             lineHeight: "20px",
           }}
+          data-aos="zoom-in"
         >
           The World Class Spices from Indonesia
         </h1>
