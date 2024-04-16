@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import listBlog from "../dummy/ListBlog";
+import AOS from "aos";
+import "aos/dist/aos";
 
 export default function SimpleSlider() {
   var settings = {
@@ -71,6 +73,10 @@ export default function SimpleSlider() {
       />
     );
   }
+
+  useEffect(() => {
+    AOS.init({ duration: 1500 });
+  }, []);
   return (
     <div style={{ backgroundColor: "white" }}>
       <div
@@ -108,12 +114,14 @@ export default function SimpleSlider() {
               <div
                 class="card"
                 style={{ maxWidth: "370px", minWidth: "200px" }}
+                data-aos="zoom-in"
               >
                 <img
                   src={blog.image}
                   className="card-img-top"
                   alt={blog.title}
                   style={{ height: 300 }}
+                  data-aos="zoom-in"
                 />
                 <div class="card-body">
                   <p

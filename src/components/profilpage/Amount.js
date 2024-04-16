@@ -51,7 +51,7 @@ export default function Amount() {
             data-aos-delay="0"
           >
             <h1 className="display-4" style={amountStyle}>
-              <CountUp start={0} end={125} duration={4} delay={0} />+
+              <CountUp start={0} end={125} duration={13} delay={3} />+
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
@@ -62,7 +62,7 @@ export default function Amount() {
             data-aos-delay="1000"
           >
             <h1 className="display-4" style={amountStyle}>
-              <CountUp start={0} end={135} duration={4} delay={0} />
+              <CountUp start={0} end={135} duration={15} delay={3} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
@@ -73,7 +73,7 @@ export default function Amount() {
             data-aos-delay="2000"
           >
             <h1 className="display-4" style={amountStyle}>
-              <CountUp start={0} end={145} duration={5} delay={0} />
+              <CountUp start={0} end={145} duration={17} delay={3} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
@@ -84,7 +84,7 @@ export default function Amount() {
             data-aos-delay="3000"
           >
             <h1 className="display-4" style={amountStyle}>
-              <CountUp start={0} end={125} duration={7} delay={0} />
+              <CountUp start={0} end={125} duration={19} delay={3} />
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
