@@ -46,12 +46,12 @@ export default function Video() {
           style={{
             color: "white",
             textAlign: "center", // Centered text horizontally
-            maxWidth: "90%", // Added maxWidth to prevent text overflow
+            width: "90%", // Added maxWidth to prevent text overflow
             marginBottom: "20px", // Added margin bottom to create space between text and button
             fontFamily: "Bad Script, sans-serif",
             fontWeight: "600",
             fontSize: "70px",
-            lineHeight: "20px",
+            lineHeight: "70px",
           }}
           data-aos="zoom-in"
         >

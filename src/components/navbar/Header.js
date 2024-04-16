@@ -45,7 +45,7 @@ export default function Header() {
   return (
     <nav
       id="navbar"
-      className="navbar navbar-expand-lg bg-color sticky-top"
+      className="navbar navbar-expand-lg  sticky-top"
       style={{
         transition: "top 0.3s, opacity 0.3s, background 0.3s",
         zIndex: 1000,

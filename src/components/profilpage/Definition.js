@@ -46,8 +46,9 @@ export default function Definition() {
           <div
             data-aos="fade-right"
             data-aos-anchor="#example-anchor"
-            data-aos-offset="900"
-            data-aos-duration="2000"
+            data-aos-offset="800"
+            data-aos-easing="ease-in-back"
+            data-aos-duration="1200"
           >
             <h2 style={titleStyle}>
               Spices is Indonesia’s fourth largest export commodity
@@ -64,7 +65,14 @@ export default function Definition() {
           </div>
         </Col>
         <Col xs={12} md={6} className="order-md-2">
-          <Row className="justify-content-center" data-aos="fade-left">
+          <Row
+            className="justify-content-center"
+            data-aos="fade-left"
+            data-aos-anchor="#example-anchor"
+            data-aos-offset="800"
+            data-aos-easing="ease-in-back"
+            data-aos-duration="1200"
+          >
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img
                 src={profilePict}

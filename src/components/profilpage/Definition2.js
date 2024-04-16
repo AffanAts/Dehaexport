@@ -26,10 +26,21 @@ export default function Definition() {
     AOS.init({ duration: 1500 });
   }, []);
   return (
-    <Container fluid className="py-5 px-5" style={{ backgroundColor: "white" }}>
+    <Container
+      fluid
+      className="py-5 px-5"
+      style={{ backgroundColor: "white", overflowX: "hidden" }}
+    >
       <Row className="justify-content-between align-items-center py-5">
         <Col xs={12} md={6} className="order-md-1">
-          <Row className="justify-content-center" data-aos="fade-right">
+          <Row
+            className="justify-content-center"
+            data-aos="fade-right"
+            data-aos-anchor="#example-anchor"
+            data-aos-offset="1000"
+            data-aos-easing="ease-in-back"
+            data-aos-duration="1500"
+          >
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img
                 src={profilePict}
@@ -40,6 +51,8 @@ export default function Definition() {
                   width: "300px",
                   height: "350px",
                   marginRight: "-11px",
+                  position: "relative",
+                  zIndex: "1",
                 }}
               />
             </Col>
@@ -53,6 +66,8 @@ export default function Definition() {
                   width: "300px",
                   height: "350px",
                   marginRight: "-11px",
+                  position: "relative",
+                  zIndex: "1",
                 }}
               />
             </Col>
