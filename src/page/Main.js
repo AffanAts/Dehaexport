@@ -5,7 +5,7 @@ import Definition2 from "../components/profilpage/Definition2";
 import Product from "../components/profilpage/Products";
 import Video from "../components/profilpage/Video";
 import Blog from "../components/profilpage/OurBlog";
-import Blog2 from "../components/profilpage/OurBlog2";
+
 
 export default function Main() {
   return (

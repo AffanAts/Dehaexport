@@ -1,32 +1,29 @@
-import React, { useEffect } from "react";
-import imageAmount from "../../assets/img/home.jpg";
-import CountUp from "react-countup";
-import AOS from "aos";
 import "aos/dist/aos.css";
+import background from "../dummy/Background";
 
-const amountStyle = {
-  fontFamily: "Inter, sans-serif",
-  fontWeight: 400,
-  fontSize: "69px",
-  lineHeight: "69px",
-  color: "#000000",
-  "@media (max-width: 768px)": {
-    fontSize: "50px",
-  },
-};
+// const amountStyle = {
+//   fontFamily: "Inter, sans-serif",
+//   fontWeight: 400,
+//   fontSize: "69px",
+//   lineHeight: "69px",
+//   color: "#000000",
+//   "@media (max-width: 768px)": {
+//     fontSize: "50px",
+//   },
+// };
 
-const amountTitleStyle = {
-  fontFamily: "Inter, sans-serif",
-  fontWeight: 500,
-  fontSize: "15px",
-  lineHeight: "38px",
-  color: "#000000",
-};
+// const amountTitleStyle = {
+//   fontFamily: "Inter, sans-serif",
+//   fontWeight: 500,
+//   fontSize: "15px",
+//   lineHeight: "38px",
+//   color: "#000000",
+// };
 
 export default function Amount() {
-  useEffect(() => {
-    AOS.init({});
-  }, []);
+  // useEffect(() => {
+  //   AOS.init({});
+  // }, []);
   return (
     <>
       <div
@@ -37,13 +34,13 @@ export default function Amount() {
           width: "100%",
           height: "100%",
           zIndex: -1,
-          backgroundImage: `url(${imageAmount})`,
+          backgroundImage: `url(${background[1].image})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       />
-      <div className="container-fluid px-5" style={{ paddingTop: "100px" }}>
-        <div className="row justify-content-center text-black">
+      <div className="container-fluid py-5 my-5" style={{ paddingTop: "100px" }}>
+        {/* <div className="row justify-content-center text-black">
           <div
             className="col-6 col-sm-3 col-md-3 col-lg-3 col-xl-3 text-center mb-5"
             data-aos="fade-up"
@@ -88,7 +85,7 @@ export default function Amount() {
             </h1>
             <p style={amountTitleStyle}>Project Client</p>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

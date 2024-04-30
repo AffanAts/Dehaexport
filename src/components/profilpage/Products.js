@@ -1,22 +1,53 @@
-import React, { useEffect } from "react";
-import profilePict from "../../assets/img/home.jpg";
-import pictHome from "../../assets/img/home2.jpg";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
-import { Row, Col } from "react-bootstrap";
 import Slider from "react-slick";
 import AOS from "aos";
 import "aos/dist/aos";
+import { getProducts } from "../api/productApi";
+import AnimatedShowMore from "react-animated-show-more";
+import Xproduct from "../dummy/Product"
 
 export default function Product() {
-  const settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
+  const [products, setProducts] = useState([]);
+  // const token = localStorage.getItem("token");
+  // const [username, setUsername] =useState("");
+
+  var settings = {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        },
+      },
+    ],
   };
   function SampleNextArrow(props) {
     const { className, style, onClick } = props;
@@ -56,13 +87,23 @@ export default function Product() {
   useEffect(() => {
     AOS.init({ duration: 1500 });
   }, []);
+
+  useEffect(() => {
+    getProducts((data) => {
+      setProducts(data);
+    });
+  }, []);
+
+  //  useEffect (() =>{
+  //     setUsername(getUsername(token));
+  //  }, []);
   return (
     <>
       <center>
         <div
           className="py-2 px-5"
           style={{
-            backgroundColor: "whitesmoke",
+            backgroundColor: "white",
             width: "100%",
           }}
         >
@@ -99,62 +140,52 @@ export default function Product() {
             data-aos="fade-up"
           >
             <Slider {...settings}>
-              <div>
-                <Row>
-                  <Col xs="12" sm="6">
-                    <img
-                      src={profilePict}
-                      alt="Profile Picture"
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        maxHeight: "400px",
-                        minHeight: "300px",
-                      }}
-                    />
-                  </Col>
-                  <Col xs="12" sm="6">
-                    <img
-                      src={pictHome}
-                      alt="Home Picture"
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        maxHeight: "400px",
-                        minHeight: "200px",
-                      }}
-                    />
-                  </Col>
-                </Row>
-              </div>
-              <div>
-                <Row>
-                  <Col xs="12" sm="6">
-                    <img
-                      src={pictHome}
-                      alt="Profile Picture"
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        maxHeight: "400px",
-                        minHeight: "200px",
-                      }}
-                    />
-                  </Col>
-                  <Col xs="12" sm="6">
-                    <img
-                      src={profilePict}
-                      alt="Home Picture"
-                      style={{
-                        width: "100%",
-                        height: "auto",
-                        maxHeight: "400px",
-                        minHeight: "300px",
-                      }}
-                    />
-                  </Col>
-                </Row>
-              </div>
+              {products.length > 0 &&
+                products.map((item) => (
+                  <div key={item.id}>
+                    <div
+                      class="card h-100"
+                      style={{ maxWidth: "310px" }}
+                      data-aos="zoom-in"
+                    >
+                     
+                        <center> 
+                          <img
+                            src={item.image}
+                            className="card-img-top"
+                            alt={item.title}
+                            data-aos="zoom-in"
+                            style={{ objectFit: "cover", maxHeight: "200px" }}
+                          />
+                        </center>
+                   
+
+                      <div class="card-body">
+                        <p
+                          class="card-text"
+                          style={{
+                            fontFamily: "Inter",
+                            fontWeight: 400,
+                            fontSize: "16px",
+                            lineHeight: "22px",
+                          }}
+                        >
+                          <AnimatedShowMore
+                            height={100}
+                            toggle={({ isOpen }) =>
+                              isOpen ? "Close!" : "Open!"
+                            }
+                            speed={300}
+                            shadowColor="#FFFFFF"
+                          >
+                            {" "}
+                            {item.description}
+                          </AnimatedShowMore>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
             </Slider>
           </div>
 
@@ -166,6 +197,7 @@ export default function Product() {
             <center>
               <FontAwesomeIcon icon={faDownload} className="px-2" />
               <a
+                href="/#"
                 style={{
                   fontFamily: "Inter, sans-serif",
                   fontWeight: 400,

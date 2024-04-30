@@ -1,8 +1,9 @@
+/* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
-import profilePict from "../../assets/img/home.jpg";
 import AOS from "aos";
 import "aos/dist/aos.css";
+import background from "../dummy/Background";
 
 const titleStyle = {
   fontFamily: "'Bad Script', sans-serif",
@@ -75,7 +76,7 @@ export default function Definition() {
           >
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img
-                src={profilePict}
+                src={background[0].image}
                 alt="Profile Picture"
                 className="img-fluid"
                 style={{
@@ -90,7 +91,7 @@ export default function Definition() {
             </Col>
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img
-                src={profilePict}
+                src={background[3].image}
                 alt="Profile Picture"
                 className="img-fluid"
                 style={{
