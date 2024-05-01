@@ -6,7 +6,7 @@ import AOS from "aos";
 import "aos/dist/aos";
 import { getProducts } from "../api/productApi";
 import AnimatedShowMore from "react-animated-show-more";
-import Xproduct from "../dummy/Product"
+import Xproduct from "../dummy/Product";
 
 export default function Product() {
   const [products, setProducts] = useState([]);
@@ -140,25 +140,23 @@ export default function Product() {
             data-aos="fade-up"
           >
             <Slider {...settings}>
-              {products.length > 0 &&
-                products.map((item) => (
+              {Xproduct.length > 0 &&
+                Xproduct.map((item) => (
                   <div key={item.id}>
                     <div
                       class="card h-100"
                       style={{ maxWidth: "310px" }}
                       data-aos="zoom-in"
                     >
-                     
-                        <center> 
-                          <img
-                            src={item.image}
-                            className="card-img-top"
-                            alt={item.title}
-                            data-aos="zoom-in"
-                            style={{ objectFit: "cover", maxHeight: "200px" }}
-                          />
-                        </center>
-                   
+                      <center>
+                        <img
+                          src={item.image}
+                          className="card-img-top"
+                          alt={item.title}
+                          data-aos="zoom-in"
+                          style={{ objectFit: "cover", maxHeight: "200px" }}
+                        />
+                      </center>
 
                       <div class="card-body">
                         <p
