@@ -75,7 +75,7 @@ export default function SimpleSlider() {
   }
 
   useEffect(() => {
-    AOS.init({ duration: 1500 });
+    AOS.init({ duration: 500 });
   }, []);
   return (
     <div style={{ backgroundColor: "white" }}>

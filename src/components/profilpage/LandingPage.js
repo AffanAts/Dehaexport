@@ -5,7 +5,7 @@ import background from "../dummy/Background";
 
 export default function LandingPage() {
   useEffect(() => {
-    AOS.init({ duration: 1500 });
+    AOS.init({ duration: 500 });
   }, []);
 
   return (

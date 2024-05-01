@@ -4,6 +4,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import profilePict from "../../assets/img/home.jpg";
 import AOS from "aos";
 import "aos/dist/aos";
+import background from "../dummy/Background";
 
 const titleStyle = {
   fontFamily: "'Bad Script', sans-serif",
@@ -23,7 +24,7 @@ const textStyle = {
 
 export default function Definition() {
   useEffect(() => {
-    AOS.init({ duration: 1500 });
+    AOS.init({ duration: 500 });
   }, []);
   return (
     <Container
@@ -39,11 +40,11 @@ export default function Definition() {
             data-aos-anchor="#example-anchor"
             data-aos-offset="1000"
             data-aos-easing="ease-in-back"
-            data-aos-duration="1500"
+            data-aos-duration="500"
           >
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img
-                src={profilePict}
+                src={background[3].image}
                 alt="Your Image"
                 className="img-fluid"
                 style={{
@@ -58,9 +59,9 @@ export default function Definition() {
             </Col>
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img
-                src={profilePict}
+                src={background[2].image}
                 alt="Your Image"
-                className="img-fluid"
+                className="img-fluid" 
                 style={{
                   objectFit: "cover",
                   width: "300px",
