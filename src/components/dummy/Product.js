@@ -41,7 +41,7 @@ const Xproduct = [
     description:
       "Cardamom, commonly referred to as 'Elaichi' in many parts of South Asia, is distinguished by its small seed pods with a triangular cross-section and a green, papery outer shell. Unlike other spices, cardamom has a complex flavor profile that combines sweet, spicy, and herbal notes, making it highly prized in culinary uses. It is primarily grown in India, Guatemala, and parts of the Middle East. Cardamom is versatile in the kitchen, used both in savory dishes such as biryanis and meat recipes, as well as in desserts and beverages like chai tea. The spice is often found in whole pod form, ground powder, or as an essential oil, and is known for its aromatic and flavor-enhancing properties.",
     image:
-      "https://ik.imagekit.io/dehaexport/products/tr:w-400/26Cardamom.jpg?updatedAt=1714580719744",
+      "https://ik.imagekit.io/dehaexport/products/Cardamom.png?updatedAt=1715339129745",
     grade: "9/10",
   },
   {
