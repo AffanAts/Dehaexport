@@ -116,7 +116,7 @@ export default function Product() {
         </p>
         <div
           className="slider-container"
-          style={{ width: "78%" }}
+          style={{ width: "75%" }}
           data-aos="fade-up"
         >
           <Slider ref={sliderRef} {...settings}>
@@ -125,7 +125,7 @@ export default function Product() {
                 <div key={item.id}>
                   <div
                     className="card"
-                    style={{ maxWidth: "340px", Height: "600px" }}
+                    style={{ maxWidth: "320px", Height: "600px" }}
                     data-aos="zoom-in"
                   >
                     <center>
@@ -144,10 +144,7 @@ export default function Product() {
                     </center>
 
                     <div className="card-body">
-                      <h5
-                        className="card-title"
-                        style={{ ...titleStyle }}
-                      >
+                      <h5 className="card-title" style={{ ...titleStyle }}>
                         {item.name}
                       </h5>
                       <p
@@ -162,11 +159,9 @@ export default function Product() {
                         {item.description.length > 190 ? (
                           <>
                             {item.description.substring(0, 190)}
-                            {expandedDescriptionId === item.id ? (
-                              item.description.substring(190)
-                            ) : (
-                              "..."
-                            )}
+                            {expandedDescriptionId === item.id
+                              ? item.description.substring(190)
+                              : "..."}
                             <span
                               style={{ color: "blue", cursor: "pointer" }}
                               onClick={() => toggleDescription(item.id)}
@@ -189,18 +184,21 @@ export default function Product() {
 
         <button
           type="button"
-          className="btn btn-secondary my-5"
-          data-aos="zoom-in"
+          className="btn btn-primary mb-5 mt-2"
+          style={{ textDecoration: "none" }}
         >
           <center>
             <FontAwesomeIcon icon={faDownload} className="px-2" />
             <a
-              href="/#"
+              href="https://drive.google.com/uc?export=download&id=1koiwa0JN42W-hhf4THC_Ep3bW_civluG "
               style={{
                 ...textStyle,
                 fontWeight: 400,
                 fontSize: "14px",
                 lineHeight: "14px",
+                color:
+                  "white" /* Menyesuaikan warna teks dengan latar belakang */,
+                textDecoration: "none" /* Menyembunyikan garis bawah */,
               }}
             >
               Download Catalog
