@@ -6,7 +6,6 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { getProducts } from "../api/productApi";
 import Xproduct from "../dummy/Product";
-import ReactReadMoreReadLess from "react-read-more-read-less";
 
 export default function Product() {
   const [products, setProducts] = useState([]);
@@ -95,28 +94,22 @@ export default function Product() {
         }}
       >
         <h1
+          style={{
+            ...titleStyle,
+          }}
           className="pt-5"
           data-aos="fade-up"
-          style={{
-            fontFamily: "Bad Script, sans-serif",
-            fontWeight: 600,
-            fontSize: "38px",
-            lineHeight: "49px",
-          }}
         >
           Products
         </h1>
         <p
-          className="pb-3"
-          data-aos="fade-up"
           style={{
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 400,
-            fontSize: "14px",
-            lineHeight: "20px",
+            ...textStyle,
             maxWidth: 500,
             minWidth: 200,
           }}
+          className="pb-3"
+          data-aos="fade-up"
         >
           Learn more about our product. You can see our product here, click to
           see more detail about our product.
@@ -131,46 +124,56 @@ export default function Product() {
               Xproduct.map((item) => (
                 <div key={item.id}>
                   <div
-                    className="card mb-3"
-                    style={{
-                      maxWidth: "340px",
-                      border: "none", // Hilangkan border
-                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)", // Tambahkan efek bayangan
-                    }}
+                    className="card"
+                    style={{ maxWidth: "340px", Height: "600px" }}
                     data-aos="zoom-in"
                   >
-                    <img
-                      src={item.image}
-                      className="card-img-top"
-                      alt={item.title}
-                      data-aos="zoom-in"
-                      style={{
-                        objectFit: "cover",
-                        width: "100%",
-                        height: "200px",
-                        maxHeight: "200px",
-                      }}
-                    />
+                    <center>
+                      <img
+                        src={item.image}
+                        className="card-img-top"
+                        alt={item.title}
+                        data-aos="zoom-in"
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "200px",
+                          maxHeight: "200px",
+                        }}
+                      />
+                    </center>
+
                     <div className="card-body">
-                      <h5
-                        className="card-title"
-                        style={{ ...titleStyle}}
-                      >
+                      <h5 className="card-title" style={{ ...titleStyle }}>
                         {item.name}
                       </h5>
                       <p
                         className="card-text"
-                        style={{ ...textStyle, textAlign: "justify" }}
+                        style={{
+                          ...textStyle,
+                          textAlign: "justify", // Rata kanan dan kiri
+                        }}
                       >
                         <b>Grade:</b> {item.grade}
                         <br />
-                        <ReactReadMoreReadLess
-                          charLimit={200}
-                          readMoreText=" Read more"
-                          readLessText=" Read less"
-                        >
-                          {item.description}
-                        </ReactReadMoreReadLess>
+                        {item.description.length > 190 ? (
+                          <>
+                            {item.description.substring(0, 190)}
+                            {expandedDescriptionId === item.id
+                              ? item.description.substring(190)
+                              : "..."}
+                            <span
+                              style={{ color: "blue", cursor: "pointer" }}
+                              onClick={() => toggleDescription(item.id)}
+                            >
+                              {expandedDescriptionId === item.id
+                                ? " Read less"
+                                : " Read more"}
+                            </span>
+                          </>
+                        ) : (
+                          item.description
+                        )}
                       </p>
                     </div>
                   </div>
@@ -181,23 +184,23 @@ export default function Product() {
 
         <button
           type="button"
-          className="btn btn-primary my-5"
+          className="btn btn-secondary my-5"
           data-aos="zoom-in"
-          style={{
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 500,
-            fontSize: "16px",
-            lineHeight: "20px",
-          }}
         >
-          <FontAwesomeIcon icon={faDownload} className="px-2" />
-          <a
-            href="/#"
-            className="text-white"
-            style={{ textDecoration: "none" }}
-          >
-            Download Catalog
-          </a>
+          <center>
+            <FontAwesomeIcon icon={faDownload} className="px-2" />
+            <a
+              href="/#"
+              style={{
+                ...textStyle,
+                fontWeight: 400,
+                fontSize: "14px",
+                lineHeight: "14px",
+              }}
+            >
+              Download Catalog
+            </a>
+          </center>
         </button>
       </div>
     </center>

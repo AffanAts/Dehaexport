@@ -7,6 +7,9 @@ import Footer from "./components/navbar/Footer";
 import FormLogin from "./page/Admin/login";
 import Dashboard from "./page/Admin/dashboard";
 import ProductControl from "./page/Admin/productControl";
+import ProductList from "./page/Admin/crud product/ProductList";
+import AddProduct from "./page/Admin/crud product/AddProduct";
+import EditProduct from "./page/Admin/crud product/EditProduct";
 
 function App() {
   return (
@@ -14,10 +17,25 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<CommingSoon />} />
-          <Route path="/main" element={<PageWithHeaderAndFooter component={Main} />} />
-          <Route path="/login" element={<PageWithHeaderAndFooter component={FormLogin} />} />
-          <Route path="/dashboard" element={<PageWithHeaderAndFooter component={Dashboard} />} />
-          <Route path="/product" element={<PageWithHeaderAndFooter component={ProductControl} />} />
+          <Route
+            path="/main"
+            element={<PageWithHeaderAndFooter component={Main} />}
+          />
+          <Route
+            path="/login"
+            element={<PageWithHeaderAndFooter component={FormLogin} />}
+          />
+          <Route
+            path="/dashboard"
+            element={<PageWithHeaderAndFooter component={Dashboard} />}
+          />
+          <Route
+            path="/product"
+            element={<PageWithHeaderAndFooter component={ProductControl} />}
+          />
+          <Route path="/listproduct" element={<ProductList />} />
+          <Route path="/add" element={<AddProduct />} />
+          <Route path="listproduct/edit/:id" element={<EditProduct />} />{" "}
         </Routes>
       </BrowserRouter>
     </div>
