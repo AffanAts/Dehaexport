@@ -3,8 +3,8 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faInstagram,
-  faSquareTwitter,
   faFacebook,
+  faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
 
 const Header = () => {
@@ -112,9 +112,9 @@ const Header = () => {
             }`}
             id="navbarNavAltMarkup"
           >
-            <div className="navbar-nav" style={{ fontSize: 20 }}>
+            <div className="navbar-nav mx-auto">
               <a
-                className="nav-link active mx-auto px-3"
+                className="nav-link active"
                 aria-current="page"
                 href="#Definition"
                 style={{
@@ -122,101 +122,82 @@ const Header = () => {
                   fontFamily: "Inter, sans-serif",
                   fontWeight: "normal",
                   fontSize: "16px",
-                  lineHeight: "75px",
                 }}
               >
                 About
               </a>
               <a
-                className="nav-link mx-auto px-3"
+                className="nav-link mx-auto px-4"
                 href="#"
                 style={{
                   color: "white",
                   fontFamily: "Inter, sans-serif",
                   fontWeight: "normal",
                   fontSize: "16px",
-                  lineHeight: "75px",
                 }}
               >
                 Gallery
               </a>
               <a
-                className="nav-link mx-auto px-3"
+                className="nav-link mx-auto pe-4"
                 href="#"
                 style={{
                   color: "white",
                   fontFamily: "Inter, sans-serif",
                   fontWeight: "normal",
                   fontSize: "16px",
-                  lineHeight: "75px",
                 }}
               >
                 Products
               </a>
               <a
-                className="navbar-brand mx-auto px-4"
-                href="#"
+                className="navbar-brand mx-auto pe-4"
+                href="#Products"
                 style={{
                   color: "white",
                   fontFamily: "Inter, sans-serif",
                   fontWeight: "normal",
                   fontSize: "16px",
-                  lineHeight: "75px",
+                  paddingTop: "8px",
                 }}
               >
                 Web Export
               </a>
               <a
-                className="nav-link disabled mx-auto"
-                aria-disabled="true"
+                className="nav-link mx-auto pe-2"
+                href="https://www.instagram.com/dehaexport?igsh=MTlhYXUyMWZmcmZuMg=="
                 style={{
                   color: "white",
                   fontFamily: "Inter, sans-serif",
                   fontWeight: "normal",
                   fontSize: "16px",
-                  lineHeight: "75px",
-                }}
-              >
-                Blog
-              </a>
-              <a
-                className="nav-link mx-auto px-1"
-                href="https://template94.webekspor.com/"
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                  lineHeight: "75px",
                 }}
               >
                 <FontAwesomeIcon icon={faInstagram} />
               </a>
               <a
-                className="nav-link mx-auto px-1"
-                href="https://template94.webekspor.com/"
+                className="nav-link mx-auto pe-2"
+                href="https://www.linkedin.com/in/deha-corp-529108301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
                 style={{
                   color: "white",
                   fontFamily: "Inter, sans-serif",
                   fontWeight: "normal",
                   fontSize: "16px",
-                  lineHeight: "75px",
+                }}
+              >
+                <FontAwesomeIcon icon={faLinkedin} />
+              </a>
+              <a
+                className="nav-link mx-auto pe-2"
+                href="https://www.facebook.com/profile.php?id=61558964555945"
+                style={{
+                  color: "white",
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: "normal",
+                  fontSize: "16px",
                 }}
               >
                 <FontAwesomeIcon icon={faFacebook} />
-              </a>
-              <a
-                className="nav-link mx-auto px-1"
-                href="https://template94.webekspor.com/"
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                  lineHeight: "75px",
-                }}
-              >
-                <FontAwesomeIcon icon={faSquareTwitter} />
               </a>
             </div>
           </div>

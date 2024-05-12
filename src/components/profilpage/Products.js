@@ -92,6 +92,7 @@ export default function Product() {
           backgroundColor: "white",
           width: "100%",
         }}
+        id="Products"
       >
         <h1
           style={{
@@ -116,7 +117,7 @@ export default function Product() {
         </p>
         <div
           className="slider-container"
-          style={{ width: "78%" }}
+          style={{ width: "75%" }}
           data-aos="fade-up"
         >
           <Slider ref={sliderRef} {...settings}>
@@ -124,8 +125,12 @@ export default function Product() {
               Xproduct.map((item) => (
                 <div key={item.id}>
                   <div
-                    className="card"
-                    style={{ maxWidth: "340px", Height: "600px" }}
+                    className="card mb-3"
+                    style={{
+                      maxWidth: "340px",
+                      border: "none", // Hilangkan border
+                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)", // Tambahkan efek bayangan
+                    }}
                     data-aos="zoom-in"
                   >
                     <center>
@@ -184,23 +189,23 @@ export default function Product() {
 
         <button
           type="button"
-          className="btn btn-secondary my-5"
+          className="btn btn-primary my-5"
           data-aos="zoom-in"
+          style={{
+            fontFamily: "Inter, sans-serif",
+            fontWeight: 500,
+            fontSize: "16px",
+            lineHeight: "20px",
+          }}
         >
-          <center>
-            <FontAwesomeIcon icon={faDownload} className="px-2" />
-            <a
-              href="/#"
-              style={{
-                ...textStyle,
-                fontWeight: 400,
-                fontSize: "14px",
-                lineHeight: "14px",
-              }}
-            >
-              Download Catalog
-            </a>
-          </center>
+          <FontAwesomeIcon icon={faDownload} className="px-2" />
+          <a
+            href="/#"
+            className="text-white"
+            style={{ textDecoration: "none" }}
+          >
+            Download Catalog
+          </a>
         </button>
       </div>
     </center>
