@@ -29,7 +29,7 @@ export default function Definition() {
   return (
     <Container
       fluid
-      className="py-5 px-5"
+      className="pt-5 px-5"
       style={{ backgroundColor: "white", overflowX: "hidden" }}
     >
       <Row className="justify-content-between align-items-center py-5">
@@ -61,7 +61,7 @@ export default function Definition() {
               <img
                 src={background[2].image}
                 alt="Your Image"
-                className="img-fluid" 
+                className="img-fluid"
                 style={{
                   objectFit: "cover",
                   width: "300px",
@@ -87,17 +87,24 @@ export default function Definition() {
         >
           <div data-aos="fade-left">
             <h2 style={titleStyle}>
-              Spices is Indonesia’s fourth largest export commodity
+              Pioneering Global Spice Exports from Indonesia
             </h2>
-            <p style={textStyle}>
-              The largest exporter of spice and spice items. Spices is
-              Indonesia’s fourth largest export commodity, after shrimp, fish
-              and coffee. As one of the world’s spice producers, Indonesia has a
-              great opportunity as a supplier of the world’s spices to
-              contribute to the Indonesian economy. Spices is a plant species
-              that has a strong taste and aroma and also serves as a flavor and
-              food flavor enhancer.
-            </p>
+            <div style={{ ...textStyle, textAlign: "justify" }}>
+              <p>
+                For centuries, various parts of the world have been importing
+                spices from Indonesia. The main export products from Indonesia
+                in the spice sector include nutmeg, cloves, white pepper,
+                cinnamon, and cardamom. The primary importing countries are the
+                United States, China, India, Vietnam, and the Netherlands.
+              </p>
+              <p>
+                Amidst this dynamic global market, PT DEHA is committed to
+                meeting all spice-related needs and is ready to ship to every
+                country. At PT DEHA, we are dedicated to providing high-quality
+                products that meet international standards, ensuring the
+                satisfaction and trust of our customers worldwide.
+              </p>
+            </div>
           </div>
         </Col>
       </Row>

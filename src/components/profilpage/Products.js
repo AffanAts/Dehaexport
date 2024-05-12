@@ -92,6 +92,7 @@ export default function Product() {
           backgroundColor: "white",
           width: "100%",
         }}
+        id="Products"
       >
         <h1
           style={{
@@ -124,8 +125,7 @@ export default function Product() {
               Xproduct.map((item) => (
                 <div key={item.id}>
                   <div
-                    className="card"
-                    style={{ maxWidth: "320px", Height: "600px" }}
+                    className="card mx-3"
                     data-aos="zoom-in"
                   >
                     <center>

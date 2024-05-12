@@ -51,18 +51,30 @@ export default function Definition() {
             data-aos-easing="ease-in-back"
             data-aos-duration="500"
           >
-            <h2 style={titleStyle}>
-              Spices is Indonesia’s fourth largest export commodity
+            <h2 style={titleStyle} id="Definition">
+              Indonesia, known as a paradise of spice diversity
             </h2>
-            <p style={textStyle}>
-              The largest exporter of spice and spice items. Spices is
-              Indonesia’s fourth largest export commodity, after shrimp, fish
-              and coffee. As one of the world’s spice producers, Indonesia has a
-              great opportunity as a supplier of the world’s spices to
-              contribute to the Indonesian economy. Spices is a plant species
-              that has a strong taste and aroma and also serves as a flavor and
-              food flavor enhancer.
-            </p>
+            <div style={{ ...textStyle, textAlign: "justify" }}>
+              <p>
+                has long been recognized as a central hub of essential culinary
+                spices worldwide. From ginger and turmeric to cardamom,
+                Indonesian spices play a crucial role in shaping the flavors of
+                international cuisine. These spices are not only appreciated for
+                their ability to enrich flavors but are also renowned for their
+                significant health benefits, making them highly valued
+                commodities in the international market.
+              </p>
+              <p>
+                As an archipelagic country with fertile land, Indonesia offers
+                ideal conditions for growing a variety of high-quality spices.
+                This opens significant opportunities for the country to develop
+                its agricultural sector and boost the national economy through
+                spice exports. The global recognition of Indonesian spices as
+                both flavor enhancers and vital components in the pharmaceutical
+                and cosmetics industries underscores Indonesia's position as a
+                key player in the global spice market.
+              </p>
+            </div>
           </div>
         </Col>
         <Col xs={12} md={6} className="order-md-2">

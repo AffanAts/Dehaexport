@@ -152,7 +152,7 @@ const Header = () => {
               </a>
               <a
                 className="navbar-brand mx-auto pe-4"
-                href="#"
+                href="#Products"
                 style={{
                   color: "white",
                   fontFamily: "Inter, sans-serif",
