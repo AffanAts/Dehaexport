@@ -1,18 +1,37 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
-import listBlog from "../dummy/ListBlog";
 import AOS from "aos";
-import "aos/dist/aos";
+import "aos/dist/aos.css";
+import { getProducts } from "../api/productApi";
+import ourBlog from "../dummy/ListBlog";
 
-export default function SimpleSlider() {
+export default function Product() {
+  const [products, setProducts] = useState([]);
+  const [expandedDescriptionId, setExpandedDescriptionId] = useState(null);
+  const sliderRef = useRef(null);
+
+  const titleStyle = {
+    fontFamily: "'Bad Script', sans-serif",
+    fontWeight: 700,
+    fontSize: "34px",
+    color: "#000000",
+  };
+  const textStyle = {
+    fontFamily: "Inter, sans-serif",
+    fontWeight: 300,
+    fontSize: "14px",
+    lineHeight: "24px",
+    color: "#000000",
+  };
+
   var settings = {
     nextArrow: <SampleNextArrow />,
     prevArrow: <SamplePrevArrow />,
     dots: false,
-    infinite: true,
+    infinite: false,
     speed: 500,
     slidesToShow: 3,
-    slidesToScroll: 3,
+    slidesToScroll: 1,
     initialSlide: 0,
     responsive: [
       {
@@ -40,108 +59,171 @@ export default function SimpleSlider() {
         },
       },
     ],
+    afterChange: (currentSlide) => {
+      setExpandedDescriptionId(null);
+    },
   };
-  function SampleNextArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          backgroundColor: "grey",
-          borderRadius: "10px",
-          width: "19px",
-          height: "18px",
-        }}
-        onClick={onClick}
-      />
-    );
-  }
-  function SamplePrevArrow(props) {
-    const { className, style, onClick } = props;
-    return (
-      <div
-        className={className}
-        style={{
-          ...style,
-          backgroundColor: "grey",
-          borderRadius: "10px",
-          width: "19px",
-          height: "18px",
-        }}
-        onClick={onClick}
-      />
-    );
-  }
 
   useEffect(() => {
     AOS.init({ duration: 500 });
   }, []);
+
+  useEffect(() => {
+    getProducts((data) => {
+      setProducts(data);
+    });
+  }, []);
+
+  const toggleDescription = (itemId) => {
+    if (expandedDescriptionId === itemId) {
+      setExpandedDescriptionId(null);
+    } else {
+      setExpandedDescriptionId(itemId);
+    }
+  };
+
   return (
-    <div style={{ backgroundColor: "white" }}>
+    <center>
       <div
-        className="mx-auto text-center"
-        style={{ width: "78%", paddingTop: 50, paddingBottom: 150 }}
+        className="py-2"
+        style={{
+          backgroundColor: "white",
+          width: "100%",
+        }}
+        id="Products"
       >
-        <h4
+        <h1
           style={{
-            fontFamily: "Bad Script, sans-serif",
-            fontWeight: 600,
-            fontSize: "38px",
-            lineHeight: "49px",
+            ...titleStyle,
           }}
+          className="pt-5"
+          data-aos="fade-up"
         >
           Our Blog
-        </h4>
+        </h1>
         <p
           style={{
-            fontFamily: "Inter, sans-serif",
-            fontWeight: 400,
-            fontSize: "14px",
-            lineHeight: "21px",
-            margin: "auto",
-            paddingBottom: "20px",
-            maxWidth: 600,
+            ...textStyle,
+            maxWidth: 500,
             minWidth: 200,
           }}
+          className="pb-3"
+          data-aos="fade-up"
         >
           You can see our blog here, click to see blog detail. You can see our
           daily activity or news about exported, product process and many more.
         </p>
-        <Slider {...settings}>
-          {listBlog.map((blog) => (
-            <div key={blog.id}>
-              <div
-                class="card"
-                style={{ maxWidth: "370px", minWidth: "200px" }}
-                data-aos="zoom-in"
-              >
-                <img
-                  src={blog.image}
-                  className="card-img-top"
-                  alt={blog.title}
-                  style={{ height: 300 }}
-                  data-aos="zoom-in"
-                />
-                <div class="card-body">
-                  <p
-                    class="card-text"
+        <div
+          className="slider-container"
+          style={{ width: "75%" }}
+          data-aos="fade-up"
+        >
+          <Slider ref={sliderRef} {...settings}>
+            {ourBlog.length > 0 &&
+              ourBlog.map((item) => (
+                <div key={item.id}>
+                  <div
+                    className="card mb-3"
                     style={{
-                      fontFamily: "Inter",
-                      fontWeight: 400,
-                      fontSize: "16px",
-                      lineHeight: "22px",
+                      maxWidth: "340px",
+                      border: "none", // Hilangkan border
+                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)", // Tambahkan efek bayangan
                     }}
+                    data-aos="zoom-in"
                   >
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
-                  </p>
+                    <center>
+                      <img
+                        src={item.image}
+                        className="card-img-top"
+                        alt={item.title}
+                        data-aos="zoom-in"
+                        style={{
+                          objectFit: "cover",
+                          width: "100%",
+                          height: "200px",
+                          maxHeight: "200px",
+                        }}
+                      />
+                    </center>
+
+                    <div className="card-body">
+                      <h5 className="card-title" style={{ ...titleStyle }}>
+                        {item.name}
+                      </h5>
+                      <p
+                        className="card-text"
+                        style={{
+                          ...textStyle,
+                          textAlign: "justify", // Rata kanan dan kiri
+                        }}
+                      >
+                        <a href={item.link}>
+                          {" "}
+                          <b>Article</b>
+                        </a>{" "}
+                        
+                        <br />
+                        {item.description.length > 190 ? (
+                          <>
+                            {item.description.substring(0, 190)}
+                            {expandedDescriptionId === item.id
+                              ? item.description.substring(190)
+                              : "..."}
+                            <span
+                              style={{ color: "blue", cursor: "pointer" }}
+                              onClick={() => toggleDescription(item.id)}
+                            >
+                              {expandedDescriptionId === item.id
+                                ? " Read less"
+                                : " Read more"}
+                            </span>
+                          </>
+                        ) : (
+                          item.description
+                        )}
+                      </p>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
-        </Slider>
+              ))}
+          </Slider>
+        </div>
       </div>
-    </div>
+    </center>
+  );
+}
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        backgroundColor: "grey",
+        borderRadius: "10px",
+        width: "19px",
+        height: "18px",
+        paddingRight: "9px",
+      }}
+      onClick={onClick}
+    />
+  );
+}
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <div
+      className={className}
+      style={{
+        ...style,
+        backgroundColor: "grey",
+        borderRadius: "10px",
+        width: "19px",
+        height: "18px",
+        paddingRight: "9px",
+      }}
+      onClick={onClick}
+    />
   );
 }
