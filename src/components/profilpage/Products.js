@@ -87,7 +87,7 @@ export default function Product() {
   return (
     <center>
       <div
-        className="py-2 px-5"
+        className="py-2"
         style={{
           backgroundColor: "white",
           width: "100%",

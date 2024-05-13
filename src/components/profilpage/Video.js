@@ -29,7 +29,8 @@ export default function Video() {
           position: "relative",
           width: "100%", // Changed width to 100%
           height: "85vh",
-          backgroundImage: `url(${homeBackground})`,
+          backgroundImage: `url(https://ik.imagekit.io/dehaexport/Background/tr:w-1200/1bg.jpg?updatedAt=1714573014594)`,
+
           backgroundSize: "cover",
           backgroundPosition: "center",
           cursor: "pointer",

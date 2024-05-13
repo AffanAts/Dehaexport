@@ -82,7 +82,7 @@ export default function LandingPage() {
           }}
           class="fw-medium"
         >
-          welcome to DEHA EXPORT, Specialized Spices from indonesia. Your solution for finding Spices Product with High quality
+          Welcome to DEHA EXPORT, Specialized Spices from indonesia. Your solution for finding Spices Product with High quality
         </p></center>
       </div>
     </div>
