@@ -10,6 +10,9 @@ import ProductControl from "./page/Admin/productControl";
 import ProductList from "./page/Admin/crud product/ProductList";
 import AddProduct from "./page/Admin/crud product/AddProduct";
 import EditProduct from "./page/Admin/crud product/EditProduct";
+import BlogList from "./page/Admin/crud blog/ListBlog";
+import AddBlog from "./page/Admin/crud blog/AddBlog";
+import EditBlog from "./page/Admin/crud blog/EditBlog";
 
 function App() {
   return (
@@ -35,7 +38,10 @@ function App() {
           />
           <Route path="/listproduct" element={<ProductList />} />
           <Route path="/add" element={<AddProduct />} />
-          <Route path="listproduct/edit/:id" element={<EditProduct />} />{" "}
+          <Route path="listproduct/edit/:id" element={<EditProduct />} />
+          <Route path="/listblog" element={<BlogList />} />
+          <Route path="/addblog" element={<AddBlog />} />
+          <Route path="listblog/edit/:id" element={<EditBlog />} />
         </Routes>
       </BrowserRouter>
     </div>

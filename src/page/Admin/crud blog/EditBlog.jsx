@@ -2,53 +2,50 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-const EditProduct = () => {
+const EditBlog = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [image1, setImage1] = useState("");
-  const [image2, setImage2] = useState("");
-  const [grade, setGrade] = useState("");
+  const [image, setImage] = useState("");
+  const [link, setLink] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
   const navigate = useNavigate();
   const { id } = useParams();
 
   useEffect(() => {
-    getProductById();
+    getBlogById();
   }, [id]);
 
-  const updateProduct = async (e) => {
+  const updateBlog = async (e) => {
     e.preventDefault();
     try {
-      await axios.patch(`http://localhost:5001/products/${id}`, {
+      await axios.patch(`http://localhost:5001/blogs/${id}`, {
         name,
         description,
-        image1,
-        image2,
-        grade,
+        image,
+        link,
       });
-      navigate("/listproduct");
+      navigate("/listblog");
     } catch (error) {
-      console.error("Error updating product:", error);
-      setError("Failed to update product. Please try again later.");
+      console.error("Error updating blog:", error);
+      setError("Failed to update blog. Please try again later.");
     }
   };
 
-  const getProductById = async () => {
+  const getBlogById = async () => {
     try {
-      const response = await axios.get(`http://localhost:5001/products/${id}`);
+      const response = await axios.get(`http://localhost:5001/blogs/${id}`);
       console.log("Response:", response); // <-- Tambahkan ini untuk debugging
-      const { name, description, image1, image2, grade } = response.data;
+      const { name, description, image, link } = response.data;
       console.log("Data:", response.data); // <-- Tambahkan ini untuk debugging
       setName(name);
       setDescription(description);
-      setImage1(image1);
-      setImage2(image2);
-      setGrade(grade);
+      setImage(image);
+      setLink(link);
       setIsLoading(false);
     } catch (error) {
-      console.error("Error fetching product:", error);
-      setError("Failed to fetch product. Please try again later.");
+      console.error("Error fetching blog:", error);
+      setError("Failed to fetch blog. Please try again later.");
     }
   };
 
@@ -63,7 +60,7 @@ const EditProduct = () => {
   return (
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
-        <form onSubmit={updateProduct}>
+        <form onSubmit={updateBlog}>
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
@@ -89,37 +86,25 @@ const EditProduct = () => {
             </div>
           </div>
           <div className="field">
-            <label className="label">Image 1</label>
+            <label className="label">Image</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                value={image1}
-                onChange={(e) => setImage1(e.target.value)}
-                placeholder="Image 1"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                placeholder="Image"
               />
             </div>
           </div>
           <div className="field">
-            <label className="label">Image 2</label>
+            <label className="label">Link</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                value={image2}
-                onChange={(e) => setImage2(e.target.value)}
-                placeholder="Image 2"
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Grade</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={grade}
-                onChange={(e) => setGrade(e.target.value)}
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
                 placeholder="Grade"
               />
             </div>
@@ -135,4 +120,4 @@ const EditProduct = () => {
   );
 };
 
-export default EditProduct;
+export default EditBlog;

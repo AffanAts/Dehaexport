@@ -2,36 +2,34 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-const AddProduct = () => {
+const AddBlog = () => {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
-  const [image1, setImage1] = useState("");
-  const [image2, setImage2] = useState("");
-  const [grade, setGrade] = useState("");
+  const [image, setImage] = useState("");
+  const [link, setLink] = useState("");
   const navigate = useNavigate();
 
-  const saveProduct = async (e) => {
+  const saveBlog = async (e) => {
     e.preventDefault();
     try {
       // Mengirim data produk ke backend
-      await axios.post("http://localhost:5001/products", {
+      await axios.post("http://localhost:5001/blogs", {
         name,
         description,
-        image1,
-        image2,
-        grade,
+        image,
+        link,
       });
       // Navigasi kembali ke halaman utama atau halaman lain yang diinginkan
-      navigate("/listproduct");
+      navigate("/listBlog");
     } catch (error) {
-      console.error("Error saving product:", error);
+      console.error("Error saving Blog:", error);
     }
   };
 
   return (
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
-        <form onSubmit={saveProduct}>
+        <form onSubmit={saveBlog}>
           <div className="field">
             <label className="label">Name</label>
             <div className="control">
@@ -57,37 +55,25 @@ const AddProduct = () => {
             </div>
           </div>
           <div className="field">
-            <label className="label">Image 1</label>
+            <label className="label">Image</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                value={image1}
-                onChange={(e) => setImage1(e.target.value)}
-                placeholder="Image1"
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+                placeholder="Image"
               />
             </div>
           </div>
           <div className="field">
-            <label className="label">Image 2</label>
+            <label className="label">Link</label>
             <div className="control">
               <input
                 type="text"
                 className="input"
-                value={image2}
-                onChange={(e) => setImage2(e.target.value)}
-                placeholder="Image2"
-              />
-            </div>
-          </div>
-          <div className="field">
-            <label className="label">Grade</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={grade}
-                onChange={(e) => setGrade(e.target.value)}
+                value={link}
+                onChange={(e) => setLink(e.target.value)}
                 placeholder="Grade"
               />
             </div>
@@ -103,4 +89,4 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default AddBlog;
