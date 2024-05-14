@@ -47,7 +47,7 @@ const ProductList = () => {
                 <td>
                   <img src={product.image1} style={{ height: "200px" }} />
                 </td>
-                <td>{product.image2}</td>
+                <img src={product.image2} style={{ height: "200px" }} />{" "}
                 <td>{product.grade}</td>
                 <td>
                   <Link

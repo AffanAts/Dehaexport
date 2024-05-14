@@ -36,7 +36,10 @@ function App() {
             path="/product"
             element={<PageWithHeaderAndFooter component={ProductControl} />}
           />
-          <Route path="/listproduct" element={<ProductList />} />
+          <Route
+            path="/listproduct"
+            element={<PageWithHeaderAndFooter component={ProductList} />}
+          />
           <Route path="/add" element={<AddProduct />} />
           <Route path="listproduct/edit/:id" element={<EditProduct />} />
           <Route path="/listblog" element={<BlogList />} />
