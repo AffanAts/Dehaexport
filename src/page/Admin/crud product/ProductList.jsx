@@ -27,7 +27,9 @@ const ProductList = () => {
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
         <Link to="/add" className="">
-          Add New
+        <button type="button" className="btn btn-primary ms-3 mb-2">
+  Add New Product
+        </button>        
         </Link>
         <table className="table is-striped is-fullwidth">
           <thead>
@@ -37,6 +39,8 @@ const ProductList = () => {
               <th>Image1</th>
               <th>Image2</th>
               <th>Grade</th>
+              <th>Setting</th>
+
             </tr>
           </thead>
           <tbody>
@@ -54,11 +58,14 @@ const ProductList = () => {
                     to={`edit/${product.id}`}
                     className="button is-small is-info mr-2"
                   >
-                    Edit
+                    <button type="button" className="btn btn-success me-2">
+                       Edit
+                    </button>
+
                   </Link>
                   <button
                     onClick={() => deleteProduct(product.id)}
-                    className="button is-small is-danger"
+                    className="btn btn-danger"
                   >
                     Delete
                   </button>

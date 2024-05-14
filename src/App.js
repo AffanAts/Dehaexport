@@ -38,7 +38,7 @@ function App() {
           />
           <Route
             path="/listproduct"
-            element={<PageWithHeaderAndFooter component={ProductList} />}
+            element={<PageWithFooter component={ProductList} />}
           />
           <Route path="/add" element={<AddProduct />} />
           <Route path="listproduct/edit/:id" element={<EditProduct />} />
@@ -55,6 +55,15 @@ function PageWithHeaderAndFooter({ component: Component }) {
   return (
     <div>
       <Header />
+      <Component />
+      <Footer />
+    </div>
+  );
+}
+
+function PageWithFooter({ component: Component }) {
+  return (
+    <div>
       <Component />
       <Footer />
     </div>
