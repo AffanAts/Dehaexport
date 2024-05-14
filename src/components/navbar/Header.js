@@ -10,12 +10,19 @@ import {
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen);
+  const toggleMenu = (isOpen) => {
+    setIsMenuOpen(isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto'; // Toggle scroll lock
   };
 
-  const handleOverlayClick = () => {
-    setIsMenuOpen(false);
+  const handleMenuToggle = () => {
+    toggleMenu(!isMenuOpen);
+  };
+
+  const handleLinkClick = () => {
+    if (isMenuOpen) {
+      toggleMenu(false);
+    }
   };
 
   const handleScroll = () => {
@@ -54,11 +61,8 @@ const Header = () => {
 
   useEffect(() => {
     handleScroll();
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [isMenuOpen]);
 
   return (
     <>
@@ -74,13 +78,13 @@ const Header = () => {
             background: "rgba(0, 0, 0, 1)",
             zIndex: 999,
           }}
-          onClick={handleOverlayClick}
+          onClick={handleMenuToggle}
         />
       )}
 
       <nav
         id="navbar"
-        className="navbar navbar-expand-lg  sticky-top"
+        className="navbar navbar-expand-lg sticky-top"
         style={{
           transition: "top 0.3s, opacity 0.3s, background 0.3s",
           zIndex: 1000,
@@ -113,92 +117,13 @@ const Header = () => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav mx-auto">
-              <a
-                className="nav-link active"
-                aria-current="page"
-                href="#AboutUs"
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                }}
-              >
-                About
-              </a>
-              <a
-                className="nav-link mx-auto px-4"
-                href="#"
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                }}
-              >
-                Gallery
-              </a>
-              <a
-                className="nav-link mx-auto pe-4"
-                href="#"
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                }}
-              >
-                Products
-              </a>
-              <a
-                className="navbar-brand mx-auto pe-4"
-                href="#Products"
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                  paddingTop: "8px",
-                }}
-              >
-                Web Export
-              </a>
-              <a
-                className="nav-link mx-auto pe-2"
-                href="https://www.instagram.com/dehaexport?igsh=MTlhYXUyMWZmcmZuMg=="
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                }}
-              >
-                <FontAwesomeIcon icon={faInstagram} />
-              </a>
-              <a
-                className="nav-link mx-auto pe-2"
-                href="https://www.linkedin.com/in/deha-corp-529108301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                }}
-              >
-                <FontAwesomeIcon icon={faLinkedin} />
-              </a>
-              <a
-                className="nav-link mx-auto pe-2"
-                href="https://www.facebook.com/profile.php?id=61558964555945"
-                style={{
-                  color: "white",
-                  fontFamily: "Inter, sans-serif",
-                  fontWeight: "normal",
-                  fontSize: "16px",
-                }}
-              >
-                <FontAwesomeIcon icon={faFacebook} />
-              </a>
+              <a className="nav-link active" aria-current="page" href="#AboutUs" onClick={handleLinkClick} style={{ color: "white" }}>About</a>
+              <a className="nav-link" href="#" onClick={handleLinkClick} style={{ color: "white" }}>Gallery</a>
+              <a className="nav-link" href="#" onClick={handleLinkClick} style={{ color: "white" }}>Products</a>
+              <a className="nav-link" href="#Products" onClick={handleLinkClick} style={{ color: "white" }}>Web Export</a>
+              <a className="nav-link" href="https://www.instagram.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faInstagram} style={{ color: "white" }}/></a>
+              <a className="nav-link" href="https://www.linkedin.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faLinkedin} style={{ color: "white" }}/></a>
+              <a className="nav-link" href="https://www.facebook.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faFacebook} style={{ color: "white" }}/></a>
             </div>
           </div>
         </div>

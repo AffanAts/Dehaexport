@@ -7,6 +7,7 @@ import handshakeIcon from "../../assets/logo/handshake.svg";
 import deliveryIcon from "../../assets/logo/delivery.svg";
 import distributionIcon from "../../assets/logo/box.svg";
 import competitivePriceIcon from "../../assets/logo/money.svg";
+import people from "../../assets/logo/people.svg";
 
 function App() {
     const data = [
@@ -34,6 +35,11 @@ function App() {
         title: "Competitive Pricing",
         text: "Providing high-quality premium products at competitive prices.",
         imageUrl: competitivePriceIcon
+      },
+      {
+        title: "Partnerships",
+        text: "Building strong partnerships with local spice farmers to ensure a sustainable supply of raw materials",
+        imageUrl: people
       },
     ];
   
