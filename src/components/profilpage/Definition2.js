@@ -37,10 +37,6 @@ export default function Definition() {
           <Row
             className="justify-content-center"
             data-aos="fade-right"
-            data-aos-anchor="#example-anchor"
-            data-aos-offset="1000"
-            data-aos-easing="ease-in-back"
-            data-aos-duration="500"
           >
             <Col xs={6} md={5} className="mb-3 d-flex justify-content-center">
               <img

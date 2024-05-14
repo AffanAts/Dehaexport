@@ -1,6 +1,6 @@
 import LandingPage from "../components/profilpage/LandingPage";
-import Definition from "../components/profilpage/Definition";
-import Amount from "../components/profilpage/Amount";
+import AboutUs from "../components/profilpage/AboutUs";
+import WhyUs from "../components/profilpage/why";
 import Definition2 from "../components/profilpage/Definition2";
 import Product from "../components/profilpage/Products";
 import Video from "../components/profilpage/Video";
@@ -11,8 +11,8 @@ export default function Main() {
   return (
     <>
       <LandingPage />
-      <Definition />
-      <Amount />
+      <AboutUs />
+      <WhyUs />
       <Definition2 />
       <Product />
       <Video />
