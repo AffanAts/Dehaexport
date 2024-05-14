@@ -36,7 +36,7 @@ const FormLogin = () => {
               <img
                 src={imageL}
                 class="img-fluid ms-5"
-                alt="Sample image"
+                alt="Sampleimage"
                 style={{ width: "550px" }}
               />
             </div>

@@ -116,7 +116,7 @@ const Header = () => {
               <a
                 className="nav-link active"
                 aria-current="page"
-                href="#Definition"
+                href="#AboutUs"
                 style={{
                   color: "white",
                   fontFamily: "Inter, sans-serif",
