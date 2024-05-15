@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { getUsername } from "../../../components/api/authApi";
 
 const AddProduct = () => {
   const [name, setName] = useState("");
@@ -9,6 +10,7 @@ const AddProduct = () => {
   const [image2, setImage2] = useState("");
   const [grade, setGrade] = useState("");
   const navigate = useNavigate();
+  const [username, setUsername] = useState("");
 
   const saveProduct = async (e) => {
     e.preventDefault();
@@ -27,6 +29,15 @@ const AddProduct = () => {
       console.error("Error saving product:", error);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setUsername(getUsername(token));
+    } else {
+      window.location.href = "/login";
+    }
+  }, []);
 
   return (
     <div className="columns mt-5 is-centered">
