@@ -90,7 +90,7 @@ export default function Product() {
           backgroundColor: "white",
           width: "100%",
         }}
-        id="Products"
+        id="blog"
       >
         <h1
           style={{

@@ -38,7 +38,7 @@ function App() {
     },
     {
       title: "Partnerships",
-      text: "Building strong partnerships with local spice farmers to ensure a sustainable supply of raw materials",
+      text: "Building strong partnerships with local spice farmers to ensure a sustainable supply of raw materials.",
       imageUrl: people,
     },
   ];

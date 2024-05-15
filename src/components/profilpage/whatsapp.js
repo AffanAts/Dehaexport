@@ -21,7 +21,7 @@ const WhatsAppButton = () => {
 
   const handleClick = () => {
     window.location.href =
-      "https://api.whatsapp.com/send/?phone=905382236354&text&type=phone_number&app_absent=0";
+      "https://api.whatsapp.com/send/?phone=6285283148248&text&type=phone_number&app_absent=0";
   };
 
   return (

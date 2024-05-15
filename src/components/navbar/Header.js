@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -6,13 +5,14 @@ import {
   faFacebook,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+import logo from "../../assets/img/logo512.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const toggleMenu = (isOpen) => {
     setIsMenuOpen(isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : 'auto'; // Toggle scroll lock
+    document.body.style.overflow = isOpen ? "hidden" : "auto"; // Toggle scroll lock
   };
 
   const handleMenuToggle = () => {
@@ -63,6 +63,17 @@ const Header = () => {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, [isMenuOpen]);
+
+  const menuStyle = {
+    fontFamily: "'Playfair Display', sans-serif",
+    fontWeight: 300,
+    color: "#000000",
+  };
+
+  const brandStyle = {
+    fontFamily: "'Lato', sans-serif",
+    color: "#000000",
+  };
 
   return (
     <>
@@ -117,13 +128,75 @@ const Header = () => {
             id="navbarNavAltMarkup"
           >
             <div className="navbar-nav mx-auto">
-              <a className="nav-link active" aria-current="page" href="#AboutUs" onClick={handleLinkClick} style={{ color: "white" }}>About</a>
-              <a className="nav-link" href="#why" onClick={handleLinkClick} style={{ color: "white" }}>Gallery</a>
-              <a className="nav-link" href="#Products" onClick={handleLinkClick} style={{ color: "white" }}>Products</a>
-              <a className="nav-link" href="#" onClick={handleLinkClick} style={{ color: "white" }}>Web Export</a>
-              <a className="nav-link" href="https://www.instagram.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faInstagram} style={{ color: "white" }}/></a>
-              <a className="nav-link" href="https://www.linkedin.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faLinkedin} style={{ color: "white" }}/></a>
-              <a className="nav-link" href="https://www.facebook.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faFacebook} style={{ color: "white" }}/></a>
+              <a
+                className="nav-link active ms-4"
+                aria-current="page"
+                href="#AboutUs"
+                onClick={handleLinkClick}
+                style={{ ...menuStyle, color: "white" }}
+              >
+                About
+              </a>
+              <a
+                className="nav-link ms-4"
+                href="#why"
+                onClick={handleLinkClick}
+                style={{ ...menuStyle, color: "white" }}
+              >
+                Gallery
+              </a>
+
+              <h4
+                style={{ ...brandStyle, color: "white" }}
+                className="ms-4 mt-1"
+              >
+                <span style={{ fontWeight: 400 }}>Deha</span>
+                <span style={{ fontWeight: 900 }}>Export</span>
+              </h4>
+
+              <a
+                className="nav-link ms-4"
+                href="#Products"
+                onClick={handleLinkClick}
+                style={{ ...menuStyle, color: "white" }}
+              >
+                Products
+              </a>
+
+              <a
+                className="nav-link ms-4"
+                href="#blog"
+                onClick={handleLinkClick}
+                style={{ ...menuStyle, color: "white" }}
+              >
+                Blog
+              </a>
+            </div>
+            <div className="navbar-nav ml-auto">
+              <a
+                className="nav-link"
+                href="https://www.instagram.com/"
+                onClick={handleLinkClick}
+              >
+                <FontAwesomeIcon
+                  icon={faInstagram}
+                  style={{ color: "white" }}
+                />
+              </a>
+              <a
+                className="nav-link"
+                href="https://www.linkedin.com/"
+                onClick={handleLinkClick}
+              >
+                <FontAwesomeIcon icon={faLinkedin} style={{ color: "white" }} />
+              </a>
+              <a
+                className="nav-link"
+                href="https://www.facebook.com/"
+                onClick={handleLinkClick}
+              >
+                <FontAwesomeIcon icon={faFacebook} style={{ color: "white" }} />
+              </a>
             </div>
           </div>
         </div>
