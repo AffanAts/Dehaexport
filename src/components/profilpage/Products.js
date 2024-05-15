@@ -93,13 +93,13 @@ export default function Product() {
           width: "100%",
         }}
         id="Products"
+        data-aos="fade-up"
       >
         <h1
           style={{
             ...titleStyle,
           }}
           className="pt-5"
-          data-aos="fade-up"
         >
           Products
         </h1>
@@ -110,16 +110,11 @@ export default function Product() {
             minWidth: 200,
           }}
           className="pb-3"
-          data-aos="fade-up"
         >
           Learn more about our product. You can see our product here, click to
           see more detail about our product.
         </p>
-        <div
-          className="slider-container"
-          style={{ width: "75%" }}
-          data-aos="fade-up"
-        >
+        <div className="slider-container" style={{ width: "75%" }}>
           <Slider ref={sliderRef} {...settings}>
             {Xproduct.length > 0 &&
               Xproduct.map((item) => (
@@ -190,7 +185,6 @@ export default function Product() {
         <button
           type="button"
           className="btn btn-primary my-5"
-          data-aos="zoom-in"
           style={{
             fontFamily: "Inter, sans-serif",
             fontWeight: 500,
@@ -200,7 +194,7 @@ export default function Product() {
         >
           <FontAwesomeIcon icon={faDownload} className="px-2" />
           <a
-            href="/#"
+            href="https://drive.google.com/uc?export=download&id=1koiwa0JN42W-hhf4THC_Ep3bW_civluG"
             className="text-white"
             style={{ textDecoration: "none" }}
           >

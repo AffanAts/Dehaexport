@@ -29,7 +29,7 @@ export default function AboutUs() {
   return (
     <Container
       fluid
-      className="py-5 px-5"
+      className="py-3 px-5"
       style={{ backgroundColor: "white", overflowX: "hidden" }}
       id="AboutUs"
     >

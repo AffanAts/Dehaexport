@@ -5,6 +5,7 @@ import Definition2 from "../components/profilpage/Definition2";
 import Product from "../components/profilpage/Products";
 import Video from "../components/profilpage/Video";
 import Blog from "../components/profilpage/OurBlog";
+import Whatsapp from "../components/profilpage/whatsapp";
 
 
 export default function Main() {
@@ -17,6 +18,7 @@ export default function Main() {
       <Product />
       <Video />
       <Blog />
+      <Whatsapp />
     </>
   );
 }

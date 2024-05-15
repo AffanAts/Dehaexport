@@ -30,11 +30,11 @@ export default function Footer() {
 
   return (
     <footer
-      style={{ backgroundColor: "#f0f0f0", padding: "20px" }}
-      className="py-5 px-1"
+      style={{ backgroundColor: "#f0f0f0", padding: "20px", textAlign: "justify" }}
+      className="px-1"
     >
       <div className="container">
-        <div className="row">
+        <div className="row align-items-start">
           <div className="col-md-6">
             <h3>PT DEHA Corp International</h3>
             <p style={footerText} className="w-100">
@@ -42,93 +42,10 @@ export default function Footer() {
               professionals who pays a lot of attention to small details. We’re
               working to build a future of shared success.
             </p>
-          </div>
-          <div className="col-md-3">
-            <h5 style={footerTitle}>Address</h5>
-            <p style={footerText}>
-              Batan Indah E 74b, South Tangerang, Banten, Indonesia 15314
-            </p>
-            <a
-              href="dehacorpin@gmail.com"
-              style={{
-                color: "black",
-                textDecoration: "none",
-                fontFamily: "Inter, sans-serif",
-                fontWeight: 400,
-                fontSize: "14px",
-                lineHeight: "20px",
-              }}
-            >
-              <FontAwesomeIcon icon={faEnvelope} className="me-2" />
-              dehacorpin@gmail.com
-            </a>
-            <br />
-            <a
-              href="tel:+905056832054"
-              style={{
-                color: "black",
-                textDecoration: "none",
-                fontFamily: "Inter, sans-serif",
-                fontWeight: 400,
-                fontSize: "14px",
-                lineHeight: "20px",
-              }}
-            >
-              <FontAwesomeIcon icon={faPhone} className="me-2" />
-              +90-5382236354
-            </a>
-          </div>
-          <div className="col-md-3 d-flex justify-content-between flex-column flex-md-row">
-            {/* <div>
-              <h5 style={footerTitle}>Working Hours</h5>
-              <div>
-                <h6
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontWeight: 600,
-                    fontSize: "14px",
-                    lineHeight: "21px",
-                  }}
-                >
-                  Mon-Fri
-                </h6>
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontWeight: 400,
-                    fontSize: "14px",
-                    lineHeight: "20px",
-                  }}
-                >
-                  9 am - 5pm
-                </p>
-              </div>
-              <div>
-                <h6
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontWeight: 600,
-                    fontSize: "14px",
-                    lineHeight: "21px",
-                  }}
-                >
-                  Sat & Sun
-                </h6>
-                <p
-                  style={{
-                    fontFamily: "Inter, sans-serif",
-                    fontWeight: 400,
-                    fontSize: "14px",
-                    lineHeight: "20px",
-                  }}
-                >
-                  We Are Closed!
-                </p>
-              </div>
-            </div> */}
-            <div className="social-media">
+            <div className="social-media mb-4">
               <h5 style={footerTitle}>Social Media</h5>
-              <div style={{ display: isWorkingHours() ? "flex" : "block" }}>
+              <div
+              >
                 <a href="https://www.instagram.com/dehaexport?igsh=MTlhYXUyMWZmcmZuMg==">
                   <FontAwesomeIcon icon={faInstagram} className="me-2" />
                 </a>{" "}
@@ -140,6 +57,54 @@ export default function Footer() {
                 </a>
               </div>
             </div>
+          </div>
+          <div className="col-md-3">
+            <h5 style={footerTitle}>Address</h5>
+            <p style={footerText}>
+              Batan Indah E 74b, South Tangerang, Banten, Indonesia 15314
+            </p>
+            <div className="mb-4">
+              <a
+                href="dehacorpin@gmail.com"
+                style={{
+                  color: "black",
+                  textDecoration: "none",
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  lineHeight: "20px",
+                }}
+              >
+                <FontAwesomeIcon icon={faEnvelope} className="me-2" />
+                dehacorpin@gmail.com
+              </a>
+              <br />
+              <a
+                href="tel:+905056832054"
+                style={{
+                  color: "black",
+                  textDecoration: "none",
+                  fontFamily: "Inter, sans-serif",
+                  fontWeight: 400,
+                  fontSize: "14px",
+                  lineHeight: "20px",
+                }}
+              >
+                <FontAwesomeIcon icon={faPhone} className="me-2" />
+                +90-5382236354
+              </a>
+            </div>
+          </div>
+          <div className="col-md-3 d-flex justify-content-end">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d247.84205449874347!2d106.66998147056974!3d-6.332731008120616!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sid!2sid!4v1715757712659!5m2!1sid!2sid"
+              width="100%"
+              height="200"
+              style={{ border: "0" }}
+              allowfullscreen=""
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
       </div>

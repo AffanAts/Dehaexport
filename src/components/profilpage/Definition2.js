@@ -29,7 +29,7 @@ export default function Definition() {
   return (
     <Container
       fluid
-      className="pt-5 px-5"
+      className="pt-2 px-5"
       style={{ backgroundColor: "white", overflowX: "hidden" }}
     >
       <Row className="justify-content-between align-items-center py-5">

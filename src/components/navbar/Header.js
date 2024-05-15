@@ -118,9 +118,9 @@ const Header = () => {
           >
             <div className="navbar-nav mx-auto">
               <a className="nav-link active" aria-current="page" href="#AboutUs" onClick={handleLinkClick} style={{ color: "white" }}>About</a>
-              <a className="nav-link" href="#" onClick={handleLinkClick} style={{ color: "white" }}>Gallery</a>
-              <a className="nav-link" href="#" onClick={handleLinkClick} style={{ color: "white" }}>Products</a>
-              <a className="nav-link" href="#Products" onClick={handleLinkClick} style={{ color: "white" }}>Web Export</a>
+              <a className="nav-link" href="#why" onClick={handleLinkClick} style={{ color: "white" }}>Gallery</a>
+              <a className="nav-link" href="#Products" onClick={handleLinkClick} style={{ color: "white" }}>Products</a>
+              <a className="nav-link" href="#" onClick={handleLinkClick} style={{ color: "white" }}>Web Export</a>
               <a className="nav-link" href="https://www.instagram.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faInstagram} style={{ color: "white" }}/></a>
               <a className="nav-link" href="https://www.linkedin.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faLinkedin} style={{ color: "white" }}/></a>
               <a className="nav-link" href="https://www.facebook.com/" onClick={handleLinkClick}><FontAwesomeIcon icon={faFacebook} style={{ color: "white" }}/></a>
