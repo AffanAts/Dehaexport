@@ -32,71 +32,59 @@ const AddProduct = () => {
     <div className="columns mt-5 is-centered">
       <div className="column is-half">
         <form onSubmit={saveProduct}>
-          <div className="field">
-            <label className="label">Name</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                placeholder="Name"
-              />
-            </div>
+          <div className="mb-3">
+            <label className="form">Name</label>
+            <input
+              type="text"
+              className="form-control"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
+            />
           </div>
-          <div className="field">
-            <label className="label">Description</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={description}
-                onChange={(e) => setDescription(e.target.value)}
-                placeholder="Description"
-              />
-            </div>
+          <div className="mb-3">
+            <label className="form-label">Description</label>
+            <input
+              type="text"
+              className="form-control"
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              placeholder="Description"
+            />
           </div>
-          <div className="field">
-            <label className="label">Image 1</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={image1}
-                onChange={(e) => setImage1(e.target.value)}
-                placeholder="Image1"
-              />
-            </div>
+          <div className="mb-3">
+            <label className="form-label">Image 1</label>
+            <input
+              type="text"
+              className="form-control"
+              value={image1}
+              onChange={(e) => setImage1(e.target.value)}
+              placeholder="Image1"
+            />
           </div>
-          <div className="field">
-            <label className="label">Image 2</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={image2}
-                onChange={(e) => setImage2(e.target.value)}
-                placeholder="Image2"
-              />
-            </div>
+          <div className="mb-3">
+            <label className="form-label">Image 2</label>
+            <input
+              type="text"
+              className="form-control"
+              value={image2}
+              onChange={(e) => setImage2(e.target.value)}
+              placeholder="Image2"
+            />
           </div>
-          <div className="field">
-            <label className="label">Grade</label>
-            <div className="control">
-              <input
-                type="text"
-                className="input"
-                value={grade}
-                onChange={(e) => setGrade(e.target.value)}
-                placeholder="Grade"
-              />
-            </div>
+          <div className="mb-3">
+            <label className="form-label">Grade</label>
+            <input
+              type="text"
+              className="form-control"
+              value={grade}
+              onChange={(e) => setGrade(e.target.value)}
+              placeholder="Grade"
+            />
           </div>
-          <div className="field">
-            <button type="submit" className="button is-success">
-              Save
-            </button>
-          </div>
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
         </form>
       </div>
     </div>
