@@ -1,0 +1,37 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_USER: myusername
+      POSTGRES_PASSWORD: mypassword
+      POSTGRES_DB: mydbname
+    ports:
+      - "5432:5432"
+    networks:
+      - deha-export_default
+
+  graphql-engine:
+    image: hasura/graphql-engine:v2.0.10
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    environment:
+      HASURA_GRAPHQL_DATABASE_URL: postgres://myusername:mypassword@deha-export-postgres-1:5432/mydbname
+      HASURA_GRAPHQL_ADMIN_SECRET: Q2dkJ401j1PmbjPcqedy4uwc2hgwzTMaUZ4zgWJqbUfvwcnzWaswS4rISFy50T68
+      HASURA_GRAPHQL_CORS_DOMAIN: '*'
+      HASURA_GRAPHQL_JWT_SECRET: >-
+        {
+          "type": "RS512",
+          "key": "-----BEGIN CERTIFICATE-----\nMIIDHTCCAgWgAwIBAgIJJYt2FqUey2x2MA0GCSqGSIb3DQEBCwUAMCwxKjAoBgNV\nBAMTIWRldi1xOHVxbjV5bnR2MmZoMDQ2LnVzLmF1dGgwLmNvbTAeFw0yNDA1MjAw\nOTM0NTlaFw0zODAxMjcwOTM0NTlaMCwxKjAoBgNVBAMTIWRldi1xOHVxbjV5bnR2\nMmZoMDQ2LnVzLmF1dGgwLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC\nggEBAM9maTJ/Kz/5VTOVLZPm2ykgWhKj+p/Ycnq6SGc/8Zy3LDybTxlIYvZCzVDf\ncBK3C5EzHC+8IC7kQOMYmORIAAEG8bEy3hihBiSd0IQQxDlQsFRzoTnyLUtIV+91\nee1DAgAZqgMIhAOIlanQsHKrWR4yehA8stnfvxHsTMYWNZpdIrb1OdeXfVBxzGp6\ns7osZT99TACNkDzdRkZyTcD0Q46FYaDJWkfijbCyQP5etCHOuWixpX6QHQ8T0ESG\nQXbrTZ7mBN5xEtYf1My3so9+2U9bXGITA9PDZWb0vHmZwhD5sQbXKrOBqe8+c+s3\neD/uXp9M98XDKSbr23kCYbPbt5MCAwEAAaNCMEAwDwYDVR0TAQH/BAUwAwEB/zAd\nBgNVHQ4EFgQU/2XAmO8hT36gHzltnrqhcbz4FvwwDgYDVR0PAQH/BAQDAgKEMA0G\nCSqGSIb3DQEBCwUAA4IBAQDK9NSKOiodJyAfB0gk8Bc7RE4/GyCpT0HPy8g0dKrB\n88RAiGgOHc7bIESsWlJyJU61lnKyhko/aF6Y0LHuv8gxlvQyVx7xjINBs6FtGF5H\ny9FugXYZvTZAVwagzB/TxHPGsDgA5H5KllPnScp2QxK+JIt8uqNbqVLX3kF7t8fI\n87oZA+7mhUlJXCay/pPV5xyCeAcsVgoYBMqTmS/33FHJAEHzo/07sKaIGPkuCB0h\nqwRqGQpoNxqhC2vsPqffz5TUDKqQ6z+7zyIrdZl7Uk4HgbH/+LY/CNC2Do0t6bOQ\nl5Thj4tcBwPLCXJhFVXBESUHaGjbOWCu8590EcVkOnnd\n-----END CERTIFICATE-----",
+          "claims_namespace_path": "$.https://hasura.io/jwt/claims",
+          "claims_format": "json"
+        }
+    networks:
+      - deha-export_default
+
+networks:
+  deha-export_default:
+    external: true

@@ -1,25 +1,36 @@
-import { useEffect, useRef, useState } from "react";
+import { useAuth0 } from '@auth0/auth0-react';
+import { useMutation } from '@apollo/client';
 import imageL from "../../assets/img/Login.svg";
-import { login } from "../../components/api/authApi";
+import { useEffect, useRef, useState } from 'react';
+import { loginUser } from "../../config/typeDef";
 
 const FormLogin = () => {
   const [loginFailed, setLoginFailed] = useState("");
+  const [loginUserMutation, { data, error }] = useMutation(loginUser);
+  const { loginWithRedirect } = useAuth0(); // Mendapatkan fungsi loginWithRedirect dari hook useAuth0
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    const data = {
-      username: event.target.username.value,
-      password: event.target.password.value,
-    };
-    login(data, (status, res) => {
-      if (status) {
-        localStorage.setItem("token", res);
-        window.location.href ="/dashboard";
-      } else {
-        setLoginFailed(res.response.data);
-        console.log(res.response.data);
-      }
-    });
+    const username = event.target.username.value;
+    const password = event.target.password.value;
+
+    try {
+      await loginUserMutation({
+        variables: { username, password }
+      });
+
+      // Jika login berhasil, pengalihkan ke dashboard
+      window.location.href ="/dashboard";
+    } catch (error) {
+      // Jika login gagal, tangani pesan kesalahan
+      setLoginFailed("Gagal login: " + error.message);
+      console.error("Gagal login:", error);
+    }
+  };
+
+  const handleAuth0Login = () => {
+    // Redirect ke halaman login Auth0
+    loginWithRedirect();
   };
 
   const usernameRef = useRef(null);
@@ -27,59 +38,62 @@ const FormLogin = () => {
   useEffect(() => {
     usernameRef.current.focus();
   }, []);
+
   return (
     <main>
-      <section class="pb-5">
-        <div class="container-fluid h-custom">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-9 col-lg-6 col-xl-5 mt-5">
+      <section className="pb-5">
+        <div className="container-fluid h-custom">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-md-9 col-lg-6 col-xl-5 mt-5">
               <img
                 src={imageL}
-                class="img-fluid ms-5"
+                className="img-fluid ms-5"
                 alt="Sampleimage"
                 style={{ width: "550px" }}
               />
             </div>
             <div
-              class="col-md-8 col-lg-6 col-xl-4 offset-xl-1"
+              className="col-md-8 col-lg-6 col-xl-4 offset-xl-1"
               style={{ marginTop: "160px" }}
             >
-              <h1 class="mb-5">login</h1>
+              <h1 className="mb-5">Login</h1>
               <form onSubmit={handleLogin}>
-              
-                <div class="form-outline mb-4">
+                <div className="form-outline mb-4">
                   <input
                     label="Username"
                     type="text"
                     name="username"
-                    class="form-control form-control-lg"
+                    className="form-control form-control-lg"
                     ref={usernameRef}
                   />
-                  <label class="form-label" for="form3Example3">
+                  <label className="form-label" htmlFor="form3Example3">
                     Username
                   </label>
-                  <span class="help-block"></span>
+                  <span className="help-block"></span>
                 </div>
-                <div class="form-outline mb-3">
+                <div className="form-outline mb-3">
                   <input
                     type="password"
                     name="password"
                     id="form3Example4"
-                    class="form-control form-control-lg"
+                    className="form-control form-control-lg"
                     placeholder="Enter password"
                   />
-                  <span class="help-block"></span>
-                  <label class="form-label" for="form3Example4">
+                  <span className="help-block"></span>
+                  <label className="form-label" htmlFor="form3Example4">
                     Password
                   </label>
                 </div>
-                <div class="text-center text-lg-start mt-4 pt-2">
-                  <div class="form-group">
-                  {loginFailed && <p className="text-danger">{loginFailed}</p>}
-                    <input type="submit" class="btn btn-primary btn-lg w-25" />
+                <div className="text-center text-lg-start mt-4 pt-2">
+                  <div className="form-group">
+                    {loginFailed && <p className="text-danger">{loginFailed}</p>}
+                    <input type="submit" className="btn btn-primary btn-lg w-25" />
                     <p>
                       Belum punya akun? <a href="/#">Sign up now</a>.
                     </p>
+                    <button className="btn btn-primary btn-lg w-100" onClick={handleAuth0Login}>
+                      Login with Auth0
+                    </button>
                   </div>
                 </div>
               </form>
@@ -91,10 +105,4 @@ const FormLogin = () => {
   );
 };
 
-// export default function Login() {
-//   return (
-//     <>
-//     </>
-//   );
-// }
 export default FormLogin;

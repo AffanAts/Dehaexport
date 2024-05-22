@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { jwtDecode } from "jwt-decode";
 import { getUsername } from "../../components/api/authApi";
 import { getTotalProducts } from "../../components/api/productApi";
 
@@ -10,10 +11,21 @@ const Dashboard = () => {
     localStorage.removeItem("token");
     window.location.href = "/login";
   };
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      setUsername(getUsername(token));
+      try {
+        const decoded = jwtDecode(token); // Decode token untuk memeriksa validitasnya
+        if (decoded) {
+          setUsername(getUsername(token));
+        } else {
+          window.location.href = "/login";
+        }
+      } catch (error) {
+        console.error("Invalid token:", error);
+        window.location.href = "/login";
+      }
     } else {
       window.location.href = "/login";
     }
@@ -26,9 +38,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <body class="d-flex flex-column min-vh-100 bg-secondary">
+    <body className="d-flex flex-column min-vh-100 bg-secondary">
       <main>
-        <div class="container py-4">
+        <div className="container py-4">
           <div className="p-5 mb-4 bg-transparent rounded-3">
             <div className="container-fluid py-5 text-white">
               <h1 className="display-4 fw-bold">
@@ -46,29 +58,29 @@ const Dashboard = () => {
             </div>
           </div>
 
-          <div class="row align-items-md-stretch">
-            <div class="col-md-6">
+          <div className="row align-items-md-stretch">
+            <div className="col-md-6">
               <center>
-                <div class="h-100 p-5 text-bg-dark rounded-3">
+                <div className="h-100 p-5 text-bg-dark rounded-3">
                   <h2>Total Product</h2>
                   <p>
                     {totalProducts} {/* Tampilkan jumlah total produk */}
                   </p>
                   <a href="/#">
-                    <button class="btn btn-primary btn-lg" type="button">
+                    <button className="btn btn-primary btn-lg" type="button">
                       Product
                     </button>
                   </a>
                 </div>
               </center>
             </div>
-            <div class="col-md-6">
+            <div className="col-md-6">
               <center>
-                <div class="h-100 p-5 bg-body-tertiary border rounded-3">
+                <div className="h-100 p-5 bg-body-tertiary border rounded-3">
                   <h2>Total Blog</h2>
                   <p>xxx</p>
                   <a href="/#">
-                    <button class="btn btn-primary btn-lg" type="button">
+                    <button className="btn btn-primary btn-lg" type="button">
                       Blog
                     </button>
                   </a>
