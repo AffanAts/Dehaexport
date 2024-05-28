@@ -69,7 +69,7 @@ export default function CommingSoon() {
             marginBottom: "20px", // Add margin bottom for spacing
             maxWidth: "800px",
           }}
-          class="fw-bold"
+          className="fw-bold"
         >
           COMING SOON
         </h1>
@@ -81,7 +81,7 @@ export default function CommingSoon() {
             lineHeight: "26px",
             maxWidth: "650px",
           }}
-          class="fw-medium"
+          className="fw-medium"
         >
          We are preparing something amazing and exciting for export. Stay Tuned !
         </p></center>

@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import useDeleteProduct from './deleteProductHandler';
 
 const useListProducts = () => {
-    const [getProducts, { data, error }] = useLazyQuery(getAllProducts);
+    const [getProducts, { data, error, loading }] = useLazyQuery(getAllProducts); // Include loading state
     const [searchInput, setSearchInput] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
     const [productsPerPage, setProductsPerPage] = useState(5);
@@ -59,6 +59,7 @@ const useListProducts = () => {
     return {
         data,
         error,
+        loading, // Return loading state
         searchInput,
         currentPage,
         productsPerPage,

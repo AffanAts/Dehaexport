@@ -10,6 +10,7 @@ const ListProducts = () => {
     const {
         data,
         error,
+        loading, // Destructure loading state
         searchInput,
         currentPage,
         productsPerPage,
@@ -31,7 +32,7 @@ const ListProducts = () => {
 
     return (
         <div className="container mt-5">
-            {isSubmitting && <Loader />} {/* Show loader when deleting */}
+            {(loading || isSubmitting) && <Loader />} {/* Show loader when fetching data or deleting */}
             <div className="d-flex justify-content-between align-items-center mb-4">
                 <h2>Products</h2>
                 <div>

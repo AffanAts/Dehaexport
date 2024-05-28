@@ -23,6 +23,7 @@ const useDeleteProduct = (getProducts) => {
                     await deleteProduct({ variables: { id: parseInt(id) } });
                     Swal.fire("Deleted!", "Your product has been deleted.", "success");
                     getProducts(); // Refresh the product list
+                    window.location.reload(); // Refresh the page
                 } catch (error) {
                     console.error("Error deleting product:", error);
                     Swal.fire("Error!", "Error deleting product", "error");

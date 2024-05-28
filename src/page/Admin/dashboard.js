@@ -41,7 +41,7 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <body className="d-flex flex-column min-vh-100 bg-secondary">
+    <div className="d-flex flex-column min-vh-100 bg-secondary">
       <main>
         <div className="container py-4">
           <div className="p-5 mb-4 bg-transparent rounded-3">
@@ -90,7 +90,7 @@ const Dashboard = () => {
           </div>
         </div>
       </main>
-    </body>
+    </div>
   );
 };
 

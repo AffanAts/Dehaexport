@@ -30,7 +30,7 @@ const Header = () => {
 
     window.onscroll = function () {
       const currentScrollPos = window.pageYOffset;
-      const navbar = document.getElementById("navbar");
+      const navbar = document.getElementById("root");
 
       if (!isMenuOpen) {
         if (prevScrollpos > currentScrollPos) {

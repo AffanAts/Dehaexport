@@ -69,7 +69,7 @@ export default function LandingPage() {
             marginBottom: "20px", // Add margin bottom for spacing
             maxWidth: "800px",
           }}
-          class="fw-bold"
+          className="fw-bold"
         >
           The World Class Spices From Indonesia
         </h1>
@@ -80,7 +80,7 @@ export default function LandingPage() {
             lineHeight: "26px",
             maxWidth: "650px",
           }}
-          class="fw-medium"
+          className="fw-medium"
         >
           Welcome to DEHA EXPORT, Specialized Spices from indonesia. Your solution for finding Spices Product with High quality
         </p></center>

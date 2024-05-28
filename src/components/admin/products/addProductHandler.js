@@ -15,6 +15,8 @@ const useAddProduct = () => {
         title: "Good job!",
         text: "Product added successfully!",
         icon: "success"
+      }).then(() => {
+        window.location.href = "/listproduct"; // Redirect to /listproduct
       });
     } catch (error) {
       console.error("Error adding product:", error);
