@@ -2,13 +2,16 @@ import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { getProducts } from "../api/productApi";
-import ourBlog from "../dummy/ListBlog";
+import { useLazyQuery } from '@apollo/client';
+import { getAllBlogs } from "../../config/typeDef"; // Sesuaikan path sesuai struktur proyek Anda
 
-export default function Product() {
-  const [products, setProducts] = useState([]);
+export default function Blog() {
+  const [blogs, setBlogs] = useState([]);
   const [expandedDescriptionId, setExpandedDescriptionId] = useState(null);
+  const [imageError, setImageError] = useState({}); // State untuk melacak kesalahan gambar
   const sliderRef = useRef(null);
+
+  const [getBlogs, { data, error }] = useLazyQuery(getAllBlogs);
 
   const titleStyle = {
     fontFamily: "'Bad Script', sans-serif",
@@ -69,10 +72,17 @@ export default function Product() {
   }, []);
 
   useEffect(() => {
-    getProducts((data) => {
-      setProducts(data);
-    });
-  }, []);
+    getBlogs();
+  }, [getBlogs]);
+
+  useEffect(() => {
+    if (data && data.blogs) {
+      setBlogs(data.blogs);
+    }
+    if (error) {
+      console.error("Error fetching blogs:", error);
+    }
+  }, [data, error]);
 
   const toggleDescription = (itemId) => {
     if (expandedDescriptionId === itemId) {
@@ -80,6 +90,10 @@ export default function Product() {
     } else {
       setExpandedDescriptionId(itemId);
     }
+  };
+
+  const handleImageError = (id) => {
+    setImageError((prev) => ({ ...prev, [id]: true }));
   };
 
   return (
@@ -119,8 +133,8 @@ export default function Product() {
           data-aos="fade-up"
         >
           <Slider ref={sliderRef} {...settings}>
-            {ourBlog.length > 0 &&
-              ourBlog.map((item) => (
+            {blogs.length > 0 &&
+              blogs.map((item) => (
                 <div key={item.id}>
                   <div
                     className="card mb-3"
@@ -132,23 +146,42 @@ export default function Product() {
                     data-aos="zoom-in"
                   >
                     <center>
-                      <img
-                        src={item.image}
-                        className="card-img-top"
-                        alt={item.title}
-                        data-aos="zoom-in"
-                        style={{
-                          objectFit: "cover",
-                          width: "100%",
-                          height: "200px",
-                          maxHeight: "200px",
-                        }}
-                      />
+                      {item.image && !imageError[item.id] ? (
+                        <img
+                          src={item.image}
+                          className="card-img-top"
+                          alt={item.title}
+                          data-aos="zoom-in"
+                          style={{
+                            objectFit: "cover",
+                            width: "100%",
+                            height: "200px",
+                            maxHeight: "200px",
+                          }}
+                          onError={() => handleImageError(item.id)}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            width: "100%",
+                            height: "200px",
+                            backgroundColor: "#f0f0f0",
+                            color: "#000",
+                            fontSize: "14px",
+                            fontFamily: "Inter, sans-serif",
+                          }}
+                        >
+                          Gambar tidak tersedia
+                        </div>
+                      )}
                     </center>
 
                     <div className="card-body">
                       <h5 className="card-title" style={{ ...titleStyle }}>
-                        {item.name}
+                        {item.title}
                       </h5>
                       <p
                         className="card-text"
@@ -210,6 +243,7 @@ function SampleNextArrow(props) {
     />
   );
 }
+
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (

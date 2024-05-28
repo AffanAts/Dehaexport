@@ -4,12 +4,19 @@ import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import Slider from "react-slick";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { getProducts } from "../api/productApi";
-import Xproduct from "../dummy/Product";
+import { getAllProducts } from "../../config/typeDef";
+import { useQuery } from "@apollo/client";
+import { Modal, Button } from "react-bootstrap";
+import ProductModal from "./ProductModal"; // Import tambahan untuk modal
+import Loader from "../navbar/Loader"
 
 export default function Product() {
+  const { data, loading, error } = useQuery(getAllProducts);
   const [products, setProducts] = useState([]);
   const [expandedDescriptionId, setExpandedDescriptionId] = useState(null);
+  const [imageError, setImageError] = useState({});
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProductId, setSelectedProductId] = useState(null); // State untuk menyimpan ID produk yang dipilih
   const sliderRef = useRef(null);
 
   const titleStyle = {
@@ -71,10 +78,13 @@ export default function Product() {
   }, []);
 
   useEffect(() => {
-    getProducts((data) => {
-      setProducts(data);
-    });
-  }, []);
+    if (data && data.products) {
+      setProducts(data.products);
+    }
+    if (error) {
+      console.error("Error fetching products:", error);
+    }
+  }, [data, error]);
 
   const toggleDescription = (itemId) => {
     if (expandedDescriptionId === itemId) {
@@ -83,6 +93,24 @@ export default function Product() {
       setExpandedDescriptionId(itemId);
     }
   };
+
+  const handleImageError = (id) => {
+    setImageError((prev) => ({ ...prev, [id]: true }));
+  };
+
+  const handleShowModal = (productId) => {
+    setSelectedProductId(productId);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+    setSelectedProductId(null);
+  };
+
+  if (loading) {
+    return <p><Loader/></p>;
+  }
 
   return (
     <center>
@@ -115,32 +143,51 @@ export default function Product() {
           see more detail about our product.
         </p>
         <div className="slider-container" style={{ width: "75%" }}>
-          <Slider ref={sliderRef} {...settings}>
-            {Xproduct.length > 0 &&
-              Xproduct.map((item) => (
+          {products.length > 0 ? (
+            <Slider ref={sliderRef} {...settings}>
+              {products.map((item) => (
                 <div key={item.id}>
                   <div
                     className="card mb-3"
                     style={{
                       maxWidth: "340px",
-                      border: "none", // Hilangkan border
-                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)", // Tambahkan efek bayangan
+                      border: "none",
+                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",
                     }}
                     data-aos="zoom-in"
                   >
                     <center>
-                      <img
-                        src={item.image}
-                        className="card-img-top"
-                        alt={item.title}
-                        data-aos="zoom-in"
-                        style={{
-                          objectFit: "cover",
-                          width: "100%",
-                          height: "200px",
-                          maxHeight: "200px",
-                        }}
-                      />
+                      {item.image && !imageError[item.id] ? (
+                        <img
+                          src={item.image}
+                          className="card-img-top"
+                          alt={item.name}
+                          data-aos="zoom-in"
+                          style={{
+                            objectFit: "cover",
+                            width: "100%",
+                            height: "200px",
+                            maxHeight: "200px",
+                          }}
+                          onError={() => handleImageError(item.id)}
+                        />
+                      ) : (
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            width: "100%",
+                            height: "200px",
+                            backgroundColor: "#f0f0f0",
+                            color: "#000",
+                            fontSize: "14px",
+                            fontFamily: "Inter, sans-serif",
+                          }}
+                        >
+                          Gambar tidak tersedia
+                        </div>
+                      )}
                     </center>
 
                     <div className="card-body">
@@ -151,10 +198,23 @@ export default function Product() {
                         className="card-text"
                         style={{
                           ...textStyle,
-                          textAlign: "justify", // Rata kanan dan kiri
+                          textAlign: "justify",
                         }}
                       >
-                        <b>Grade:</b> {item.grade}
+                        <Button
+                          className="text-white my-3"
+                          style={{
+                            textDecoration: "none",
+                            padding: "5px 10px", // Atur padding sesuai keinginan
+                            fontSize: "12px", // Atur ukuran font sesuai keinginan
+                            height: "27px", // Atur tinggi button sesuai keinginan
+                            width: "auto", // Atur lebar button sesuai keinginan
+                          }}
+                          onClick={() => handleShowModal(item.id)} // Menggunakan ID produk untuk modal
+                        >
+                         Grade
+                        </Button>
+
                         <br />
                         {item.description.length > 190 ? (
                           <>
@@ -179,12 +239,15 @@ export default function Product() {
                   </div>
                 </div>
               ))}
-          </Slider>
+            </Slider>
+          ) : (
+            <p style={textStyle}>Produk belum tersedia</p>
+          )}
         </div>
 
         <button
           type="button"
-          className="btn btn-primary my-5"
+          className="btn btn-primary mt-3 mb-5"
           style={{
             fontFamily: "Inter, sans-serif",
             fontWeight: 500,
@@ -202,6 +265,14 @@ export default function Product() {
           </a>
         </button>
       </div>
+
+      {selectedProductId && (
+        <ProductModal
+          productId={selectedProductId}
+          show={showModal}
+          closeModal={handleCloseModal}
+        />
+      )}
     </center>
   );
 }
@@ -223,6 +294,7 @@ function SampleNextArrow(props) {
     />
   );
 }
+
 function SamplePrevArrow(props) {
   const { className, style, onClick } = props;
   return (

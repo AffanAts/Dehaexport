@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { jwtDecode } from "jwt-decode";
-import { getUsername } from "../../components/api/authApi";
-import { getTotalProducts } from "../../components/api/productApi";
+import Swal from "sweetalert2";
+import { fetchTotalProducts } from "../../components/api/productApi";
+import useAuth from "../../components/api/authApi";
 
 const Dashboard = () => {
+  useAuth();
   const [username, setUsername] = useState("");
-  const [totalProducts, setTotalProducts] = useState(0); // Tambahkan state untuk jumlah total produk
+  const [totalProducts, setTotalProducts] = useState(0);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -13,28 +14,30 @@ const Dashboard = () => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      try {
-        const decoded = jwtDecode(token); // Decode token untuk memeriksa validitasnya
-        if (decoded) {
-          setUsername(getUsername(token));
-        } else {
-          window.location.href = "/login";
-        }
-      } catch (error) {
-        console.error("Invalid token:", error);
-        window.location.href = "/login";
-      }
-    } else {
-      window.location.href = "/login";
-    }
-  }, []);
+    const fetchTotal = async () => {
+      const total = await fetchTotalProducts();
+      setTotalProducts(total);
+    };
 
-  useEffect(() => {
-    getTotalProducts((data) => {
-      setTotalProducts(data.length); // Set jumlah total produk saat mendapatkan data dari API
-    });
+    fetchTotal();
+
+    const showWelcomeToast = localStorage.getItem("showWelcomeToast");
+    if (showWelcomeToast) {
+      Swal.fire({
+        toast: true,
+        position: "top-end",
+        icon: "success",
+        title: "Signed in successfully",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener("mouseenter", Swal.stopTimer);
+          toast.addEventListener("mouseleave", Swal.resumeTimer);
+        }
+      });
+      localStorage.removeItem("showWelcomeToast"); // Remove the flag after displaying
+    }
   }, []);
 
   return (
@@ -52,9 +55,6 @@ const Dashboard = () => {
                 mengelola website ini. Kami siap membantu Anda dalam setiap
                 langkah perjalanan Anda di sini.
               </p>
-              <button className="ml-5 bg-black" onClick={handleLogout}>
-                Logout
-              </button>
             </div>
           </div>
 
@@ -64,9 +64,9 @@ const Dashboard = () => {
                 <div className="h-100 p-5 text-bg-dark rounded-3">
                   <h2>Total Product</h2>
                   <p>
-                    {totalProducts} {/* Tampilkan jumlah total produk */}
+                    {totalProducts}
                   </p>
-                  <a href="/#">
+                  <a href="/listProduct">
                     <button className="btn btn-primary btn-lg" type="button">
                       Product
                     </button>

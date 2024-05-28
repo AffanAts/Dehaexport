@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import jwt_decode from 'jwt-decode';
 import Auth0Lock from 'auth0-lock';
 
 const Callbackk = () => {

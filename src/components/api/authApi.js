@@ -1,17 +1,30 @@
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import {jwtDecode} from "jwt-decode";
 
-export const login = (data, callback) => {
-    axios
-    .post("https://fakestoreapi.com/auth/login", data)
-    .then((res) =>{
-        callback(true, res.data.token);
-    }).catch((error) =>{
-        callback(false, error);
-    });
+const useAuth = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        const currentTime = Date.now() / 1000;
+
+        if (decoded.exp < currentTime) {
+          // Token expired
+          localStorage.removeItem("token");
+          navigate("/login");
+        }
+      } catch (error) {
+        console.error("Invalid token:", error);
+        navigate("/login");
+      }
+    } else {
+      navigate("/login");
+    }
+  }, [navigate]);
 };
 
-export const getUsername = (token) => {
-    const decoded = jwtDecode(token); 
-    return decoded.user;
-};
+export default useAuth;

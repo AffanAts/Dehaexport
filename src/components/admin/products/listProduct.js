@@ -1,102 +1,105 @@
-import { Link } from 'react-router-dom'; // Menambahkan Link untuk berpindah halaman
-import { getAllProducts } from '../../../config/typeDef';
-import { useLazyQuery } from '@apollo/client';
-import { useState, useEffect } from 'react';
+import React from "react";
+import { Link } from 'react-router-dom';
+import useListProducts from './listProductHandler';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Loader from "../../navbar/Loader"; // Import Loader
+import useAuth from "../../api/authApi";
 
 const ListProducts = () => {
-    const [getProducts, { data, error }] = useLazyQuery(getAllProducts);
-    const [searchInput, setSearchInput] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [productsPerPage] = useState(3);
-    const [originalProducts, setOriginalProducts] = useState([]);
-
-    useEffect(() => {
-        getProducts();
-    }, []);
-
-    useEffect(() => {
-        if (data && data.products) {
-            setOriginalProducts(data.products);
-        }
-    }, [data]);
+    useAuth();
+    const {
+        data,
+        error,
+        searchInput,
+        currentPage,
+        productsPerPage,
+        viewAll,
+        searchProducts,
+        getDisplayedProducts,
+        paginate,
+        onChangeSearchInput,
+        handleDelete,
+        handleProductsPerPageChange,
+        handleViewAllToggle,
+        isSubmitting // Destructure isSubmitting
+    } = useListProducts();
 
     if (error) {
         console.log(error);
-        return null;
+        return <div>Error fetching products: {error.message}</div>;
     }
 
-    const searchProducts = (input) => {
-        const filteredProducts = originalProducts.filter(product =>
-            product.name.toLowerCase().includes(input.toLowerCase())
-        );
-        return filteredProducts;
-    };
-
-    const getDisplayedProducts = () => {
-        const searchedProducts = searchInput ? searchProducts(searchInput) : originalProducts;
-        const indexOfLastProduct = currentPage * productsPerPage;
-        const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
-        return searchedProducts.slice(indexOfFirstProduct, indexOfLastProduct);
-    };
-
-    const paginate = (pageNumber) => setCurrentPage(pageNumber);
-
-    const onChangeSearchInput = (e) => {
-        setSearchInput(e.target.value);
-        setCurrentPage(1);
-    };
-
     return (
-        <div className="container">
-            <div className='input-container mt-3 mb-3'>
+        <div className="container mt-5">
+            {isSubmitting && <Loader />} {/* Show loader when deleting */}
+            <div className="d-flex justify-content-between align-items-center mb-4">
+                <h2>Products</h2>
+                <div>
+                    <Link to="/add" className="btn btn-primary">New product</Link>
+                    <button className="btn btn-outline-primary ml-2">Export</button>
+                </div>
+            </div>
+            <div className="input-group mb-3">
                 <input
                     value={searchInput}
                     onChange={onChangeSearchInput}
                     className="form-control"
                     placeholder="Search products by name..."
                 />
-                {/* Menambah tombol untuk berpindah ke halaman tambah produk */}
-                <Link to="/addProduct" className="btn btn-primary ml-2">Add Product</Link>
+                <div className="input-group-append">
+                    <button className="btn btn-outline-secondary" type="button">Filters</button>
+                </div>
             </div>
-            <table className="table">
+            <div className="d-flex justify-content-between mb-3">
+                <div>
+                    <label>Products per page: </label>
+                    <select value={productsPerPage} onChange={handleProductsPerPageChange} className="ml-2">
+                        <option value={3}>3</option>
+                        <option value={5}>5</option>
+                        <option value={10}>10</option>
+                    </select>
+                </div>
+                <button className="btn btn-outline-secondary" onClick={handleViewAllToggle}>
+                    {viewAll ? 'Show Paginated' : 'View All'}
+                </button>
+            </div>
+            <table className="table table-hover">
                 <thead>
                     <tr>
                         <th>Image</th>
                         <th>Name</th>
                         <th>Description</th>
-                        <th>Action</th> {/* Menambah kolom untuk action */}
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     {data && getDisplayedProducts().map(product => (
                         <tr key={product.id}>
-                            <td><img src={product.image} alt={product.name} style={{ width: '100px' }} /></td>
+                            <td><img src={product.image} alt={product.name} style={{ width: '50px' }} /></td>
                             <td>{product.name}</td>
                             <td>{product.description}</td>
                             <td>
-                                {/* Menambah tombol update */}
-                                <button className="btn btn-warning mr-2">Update</button>
-                                {/* Menambah tombol delete */}
-                                <button className="btn btn-danger">Delete</button>
+                                <div className="btn-group" role="group">
+                                    <Link to={`/update/${product.id}`} className="btn btn-warning btn-sm">Update</Link>
+                                    <Link to={`/add-grade/${product.id}`} className="btn btn-info btn-sm">Add Grade</Link>
+                                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(product.id)}>Delete</button>
+                                </div>
                             </td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            <div>
-                {data && (
-                    <ul className='pagination'>
-                        {Array.from({ length: Math.ceil(searchProducts(searchInput).length / productsPerPage) }, (_, i) => (
-                            <li key={i} className='page-item'>
-                                <button onClick={() => paginate(i + 1)} className='page-link'>
-                                    {i + 1}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                )}
-            </div>
+            <nav className="mt-4">
+                <ul className="pagination justify-content-center">
+                    {data && !viewAll && Array.from({ length: Math.ceil(searchProducts(searchInput).length / productsPerPage) }, (_, i) => (
+                        <li key={i} className={`page-item ${currentPage === i + 1 ? 'active' : ''}`}>
+                            <button onClick={() => paginate(i + 1)} className="page-link">
+                                {i + 1}
+                            </button>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
         </div>
     );
 };

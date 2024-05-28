@@ -5,7 +5,6 @@ import {
   faFacebook,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
-import logo from "../../assets/img/logo512.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

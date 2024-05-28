@@ -6,13 +6,22 @@ const httpLink = createHttpLink({
 });
 
 const authLink = setContext((_, { headers }) => {
-  const token = 'Q2dkJ401j1PmbjPcqedy4uwc2hgwzTMaUZ4zgWJqbUfvwcnzWaswS4rISFy50T68';
-  return {
-    headers: {
-      ...headers,
-      'x-hasura-admin-secret': token
-    }
-  };
+  const token = localStorage.getItem('token');
+  if (token) {
+    return {
+      headers: {
+        ...headers,
+        'Authorization': `Bearer ${token}`,
+      }
+    };
+  } else {
+    return {
+      headers: {
+        ...headers,
+        'x-hasura-role': 'anonymous',
+      }
+    };
+  }
 });
 
 const client = new ApolloClient({

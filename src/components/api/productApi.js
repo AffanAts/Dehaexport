@@ -1,23 +1,14 @@
-import axios from "axios";
+import client from '../../apollo-client/apollo-client';
+import { getAllProducts } from '../../config/typeDef';
 
-export const getProducts = (callback) => {
-  axios
-    .get("https://fakestoreapi.com/products")
-    .then((res) => {
-      callback(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
+export const fetchTotalProducts = async () => {
+  try {
+    const { data } = await client.query({
+      query: getAllProducts,  
     });
-};
-
-export const getTotalProducts = (callback) => {
-  axios
-    .get("https://fakestoreapi.com/products")
-    .then((res) => {
-      callback(res.data);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+    return data.products.length; // Ambil panjang array produk
+  } catch (error) {
+    console.error('Error fetching total products:', error);
+    return 0;
+  }
 };

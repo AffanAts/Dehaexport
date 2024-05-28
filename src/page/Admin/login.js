@@ -1,42 +1,73 @@
-import { useAuth0 } from '@auth0/auth0-react';
-import { useMutation } from '@apollo/client';
+import React, { useEffect, useRef, useState } from "react";
+import axios from "axios";
+import Swal from "sweetalert2";
 import imageL from "../../assets/img/Login.svg";
-import { useEffect, useRef, useState } from 'react';
-import { loginUser } from "../../config/typeDef";
 
 const FormLogin = () => {
   const [loginFailed, setLoginFailed] = useState("");
-  const [loginUserMutation, { data, error }] = useMutation(loginUser);
-  const { loginWithRedirect } = useAuth0(); // Mendapatkan fungsi loginWithRedirect dari hook useAuth0
+  const usernameRef = useRef(null);
+
+  useEffect(() => {
+    // Check if token exists and redirect to dashboard if it does
+    const token = localStorage.getItem("token");
+    if (token) {
+      window.location.href = "/dashboard";
+    } else {
+      usernameRef.current.focus();
+    }
+  }, []);
 
   const handleLogin = async (event) => {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
 
-    try {
-      await loginUserMutation({
-        variables: { username, password }
-      });
+    console.log("Attempting to login with:", { username, password });
 
-      // Jika login berhasil, pengalihkan ke dashboard
-      window.location.href ="/dashboard";
+    try {
+      const response = await axios.post("http://localhost:3001/login", {
+        username,
+        password,
+      }, { withCredentials: true });
+      const { token } = response.data;
+
+      console.log("Login successful, received token:", token);
+
+      localStorage.setItem("token", token);
+      localStorage.setItem("showWelcomeToast", "true"); // Set the flag here
+      window.location.href = "/dashboard";
     } catch (error) {
-      // Jika login gagal, tangani pesan kesalahan
       setLoginFailed("Gagal login: " + error.message);
       console.error("Gagal login:", error);
     }
   };
 
-  const handleAuth0Login = () => {
-    // Redirect ke halaman login Auth0
-    loginWithRedirect();
+  const refreshAccessToken = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/refresh-token", {}, { withCredentials: true });
+      const { token } = response.data;
+      localStorage.setItem("token", token);
+      return token;
+    } catch (error) {
+      console.error("Failed to refresh token:", error);
+      return null;
+    }
   };
 
-  const usernameRef = useRef(null);
-
   useEffect(() => {
-    usernameRef.current.focus();
+    const interval = setInterval(async () => {
+      const token = localStorage.getItem("token");
+      if (token) {
+        const payload = JSON.parse(atob(token.split('.')[1]));
+        const exp = payload.exp * 1000;
+        const now = Date.now();
+        if (exp - now < 5 * 60 * 1000) {
+          await refreshAccessToken();
+        }
+      }
+    }, 5 * 60 * 1000);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -86,14 +117,17 @@ const FormLogin = () => {
                 </div>
                 <div className="text-center text-lg-start mt-4 pt-2">
                   <div className="form-group">
-                    {loginFailed && <p className="text-danger">{loginFailed}</p>}
-                    <input type="submit" className="btn btn-primary btn-lg w-25" />
+                    {loginFailed && (
+                      <p className="text-danger">{loginFailed}</p>
+                    )}
+                    <input
+                      type="submit"
+                      className="btn btn-primary btn-lg w-25"
+                      value="Login"
+                    />
                     <p>
                       Belum punya akun? <a href="/#">Sign up now</a>.
                     </p>
-                    <button className="btn btn-primary btn-lg w-100" onClick={handleAuth0Login}>
-                      Login with Auth0
-                    </button>
                   </div>
                 </div>
               </form>
