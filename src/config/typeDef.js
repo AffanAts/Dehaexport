@@ -99,7 +99,10 @@ export const updateProductMutation = gql`
 `;
 
 export const deleteProductMutation = gql`
-  mutation DeleteProduct($id: Int!) {
+  mutation DeleteProductWithRelations($id: Int!) {
+    delete_product_type(where: { id_product: { _eq: $id } }) {
+      affected_rows
+    }
     delete_products_by_pk(id: $id) {
       id
     }
@@ -146,26 +149,27 @@ export const getProductWithTypes = gql`
   }
 `;
 
-
 export const addProductTypeMutation = gql`
   mutation AddProductType(
-    $id_product: Int!,
-    $name_type: String!,
-    $grade1: String!,
-    $grade2: String!,
-    $grade3: String!,
-    $grade4: String!,
+    $id_product: Int!
+    $name_type: String!
+    $grade1: String!
+    $grade2: String!
+    $grade3: String!
+    $grade4: String!
     $grade5: String!
   ) {
-    insert_product_type_one(object: {
-      id_product: $id_product,
-      name_type: $name_type,
-      grade1: $grade1,
-      grade2: $grade2,
-      grade3: $grade3,
-      grade4: $grade4,
-      grade5: $grade5
-    }) {
+    insert_product_type_one(
+      object: {
+        id_product: $id_product
+        name_type: $name_type
+        grade1: $grade1
+        grade2: $grade2
+        grade3: $grade3
+        grade4: $grade4
+        grade5: $grade5
+      }
+    ) {
       id
       id_product
       name_type
@@ -180,22 +184,22 @@ export const addProductTypeMutation = gql`
 
 export const updateProductTypeMutation = gql`
   mutation UpdateProductType(
-    $id: Int!,
-    $name_type: String!,
-    $grade1: String!,
-    $grade2: String!,
-    $grade3: String!,
-    $grade4: String!,
+    $id: Int!
+    $name_type: String!
+    $grade1: String!
+    $grade2: String!
+    $grade3: String!
+    $grade4: String!
     $grade5: String!
   ) {
     update_product_type_by_pk(
-      pk_columns: { id: $id },
+      pk_columns: { id: $id }
       _set: {
-        name_type: $name_type,
-        grade1: $grade1,
-        grade2: $grade2,
-        grade3: $grade3,
-        grade4: $grade4,
+        name_type: $name_type
+        grade1: $grade1
+        grade2: $grade2
+        grade3: $grade3
+        grade4: $grade4
         grade5: $grade5
       }
     ) {
@@ -209,7 +213,6 @@ export const updateProductTypeMutation = gql`
     }
   }
 `;
-
 
 export const deleteProductTypeMutation = gql`
   mutation DeleteProductType($id: Int!) {

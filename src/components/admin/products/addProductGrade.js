@@ -4,29 +4,29 @@ import { useQuery } from '@apollo/client';
 import useAuth from "../../api/authApi";
 import { getProductWithTypes } from '../../../config/typeDef';
 import { useProductGradeHandler } from './addProductGradeHandler';
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import Loader from "../../navbar/Loader";
 
 const AddProductGrade = () => {
   useAuth();
   const navigate = useNavigate();
   const { id } = useParams();
-  const { data, loading, error } = useQuery(getProductWithTypes, { variables: { id: parseInt(id) } });
+  const { data, loading, error, refetch } = useQuery(getProductWithTypes, { variables: { id: parseInt(id) } });
   const [typeName, setTypeName] = useState("");
   const [grades, setGrades] = useState({ grade1: "", grade2: "", grade3: "", grade4: "", grade5: "" });
   const [errorMsg, setErrorMsg] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-  const { handleGradeChange, handleSubmit, handleUpdate, handleDelete } = useProductGradeHandler(id, setTypeName, setGrades);
+  const { handleGradeChange, handleSubmit, handleUpdate, handleDelete, addLoading, updateLoading, deleteLoading } = useProductGradeHandler(id, setTypeName, setGrades, refetch);
 
   const addGradeRef = useRef(null);
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <Loader />;
   if (error) return <div>Error fetching data</div>;
 
   const handleUpdateClick = (productId, typeId, typeName, grades) => {
     navigate(`/update-product-type/${typeId}`, { state: { productId, typeName, grades } });
-  };
-
-  const handleAddGradeClick = () => {
-    addGradeRef.current.scrollIntoView({ behavior: "smooth" });
   };
 
   const validateAndSubmit = (e) => {
@@ -52,13 +52,17 @@ const AddProductGrade = () => {
 
     setErrorMsg(""); // Clear error message if validation passes
     handleSubmit(e, typeName, grades);
+    setShowModal(false); // Close the modal after submitting
   };
 
   return (
     <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center">
         <h2>Grades for {data && data.products_by_pk && data.products_by_pk.name}</h2>
-        <button onClick={handleAddGradeClick} className="btn btn-primary">Add Grade</button>
+        <div>
+          <Button onClick={() => setShowModal(true)} className="btn btn-primary mr-2">Add Grade</Button>
+          <Link to="/" className="btn btn-secondary">Back to Products</Link>
+        </div>
       </div>
       {data && data.products_by_pk && data.products_by_pk.product_type.length > 0 ? (
         <div>
@@ -80,75 +84,80 @@ const AddProductGrade = () => {
       ) : (
         <p>No product types available.</p>
       )}
-      <Link to="/" className="btn btn-secondary mt-3">Back to Products</Link>
       
-      <div className="mt-5" ref={addGradeRef}>
-        <h3>Add Product Type and Grades</h3>
-        <form onSubmit={validateAndSubmit}>
-          <div className="form-group">
-            <label>Product Type Name</label>
-            <input
-              type="text"
-              className="form-control"
-              value={typeName}
-              onChange={(e) => setTypeName(e.target.value)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <label>Grade 1</label>
-            <input
-              type="text"
-              className="form-control"
-              name="grade1"
-              value={grades.grade1}
-              onChange={handleGradeChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Grade 2</label>
-            <input
-              type="text"
-              className="form-control"
-              name="grade2"
-              value={grades.grade2}
-              onChange={handleGradeChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Grade 3</label>
-            <input
-              type="text"
-              className="form-control"
-              name="grade3"
-              value={grades.grade3}
-              onChange={handleGradeChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Grade 4</label>
-            <input
-              type="text"
-              className="form-control"
-              name="grade4"
-              value={grades.grade4}
-              onChange={handleGradeChange}
-            />
-          </div>
-          <div className="form-group">
-            <label>Grade 5</label>
-            <input
-              type="text"
-              className="form-control"
-              name="grade5"
-              value={grades.grade5}
-              onChange={handleGradeChange}
-            />
-          </div>
-          {errorMsg && <p className="text-danger">{errorMsg}</p>}
-          <button type="submit" className="btn btn-primary mt-3">Add Product Type and Grades</button>
-        </form>
-      </div>
+      {(addLoading || updateLoading || deleteLoading) && <Loader />}
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Product Type and Grades</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={validateAndSubmit}>
+            <div className="form-group">
+              <label>Product Type Name</label>
+              <input
+                type="text"
+                className="form-control"
+                value={typeName}
+                onChange={(e) => setTypeName(e.target.value)}
+                required
+              />
+            </div>
+            <div className="form-group">
+              <label>Grade 1</label>
+              <input
+                type="text"
+                className="form-control"
+                name="grade1"
+                value={grades.grade1}
+                onChange={handleGradeChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Grade 2</label>
+              <input
+                type="text"
+                className="form-control"
+                name="grade2"
+                value={grades.grade2}
+                onChange={handleGradeChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Grade 3</label>
+              <input
+                type="text"
+                className="form-control"
+                name="grade3"
+                value={grades.grade3}
+                onChange={handleGradeChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Grade 4</label>
+              <input
+                type="text"
+                className="form-control"
+                name="grade4"
+                value={grades.grade4}
+                onChange={handleGradeChange}
+              />
+            </div>
+            <div className="form-group">
+              <label>Grade 5</label>
+              <input
+                type="text"
+                className="form-control"
+                name="grade5"
+                value={grades.grade5}
+                onChange={handleGradeChange}
+              />
+            </div>
+            {errorMsg && <p className="text-danger">{errorMsg}</p>}
+            <Button type="submit" className="mt-3">Add Product Type and Grades</Button>
+          </form>
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
