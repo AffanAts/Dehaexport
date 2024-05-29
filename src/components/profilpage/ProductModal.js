@@ -1,27 +1,8 @@
 import React from "react";
 import { useQuery } from '@apollo/client';
-import { gql } from '@apollo/client';
 import { Modal, Button } from 'react-bootstrap';
 import Loader from '../navbar/Loader'; // Import Loader
-import typeDef from "../../config/typeDef"
-
-const getProductWithTypes = gql`
-  query getProductWithTypes($id: Int!) {
-    products_by_pk(id: $id) {
-      id
-      name
-      product_type {
-        id
-        name_type
-        grade1
-        grade2
-        grade3
-        grade4
-        grade5
-      }
-    }
-  }
-`;
+import { getProductWithTypes } from '../../config/typeDef'; // Import query
 
 export default function ProductModal({ productId, show, closeModal }) {
   const { data, loading, error } = useQuery(getProductWithTypes, {
@@ -40,11 +21,11 @@ export default function ProductModal({ productId, show, closeModal }) {
 
   const renderGrades = (type) => {
     const grades = [];
-    if (type.grade1) grades.push(`Grade 1: ${type.grade1}`);
-    if (type.grade2) grades.push(`Grade 2: ${type.grade2}`);
-    if (type.grade3) grades.push(`Grade 3: ${type.grade3}`);
-    if (type.grade4) grades.push(`Grade 4: ${type.grade4}`);
-    if (type.grade5) grades.push(`Grade 5: ${type.grade5}`);
+    if (type.grade1) grades.push(`1. ${type.grade1}`);
+    if (type.grade2) grades.push(`2. ${type.grade2}`);
+    if (type.grade3) grades.push(`3. ${type.grade3}`);
+    if (type.grade4) grades.push(`4. ${type.grade4}`);
+    if (type.grade5) grades.push(`5. ${type.grade5}`);
 
     return grades.map((grade, index) => (
       <div key={index} className="col-md-4">

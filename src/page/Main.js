@@ -13,7 +13,6 @@ export default function Main() {
       <LandingPage />
       <AboutUs />
       <WhyUs />
-
       <Product />
       <Video />
       <Blog />

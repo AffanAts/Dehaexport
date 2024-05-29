@@ -8,10 +8,6 @@ const Dashboard = () => {
   const [username, setUsername] = useState("");
   const [totalProducts, setTotalProducts] = useState(0);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    window.location.href = "/login";
-  };
 
   useEffect(() => {
     const fetchTotal = async () => {

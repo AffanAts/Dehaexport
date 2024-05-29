@@ -14,6 +14,7 @@ import ProductList from "./components/admin/products/listProduct";
 import AddProduct from "./components/admin/products/addProduct";
 import AddProductGrade from "./components/admin/products/addProductGrade";
 import UpdateProduct from "./components/admin/products/UpdateProduct";
+import UpdateGrade from "./components/admin/products/UpdateProductGrade.js"
 import { ApolloProvider } from "@apollo/client";
 import client from "./apollo-client/apollo-client";
 import Auth0Login from "./Auth0Login";
@@ -52,9 +53,14 @@ function App() {
               element={<PageWithHeader component={UpdateProduct} />}
             />
             <Route
+              path="/update-product-type/:id"
+              element={<PageWithHeader component={UpdateGrade} />}
+            />
+            <Route
               path="/callback"
               element={<PageWithHeader component={Callback} />}
             />
+            
             {/* <Route
               path="/auth0-login"
               element={<PageWithHeader component={Auth0Login} />}

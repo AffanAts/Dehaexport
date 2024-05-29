@@ -128,8 +128,7 @@ export const addGradeMutation = gql`
   }
 `;
 
-
-const getProductWithTypes = gql`
+export const getProductWithTypes = gql`
   query getProductWithTypes($id: Int!) {
     products_by_pk(id: $id) {
       id
@@ -143,6 +142,79 @@ const getProductWithTypes = gql`
         grade4
         grade5
       }
+    }
+  }
+`;
+
+
+export const addProductTypeMutation = gql`
+  mutation AddProductType(
+    $id_product: Int!,
+    $name_type: String!,
+    $grade1: String!,
+    $grade2: String!,
+    $grade3: String!,
+    $grade4: String!,
+    $grade5: String!
+  ) {
+    insert_product_type_one(object: {
+      id_product: $id_product,
+      name_type: $name_type,
+      grade1: $grade1,
+      grade2: $grade2,
+      grade3: $grade3,
+      grade4: $grade4,
+      grade5: $grade5
+    }) {
+      id
+      id_product
+      name_type
+      grade1
+      grade2
+      grade3
+      grade4
+      grade5
+    }
+  }
+`;
+
+export const updateProductTypeMutation = gql`
+  mutation UpdateProductType(
+    $id: Int!,
+    $name_type: String!,
+    $grade1: String!,
+    $grade2: String!,
+    $grade3: String!,
+    $grade4: String!,
+    $grade5: String!
+  ) {
+    update_product_type_by_pk(
+      pk_columns: { id: $id },
+      _set: {
+        name_type: $name_type,
+        grade1: $grade1,
+        grade2: $grade2,
+        grade3: $grade3,
+        grade4: $grade4,
+        grade5: $grade5
+      }
+    ) {
+      id
+      name_type
+      grade1
+      grade2
+      grade3
+      grade4
+      grade5
+    }
+  }
+`;
+
+
+export const deleteProductTypeMutation = gql`
+  mutation DeleteProductType($id: Int!) {
+    delete_product_type_by_pk(id: $id) {
+      id
     }
   }
 `;

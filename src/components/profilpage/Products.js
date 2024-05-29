@@ -6,9 +6,9 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { getAllProducts } from "../../config/typeDef";
 import { useQuery } from "@apollo/client";
-import { Modal, Button } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import ProductModal from "./ProductModal"; // Import tambahan untuk modal
-import Loader from "../navbar/Loader"
+import Loader from "../navbar/Loader";
 
 export default function Product() {
   const { data, loading, error } = useQuery(getAllProducts);
@@ -49,14 +49,14 @@ export default function Product() {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true,
+          dots: true
         },
       },
       {
         breakpoint: 600,
         settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
+          slidesToShow: 2,
+          slidesToScroll: 2,
           initialSlide: 2,
         },
       },
@@ -109,13 +109,17 @@ export default function Product() {
   };
 
   if (loading) {
-    return <p><Loader/></p>;
+    return (
+      <p>
+        <Loader />
+      </p>
+    );
   }
 
   return (
     <center>
       <div
-        className="py-2"
+        className=""
         style={{
           backgroundColor: "white",
           width: "100%",
@@ -148,11 +152,9 @@ export default function Product() {
               {products.map((item) => (
                 <div key={item.id}>
                   <div
-                    className="card mb-3"
+                    className="card mb-3 me-1"
                     style={{
                       maxWidth: "340px",
-                      border: "none",
-                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",
                     }}
                     data-aos="zoom-in"
                   >
@@ -212,7 +214,7 @@ export default function Product() {
                           }}
                           onClick={() => handleShowModal(item.id)} // Menggunakan ID produk untuk modal
                         >
-                         Grade
+                          Grade
                         </Button>
 
                         <br />

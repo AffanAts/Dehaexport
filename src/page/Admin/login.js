@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
-import Swal from "sweetalert2";
 import imageL from "../../assets/img/Login.svg";
 
 const FormLogin = () => {
