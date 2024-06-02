@@ -4,6 +4,7 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import { useLazyQuery } from '@apollo/client';
 import { getAllBlogs } from "../../config/typeDef"; // Sesuaikan path sesuai struktur proyek Anda
+import { Link } from "react-router-dom";
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
@@ -147,19 +148,21 @@ export default function Blog() {
                   >
                     <center>
                       {item.image && !imageError[item.id] ? (
-                        <img
-                          src={item.image}
-                          className="card-img-top"
-                          alt={item.title}
-                          data-aos="zoom-in"
-                          style={{
-                            objectFit: "cover",
-                            width: "100%",
-                            height: "200px",
-                            maxHeight: "200px",
-                          }}
-                          onError={() => handleImageError(item.id)}
-                        />
+                        <Link to={`/blog/${item.id}`}>
+                          <img
+                            src={item.image}
+                            className="card-img-top"
+                            alt={item.title}
+                            data-aos="zoom-in"
+                            style={{
+                              objectFit: "cover",
+                              width: "100%",
+                              height: "200px",
+                              maxHeight: "200px",
+                            }}
+                            onError={() => handleImageError(item.id)}
+                          />
+                        </Link>
                       ) : (
                         <div
                           style={{
@@ -180,9 +183,11 @@ export default function Blog() {
                     </center>
 
                     <div className="card-body">
-                      <h5 className="card-title" style={{ ...titleStyle }}>
-                        {item.title}
-                      </h5>
+                      <Link to={`/blog/${item.id}`}>
+                        <h5 className="card-title" style={{ ...titleStyle }}>
+                          {item.title}
+                        </h5>
+                      </Link>
                       <p
                         className="card-text"
                         style={{

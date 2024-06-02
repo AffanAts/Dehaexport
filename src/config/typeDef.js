@@ -35,6 +35,7 @@ export const getAllBlogs = gql`
       link
       title
       created_at
+      author
     }
   }
 `;

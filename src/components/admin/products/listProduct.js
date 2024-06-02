@@ -84,64 +84,66 @@ const ListProducts = () => {
                     {viewAll ? 'Show Paginated' : 'View All'}
                 </button>
             </div>
-            <table className="table table-hover">
-                <thead>
-                    <tr>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Grade</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {data && getDisplayedProducts().map(product => (
-                        <tr key={product.id}>
-                            <td><img src={product.image} alt={product.name} style={{ width: '50px' }} /></td>
-                            <td>{product.name}</td>
-                            <td>
-                                {product.description.length > 100 ? (
-                                    <>
-                                        {expandedDescriptionId === product.id 
-                                            ? product.description 
-                                            : `${product.description.substring(0, 100)}...`}
-                                        <span
-                                            style={{ color: "blue", cursor: "pointer" }}
-                                            onClick={() => toggleDescription(product.id)}
-                                        >
-                                            {expandedDescriptionId === product.id ? " Read less" : " Read more"}
-                                        </span>
-                                    </>
-                                ) : (
-                                    product.description
-                                )}
-                            </td>
-                            <td>
-                                <Button
-                                    className="text-white my-3"
-                                    style={{
-                                        textDecoration: "none",
-                                        padding: "5px 10px",
-                                        fontSize: "12px",
-                                        height: "27px",
-                                        width: "auto",
-                                    }}
-                                    onClick={() => handleShowModal(product.id)}
-                                >
-                                    Details
-                                </Button>
-                            </td>
-                            <td>
-                                <div className="btn-group" role="group">
-                                    <Link to={`/update/${product.id}`} className="btn btn-warning btn-sm">Update</Link>
-                                    <Link to={`/add-grade/${product.id}`} className="btn btn-info btn-sm">Grade</Link>
-                                    <button className="btn btn-danger btn-sm" onClick={() => handleDelete(product.id)}>Delete</button>
-                                </div>
-                            </td>
+            <div style={{ overflowX: 'auto' }}>
+                <table className="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Description</th>
+                            <th>Grade</th>
+                            <th>Action</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {data && getDisplayedProducts().map(product => (
+                            <tr key={product.id}>
+                                <td><img src={product.image} alt={product.name} style={{ width: '50px' }} /></td>
+                                <td>{product.name}</td>
+                                <td>
+                                    {product.description.length > 100 ? (
+                                        <>
+                                            {expandedDescriptionId === product.id 
+                                                ? product.description 
+                                                : `${product.description.substring(0, 100)}...`}
+                                            <span
+                                                style={{ color: "blue", cursor: "pointer" }}
+                                                onClick={() => toggleDescription(product.id)}
+                                            >
+                                                {expandedDescriptionId === product.id ? " Read less" : " Read more"}
+                                            </span>
+                                        </>
+                                    ) : (
+                                        product.description
+                                    )}
+                                </td>
+                                <td>
+                                    <Button
+                                        className="text-white my-3"
+                                        style={{
+                                            textDecoration: "none",
+                                            padding: "5px 10px",
+                                            fontSize: "12px",
+                                            height: "27px",
+                                            width: "auto",
+                                        }}
+                                        onClick={() => handleShowModal(product.id)}
+                                    >
+                                        Details
+                                    </Button>
+                                </td>
+                                <td>
+                                    <div className="btn-group" role="group">
+                                        <Link to={`/update/${product.id}`} className="btn btn-warning btn-sm">Update</Link>
+                                        <Link to={`/add-grade/${product.id}`} className="btn btn-info btn-sm">Grade</Link>
+                                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(product.id)}>Delete</button>
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
             <nav className="mt-4">
                 <ul className="pagination justify-content-center">
                     {data && !viewAll && Array.from({ length: Math.ceil(searchProducts(searchInput).length / productsPerPage) }, (_, i) => (
