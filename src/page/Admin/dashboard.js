@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
-import { fetchTotalProducts } from "../../components/api/productApi";
+import { fetchTotalProducts, fetchTotalBlogs } from "../../components/api/productApi";
 import useAuth from "../../components/api/authApi";
 
 const Dashboard = () => {
   useAuth();
   const [username, setUsername] = useState("");
   const [totalProducts, setTotalProducts] = useState(0);
-
+  const [totalBlogs, setTotalBlogs] = useState(0);
 
   useEffect(() => {
-    const fetchTotal = async () => {
-      const total = await fetchTotalProducts();
-      setTotalProducts(total);
+    const fetchTotals = async () => {
+      const totalProd = await fetchTotalProducts();
+      setTotalProducts(totalProd);
+      const totalBlg = await fetchTotalBlogs();
+      setTotalBlogs(totalBlg);
     };
 
-    fetchTotal();
+    fetchTotals();
 
     const showWelcomeToast = localStorage.getItem("showWelcomeToast");
     if (showWelcomeToast) {
@@ -74,8 +76,8 @@ const Dashboard = () => {
               <center>
                 <div className="h-100 p-5 bg-body-tertiary border rounded-3">
                   <h2>Total Blog</h2>
-                  <p>xxx</p>
-                  <a href="/#">
+                  <p>{totalBlogs}</p>
+                  <a href="/blogs">
                     <button className="btn btn-primary btn-lg" type="button">
                       Blog
                     </button>

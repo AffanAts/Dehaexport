@@ -44,7 +44,7 @@ const AdminHeader = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/blogs">
+              <Link className="nav-link" to="/listBlog">
                 Blogs
               </Link>
             </li>

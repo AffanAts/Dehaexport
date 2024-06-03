@@ -1,7 +1,6 @@
 import { useMutation } from '@apollo/client';
 import Swal from 'sweetalert2';
 import { addProductTypeMutation, updateProductTypeMutation, deleteProductTypeMutation } from '../../../config/typeDef';
-import Loader from "../../navbar/Loader";
 
 export const useProductGradeHandler = (id, setTypeName, setGrades, refetch) => {
   const [addProductType, { loading: addLoading }] = useMutation(addProductTypeMutation);
@@ -48,7 +47,7 @@ export const useProductGradeHandler = (id, setTypeName, setGrades, refetch) => {
     }
   };
 
-  const handleUpdate = async (typeId, typeName, grades) => {
+  const handleUpdate = async (typeId, typeName, grades, callback) => {
     Swal.fire({
       title: "Do you want to save the changes?",
       showDenyButton: true,
@@ -60,7 +59,7 @@ export const useProductGradeHandler = (id, setTypeName, setGrades, refetch) => {
         try {
           await updateProductType({ 
             variables: { 
-              id: typeId, 
+              id: parseInt(typeId), 
               name_type: typeName, 
               grade1: grades.grade1, 
               grade2: grades.grade2, 
@@ -70,7 +69,8 @@ export const useProductGradeHandler = (id, setTypeName, setGrades, refetch) => {
             } 
           });
           Swal.fire("Saved!", "", "success");
-          refetch(); // Refresh halaman setelah update
+          if (callback) callback(); // Call the callback to navigate
+          if (refetch) refetch(); // Refresh halaman setelah update jika refetch tersedia
         } catch (error) {
           console.error("Error updating product type and grades:", error);
           Swal.fire({
@@ -97,13 +97,13 @@ export const useProductGradeHandler = (id, setTypeName, setGrades, refetch) => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await deleteProductType({ variables: { id: typeId } });
+          await deleteProductType({ variables: { id: parseInt(typeId) } });
           Swal.fire({
             title: "Deleted!",
             text: "Product type deleted successfully!",
             icon: "success"
           });
-          refetch(); // Refresh halaman setelah delete
+          if (refetch) refetch(); // Refresh halaman setelah delete jika refetch tersedia
         } catch (error) {
           console.error("Error deleting product type:", error);
           Swal.fire({

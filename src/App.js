@@ -9,15 +9,22 @@ import HeaderAdmin from "./components/navbar/HeaderAdmin";
 import Footer from "./components/navbar/Footer";
 import FormLogin from "./page/Admin/login";
 import Dashboard from "./page/Admin/dashboard";
+import BlogDetail from "./components/profilpage/BlogDetail.js"
 // Product Admin
 import ProductList from "./components/admin/products/listProduct";
 import AddProduct from "./components/admin/products/addProduct";
 import AddProductGrade from "./components/admin/products/addProductGrade";
 import UpdateProduct from "./components/admin/products/UpdateProduct";
 import UpdateGrade from "./components/admin/products/UpdateProductGrade.js"
+
+// Blog Admin
+import AddBlog from "./components/admin/blogs/addBlogs.js";
+import UpdateBlog from "./components/admin/blogs/updateBlog.js";
+import ListBlogs from "./components/admin/blogs/listBlogs.js";
+
+
 import { ApolloProvider } from "@apollo/client";
 import client from "./apollo-client/apollo-client";
-import Auth0Login from "./Auth0Login";
 import Callback from "./Callbackk";
 
 function App() {
@@ -31,6 +38,10 @@ function App() {
             <Route
               path="/main"
               element={<PageWithHeaderAndFooter component={Main} />}
+            />
+            <Route
+              path="/blog/:id"
+              element={<PageWithHeaderAndFooter component={BlogDetail} />}
             />
             <Route
               path="/listproduct"
@@ -60,11 +71,19 @@ function App() {
               path="/callback"
               element={<PageWithHeader component={Callback} />}
             />
-            
-            {/* <Route
-              path="/auth0-login"
-              element={<PageWithHeader component={Auth0Login} />}
-            /> */}
+            {/* Blog Admin Routes */}
+            <Route
+              path="/add-blog"
+              element={<PageWithHeader component={AddBlog} />}
+            />
+            <Route
+              path="/update-blog/:id"
+              element={<PageWithHeader component={UpdateBlog} />}
+            />
+            <Route
+              path="/listblog"
+              element={<PageWithHeader component={ListBlogs} />}
+            />
           </Routes>
         </BrowserRouter>
       </ApolloProvider>

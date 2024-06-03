@@ -97,6 +97,18 @@ export default function Blog() {
     setImageError((prev) => ({ ...prev, [id]: true }));
   };
 
+  // Fungsi untuk mengekstrak konten dari tag <p> dalam deskripsi
+  const extractParagraphs = (html) => {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    const paragraphs = div.getElementsByTagName('p');
+    let content = '';
+    for (let i = 0; i < paragraphs.length; i++) {
+      content += paragraphs[i].outerHTML;
+    }
+    return content;
+  };
+
   return (
     <center>
       <div
@@ -182,8 +194,8 @@ export default function Blog() {
                       )}
                     </center>
 
-                    <div className="card-body">
-                      <Link to={`/blog/${item.id}`}>
+                    <div className="card-body ">
+                      <Link to={`/blog/${item.id}`} className="text-decoration-none">
                         <h5 className="card-title" style={{ ...titleStyle }}>
                           {item.title}
                         </h5>
@@ -203,21 +215,18 @@ export default function Blog() {
                         <br />
                         {item.description.length > 190 ? (
                           <>
-                            {item.description.substring(0, 190)}
-                            {expandedDescriptionId === item.id
-                              ? item.description.substring(190)
-                              : "..."}
+                            {expandedDescriptionId === item.id 
+                              ? <div dangerouslySetInnerHTML={{ __html: extractParagraphs(item.description) }} />
+                              : <div dangerouslySetInnerHTML={{ __html: extractParagraphs(`${item.description.substring(0, 190)}...`) }} />}
                             <span
                               style={{ color: "blue", cursor: "pointer" }}
                               onClick={() => toggleDescription(item.id)}
                             >
-                              {expandedDescriptionId === item.id
-                                ? " Read less"
-                                : " Read more"}
+                              {expandedDescriptionId === item.id ? " Read less" : " Read more"}
                             </span>
                           </>
                         ) : (
-                          item.description
+                          <div dangerouslySetInnerHTML={{ __html: extractParagraphs(item.description) }} />
                         )}
                       </p>
                     </div>

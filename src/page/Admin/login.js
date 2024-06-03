@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import imageL from "../../assets/img/Login.svg";
+import Loader from "../../components/navbar/Loader";
 
 const FormLogin = () => {
   const [loginFailed, setLoginFailed] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const usernameRef = useRef(null);
 
   useEffect(() => {
@@ -22,6 +24,7 @@ const FormLogin = () => {
     const password = event.target.password.value;
 
     console.log("Attempting to login with:", { username, password });
+    setIsLoading(true); // Set loading state to true
 
     try {
       const response = await axios.post("http://localhost:3001/login", {
@@ -36,8 +39,18 @@ const FormLogin = () => {
       localStorage.setItem("showWelcomeToast", "true"); // Set the flag here
       window.location.href = "/dashboard";
     } catch (error) {
-      setLoginFailed("Gagal login: " + error.message);
+      if (error.response) {
+        if (error.response.status === 401) {
+          setLoginFailed("Username atau password salah.");
+        } else {
+          setLoginFailed("Server sedang bermasalah, silahkan hubungi Affan wkwk.");
+        }
+      } else {
+        setLoginFailed("Server sedang bermasalah, silahkan hubungi Affan wkwk.");
+      }
       console.error("Gagal login:", error);
+    } finally {
+      setIsLoading(false); // Set loading state to false
     }
   };
 
@@ -119,11 +132,15 @@ const FormLogin = () => {
                     {loginFailed && (
                       <p className="text-danger">{loginFailed}</p>
                     )}
-                    <input
-                      type="submit"
-                      className="btn btn-primary btn-lg w-25"
-                      value="Login"
-                    />
+                    {isLoading ? (
+                      <Loader />
+                    ) : (
+                      <input
+                        type="submit"
+                        className="btn btn-primary btn-lg w-25"
+                        value="Login"
+                      />
+                    )}
                     <p>
                       Belum punya akun? <a href="/#">Sign up now</a>.
                     </p>

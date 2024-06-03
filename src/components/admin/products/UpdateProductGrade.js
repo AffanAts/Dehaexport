@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import { useProductGradeHandler } from './addProductGradeHandler';
+import Loader from '../../navbar/Loader';
 
 const UpdateProductType = () => {
   const { id: typeId } = useParams(); // This is the product_type ID
@@ -12,7 +13,7 @@ const UpdateProductType = () => {
   const [grades, setGrades] = useState(initialGrades);
   const [error, setError] = useState("");
 
-  const { handleGradeChange, handleUpdate } = useProductGradeHandler(typeId, setTypeName, setGrades);
+  const { handleGradeChange, handleUpdate, updateLoading } = useProductGradeHandler(typeId, setTypeName, setGrades);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -40,8 +41,7 @@ const UpdateProductType = () => {
     }
 
     setError(""); // Clear error if validation passes
-    handleUpdate(typeId, typeName, grades);
-    navigate(`/add-grade/${productId}`); // Redirect back to the add-grade page with the specific product ID after update
+    handleUpdate(typeId, typeName, grades, () => navigate(`/add-grade/${productId}`)); // Pass callback to handleUpdate
   };
 
   return (
@@ -109,7 +109,9 @@ const UpdateProductType = () => {
           />
         </div>
         {error && <p className="text-danger">{error}</p>}
-        <button type="submit" className="btn btn-primary mt-3">Update Product Type and Grades</button>
+        <button type="submit" className="btn btn-primary mt-3" disabled={updateLoading}>
+          {updateLoading ? <Loader /> : "Update Product Type and Grades"}
+        </button>
       </form>
     </div>
   );

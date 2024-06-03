@@ -130,7 +130,7 @@ const Header = () => {
               <a
                 className="nav-link active ms-4"
                 aria-current="page"
-                href="#AboutUs"
+                href="/main/#AboutUs"
                 onClick={handleLinkClick}
                 style={{ ...menuStyle, color: "white" }}
               >
