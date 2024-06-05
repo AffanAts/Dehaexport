@@ -19,6 +19,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const corsOptions = {
+    // origin: 'https://dehaexport.co.id', // URL aplikasi React Anda
     origin: 'http://localhost:3000', // URL aplikasi React Anda
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // penting untuk mengizinkan kredensial
