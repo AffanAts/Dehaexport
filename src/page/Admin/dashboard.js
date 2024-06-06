@@ -32,7 +32,7 @@ const Dashboard = () => {
         didOpen: (toast) => {
           toast.addEventListener("mouseenter", Swal.stopTimer);
           toast.addEventListener("mouseleave", Swal.resumeTimer);
-        }
+        },
       });
       localStorage.removeItem("showWelcomeToast"); // Remove the flag after displaying
     }
@@ -48,10 +48,7 @@ const Dashboard = () => {
                 Hai, <b>{username}</b>
               </h1>
               <p className="col-md-9 fs-4">
-                Selamat datang di dashboard website admin. Semoga Anda merasa
-                nyaman dan mendapatkan pengalaman yang menyenangkan dalam
-                mengelola website ini. Kami siap membantu Anda dalam setiap
-                langkah perjalanan Anda di sini.
+                Selamat datang di dashboard website admin. Semoga Anda merasa nyaman dan mendapatkan pengalaman yang menyenangkan dalam mengelola website ini. Kami siap membantu Anda dalam setiap langkah perjalanan Anda di sini.
               </p>
             </div>
           </div>
@@ -61,9 +58,7 @@ const Dashboard = () => {
               <center>
                 <div className="h-100 p-5 text-bg-dark rounded-3">
                   <h2>Total Product</h2>
-                  <p>
-                    {totalProducts}
-                  </p>
+                  <p>{totalProducts}</p>
                   <a href="/listProduct">
                     <button className="btn btn-primary btn-lg" type="button">
                       Product
@@ -77,7 +72,7 @@ const Dashboard = () => {
                 <div className="h-100 p-5 bg-body-tertiary border rounded-3">
                   <h2>Total Blog</h2>
                   <p>{totalBlogs}</p>
-                  <a href="/blogs">
+                  <a href="/listBlog">
                     <button className="btn btn-primary btn-lg" type="button">
                       Blog
                     </button>
