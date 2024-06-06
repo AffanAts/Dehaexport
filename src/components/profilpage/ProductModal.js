@@ -1,12 +1,12 @@
 import React from "react";
-import { useQuery } from '@apollo/client';
-import { Modal, Button } from 'react-bootstrap';
-import Loader from '../navbar/Loader'; // Import Loader
-import { getProductWithTypes } from '../../config/typeDef'; // Import query
+import { useQuery } from "@apollo/client";
+import { Modal, Button } from "react-bootstrap";
+import Loader from "../navbar/Loader"; // Import Loader
+import { getProductWithTypes } from "../../config/typeDef"; // Import query
 
 export default function ProductModal({ productId, show, closeModal }) {
   const { data, loading, error } = useQuery(getProductWithTypes, {
-    variables: { id: productId }
+    variables: { id: productId },
   });
 
   if (loading) return <Loader />;
@@ -45,9 +45,7 @@ export default function ProductModal({ productId, show, closeModal }) {
             {productTypes.map((type, index) => (
               <div key={type.id} className="mb-4">
                 <h5>{type.name_type}</h5>
-                <div className="row">
-                  {renderGrades(type)}
-                </div>
+                <div className="row">{renderGrades(type)}</div>
                 {index < productTypes.length - 1 && <hr />}
               </div>
             ))}
@@ -58,7 +56,9 @@ export default function ProductModal({ productId, show, closeModal }) {
       </Modal.Body>
       <Modal.Footer>
         <Button variant="dark" onClick={closeModal}>
-          Contact Us
+          <a href="https://api.whatsapp.com/send/?phone=6285283148248&text&type=phone_number&app_absent=0" style={{ textDecoration: "none", color: "white" }}>
+            Contact Us
+          </a>
         </Button>
       </Modal.Footer>
     </Modal>

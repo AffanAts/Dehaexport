@@ -37,14 +37,8 @@ export const getProductsById = gql`
 `;
 
 export const addProductMutation = gql`
-  mutation AddProduct(
-    $name: String = ""
-    $image: String = ""
-    $description: String = ""
-  ) {
-    insert_products_one(
-      object: { description: $description, name: $name, image: $image }
-    ) {
+  mutation AddProduct($name: String = "", $image: String = "", $description: String = "") {
+    insert_products_one(object: { description: $description, name: $name, image: $image }) {
       description
       id
       image
@@ -54,16 +48,8 @@ export const addProductMutation = gql`
 `;
 
 export const updateProductMutation = gql`
-  mutation UpdateProduct(
-    $id: Int!
-    $name: String!
-    $description: String!
-    $image: String!
-  ) {
-    update_products_by_pk(
-      pk_columns: { id: $id }
-      _set: { name: $name, description: $description, image: $image }
-    ) {
+  mutation UpdateProduct($id: Int!, $name: String!, $description: String!, $image: String!) {
+    update_products_by_pk(pk_columns: { id: $id }, _set: { name: $name, description: $description, image: $image }) {
       id
       name
       description
@@ -83,10 +69,6 @@ export const deleteProductMutation = gql`
   }
 `;
 
-
-
-
-
 // export const getTotalProducts = gql`
 //   query GetTotalProducts {
 //     products_aggregate {
@@ -96,7 +78,6 @@ export const deleteProductMutation = gql`
 //     }
 //   }
 // `;
-
 
 // Product Type
 
@@ -119,26 +100,8 @@ export const getProductWithTypes = gql`
 `;
 
 export const addProductTypeMutation = gql`
-  mutation AddProductType(
-    $id_product: Int!
-    $name_type: String!
-    $grade1: String!
-    $grade2: String!
-    $grade3: String!
-    $grade4: String!
-    $grade5: String!
-  ) {
-    insert_product_type_one(
-      object: {
-        id_product: $id_product
-        name_type: $name_type
-        grade1: $grade1
-        grade2: $grade2
-        grade3: $grade3
-        grade4: $grade4
-        grade5: $grade5
-      }
-    ) {
+  mutation AddProductType($id_product: Int!, $name_type: String!, $grade1: String!, $grade2: String!, $grade3: String!, $grade4: String!, $grade5: String!) {
+    insert_product_type_one(object: { id_product: $id_product, name_type: $name_type, grade1: $grade1, grade2: $grade2, grade3: $grade3, grade4: $grade4, grade5: $grade5 }) {
       id
       id_product
       name_type
@@ -152,26 +115,8 @@ export const addProductTypeMutation = gql`
 `;
 
 export const updateProductTypeMutation = gql`
-  mutation UpdateProductType(
-    $id: Int!
-    $name_type: String!
-    $grade1: String!
-    $grade2: String!
-    $grade3: String!
-    $grade4: String!
-    $grade5: String!
-  ) {
-    update_product_type_by_pk(
-      pk_columns: { id: $id }
-      _set: {
-        name_type: $name_type
-        grade1: $grade1
-        grade2: $grade2
-        grade3: $grade3
-        grade4: $grade4
-        grade5: $grade5
-      }
-    ) {
+  mutation UpdateProductType($id: Int!, $name_type: String!, $grade1: String!, $grade2: String!, $grade3: String!, $grade4: String!, $grade5: String!) {
+    update_product_type_by_pk(pk_columns: { id: $id }, _set: { name_type: $name_type, grade1: $grade1, grade2: $grade2, grade3: $grade3, grade4: $grade4, grade5: $grade5 }) {
       id
       name_type
       grade1
@@ -191,55 +136,49 @@ export const deleteProductTypeMutation = gql`
   }
 `;
 
-
-
-
-
 //Blogs
 export const getAllBlogs = gql`
-query MyQuery @cached(refresh: true) {
-  blogs {
-    id
-    image
-    description
-    link
-    title
-    created_at
-    author
+  query MyQuery @cached(refresh: true) {
+    blogs {
+      id
+      image
+      description
+      link
+      title
+      created_at
+      author
+    }
   }
-}
 `;
-
-
 
 export const getBlogById = gql`
-query MyQuery ($id: Int!) @cached(refresh: true) {
-  blogs(where: {id: {_eq: $id}}) {
-    id
-    image
-    description
-    link
-    title
-    created_at
-    author
+  query MyQuery($id: Int!) @cached(refresh: true) {
+    blogs(where: { id: { _eq: $id } }) {
+      id
+      image
+      description
+      link
+      title
+      created_at
+      author
+    }
   }
-}`;
-
-export const getOtherBlogs = gql`
-query OtherBlogs @cached {
-  blogs(limit: 5) {
-    id
-    title
-  }
-}
-
 `;
 
-
+export const getOtherBlogs = gql`
+  query OtherBlogs @cached {
+    blogs(limit: 5) {
+      id
+      title
+      image
+      created_at
+    }
+  }
+`;
 
 export const addBlogMutation = gql`
   mutation AddBlog($title: String!, $description: String!, $image: String!, $author: String!) {
-    insert_blogs(objects: {title: $title, description: $description, image: $image, author: $author}) {
+    insert_blogs(objects: { title: $title, description: $description, image: $image, author: $author }) {
       returning {
         id
         title
@@ -253,7 +192,7 @@ export const addBlogMutation = gql`
 
 export const deleteBlogMutation = gql`
   mutation DeleteBlog($id: Int!) {
-    delete_blogs(where: {id: {_eq: $id}}) {
+    delete_blogs(where: { id: { _eq: $id } }) {
       affected_rows
     }
   }
@@ -261,12 +200,8 @@ export const deleteBlogMutation = gql`
 
 export const updateBlogMutation = gql`
   mutation UpdateBlog($id: Int!, $title: String!, $description: String!, $image: String!, $author: String!) {
-    update_blogs(where: {id: {_eq: $id}}, _set: {title: $title, description: $description, image: $image, author: $author}) {
+    update_blogs(where: { id: { _eq: $id } }, _set: { title: $title, description: $description, image: $image, author: $author }) {
       affected_rows
     }
   }
 `;
-
-
-
-
