@@ -101,9 +101,12 @@ const FormLogin = () => {
               className="col-md-8 col-lg-6 col-xl-4 offset-xl-1"
               style={{ marginTop: "160px" }}
             >
-              <h1 className="mb-5">Login</h1>
+              <h1 className="mb-5">Login Admin Deha Export</h1>
               <form onSubmit={handleLogin}>
                 <div className="form-outline mb-4">
+                  <label className="form-label" htmlFor="form3Example3">
+                    Username
+                  </label>
                   <input
                     label="Username"
                     type="text"
@@ -111,12 +114,12 @@ const FormLogin = () => {
                     className="form-control form-control-lg"
                     ref={usernameRef}
                   />
-                  <label className="form-label" htmlFor="form3Example3">
-                    Username
-                  </label>
                   <span className="help-block"></span>
                 </div>
                 <div className="form-outline mb-3">
+                  <label className="form-label" htmlFor="form3Example4">
+                    Password
+                  </label>
                   <input
                     type="password"
                     name="password"
@@ -125,9 +128,6 @@ const FormLogin = () => {
                     placeholder="Enter password"
                   />
                   <span className="help-block"></span>
-                  <label className="form-label" htmlFor="form3Example4">
-                    Password
-                  </label>
                 </div>
                 <div className="text-center text-lg-start mt-4 pt-2">
                   <div className="form-group">
@@ -143,9 +143,7 @@ const FormLogin = () => {
                         value="Login"
                       />
                     )}
-                    <p>
-                      Belum punya akun? <a href="/#">Sign up now</a>.
-                    </p>
+                    
                   </div>
                 </div>
               </form>

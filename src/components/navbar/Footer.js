@@ -47,13 +47,13 @@ export default function Footer() {
               <div
               >
                 <a href="https://www.instagram.com/dehaexport?igsh=MTlhYXUyMWZmcmZuMg==">
-                  <FontAwesomeIcon icon={faInstagram} className="me-2" />
+                  <FontAwesomeIcon icon={faInstagram} className="me-2" style={{color: "black"}}/>
                 </a>{" "}
                 <a href="https://www.linkedin.com/in/deha-corp-529108301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app">
-                  <FontAwesomeIcon icon={faLinkedin} className="me-2" />
+                  <FontAwesomeIcon icon={faLinkedin} className="me-2" style={{color: "black"}}/>
                 </a>{" "}
                 <a href="https://www.facebook.com/profile.php?id=61558964555945">
-                  <FontAwesomeIcon icon={faFacebook} className="me-2" />
+                  <FontAwesomeIcon icon={faFacebook} className="me-2" style={{color: "black"}}/>
                 </a>
               </div>
             </div>

@@ -10,6 +10,7 @@ import Footer from "./components/navbar/Footer";
 import FormLogin from "./page/Admin/login";
 import Dashboard from "./page/Admin/dashboard";
 import BlogDetail from "./components/profilpage/BlogDetail.js";
+// import Blog from "./components/profilpage/OurBlog";
 // Product Admin
 import ProductList from "./components/admin/products/listProduct";
 import AddProduct from "./components/admin/products/addProduct";
@@ -43,6 +44,7 @@ function App() {
             <Route path="/update/:id" element={<PageWithHeader component={UpdateProduct} />} />
             <Route path="/update-product-type/:id" element={<PageWithHeader component={UpdateGrade} />} />
             <Route path="/callback" element={<PageWithHeader component={Callback} />} />
+            {/* <Route path="/back-blog" Component={Blog} /> */}
             {/* Blog Admin Routes */}
             <Route path="/add-blog" element={<PageWithHeader component={AddBlog} />} />
             <Route path="/update-blog/:id" element={<PageWithHeader component={UpdateBlog} />} />

@@ -10,7 +10,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="container mt-5" style={{ maxWidth: "800px" }} id="Faq">
+    <div className="container mt-5 mb-5" style={{ maxWidth: "800px" }} id="Faq">
       <h1 className="text-center mb-4">Frequently Asked Questions</h1>
       <div className="faq-container">
         {data.map((item, index) => (
