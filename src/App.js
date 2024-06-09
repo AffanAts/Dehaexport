@@ -3,7 +3,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./page/Main";
-import CommingSoon from "./page/comingSoon";
 import Header from "./components/navbar/Header";
 import HeaderAdmin from "./components/navbar/HeaderAdmin";
 import Footer from "./components/navbar/Footer";
@@ -33,9 +32,8 @@ function App() {
       <ApolloProvider client={client}>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<CommingSoon />} />
+            <Route path="/" element={<PageWithHeaderAndFooter component={Main} />} />
             <Route path="/login" element={<FormLogin />} />
-            <Route path="/main" element={<PageWithHeaderAndFooter component={Main} />} />
             <Route path="/blog/:id" element={<PageWithFooter component={BlogDetail} />} />
             <Route path="/listproduct" element={<PageWithHeader component={ProductList} />} />
             <Route path="/dashboard" element={<PageWithHeader component={Dashboard} />} />
