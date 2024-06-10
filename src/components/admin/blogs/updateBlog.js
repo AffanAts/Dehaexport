@@ -1,8 +1,8 @@
 import React from "react";
 import useUpdateBlog from "./updateBlogHandler";
 import Loader from "../../navbar/Loader";
-import { Link } from "react-router-dom";
 import ReactQuill from "react-quill";
+import { Link } from "react-router-dom";
 import "react-quill/dist/quill.snow.css";
 
 const UpdateBlog = () => {
@@ -50,15 +50,15 @@ const UpdateBlog = () => {
           <label>Author</label>
           <input type="text" className="form-control" value={author} onChange={(e) => setAuthor(e.target.value)} required />
         </div>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <button type="submit" className="btn btn-primary mt-3">
+            Update Blog
+          </button>
+          <Link to="/listBlog" className="btn btn-secondary mt-3 ms-2">
+            Back to Products
+          </Link>
+        </div>
       </form>
-      <div style={{ display: "flex", flexDirection: "row" }}>
-        <button type="submit" className="btn btn-primary mt-3">
-          Update Blog
-        </button>
-        <Link to="/listBlog" className="btn btn-secondary mt-3 ms-2">
-          Back to Blog
-        </Link>
-      </div>
     </div>
   );
 };
