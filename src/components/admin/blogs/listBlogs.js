@@ -106,7 +106,7 @@ const ListBlogs = () => {
                                 <td>
                                     <div className="btn-group" role="group">
                                         <Link to={`/update-blog/${blog.id}`} className="btn btn-warning btn-sm">Update</Link>
-                                        <button className="btn btn-danger btn-sm" onClick={() => handleDelete(blog.id)}>Delete</button>
+                                        <button className="btn btn-danger btn-sm ms-2" onClick={() => handleDelete(blog.id)}>Delete</button>
                                     </div>
                                 </td>
                             </tr>

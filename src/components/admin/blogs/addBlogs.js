@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import useAuth from "../../api/authApi";
 import useAddBlog from "./addBlogHandler";
 import Loader from "../../navbar/Loader"; // Import Loader
@@ -32,13 +32,7 @@ const AddBlog = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title</label>
-          <input
-            type="text"
-            className="form-control"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
+          <input type="text" className="form-control" value={title} onChange={(e) => setTitle(e.target.value)} required />
         </div>
         <div className="form-group">
           <label>Description</label>
@@ -46,27 +40,20 @@ const AddBlog = () => {
         </div>
         <div className="form-group">
           <label>Image URL</label>
-          <input
-            type="text"
-            className="form-control"
-            value={image}
-            onChange={(e) => setImage(e.target.value)}
-            required
-          />
+          <input type="text" className="form-control" value={image} onChange={(e) => setImage(e.target.value)} required />
         </div>
         <div className="form-group">
           <label>Author</label>
-          <input
-            type="text"
-            className="form-control"
-            value={author}
-            onChange={(e) => setAuthor(e.target.value)}
-            required
-          />
+          <input type="text" className="form-control" value={author} onChange={(e) => setAuthor(e.target.value)} required />
         </div>
-        <button type="submit" className="btn btn-primary mt-3">
-          Add Blog
-        </button>
+        <div style={{ display: "flex", flexDirection: "row" }}>
+          <button type="submit" className="btn btn-primary mt-3">
+            Add Blog
+          </button>
+          <Link to="/listBlog" className="btn btn-secondary mt-3 ms-2">
+            Back to Blog
+          </Link>
+        </div>
       </form>
     </div>
   );

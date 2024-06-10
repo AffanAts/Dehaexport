@@ -133,7 +133,7 @@ const ListProducts = () => {
                                     </Button>
                                 </td>
                                 <td>
-                                    <div className="btn-group" role="group">
+                                    <div className="btn-group mt-3" role="group">
                                         <Link to={`/update/${product.id}`} className="btn btn-warning btn-sm">Update</Link>
                                         <Link to={`/add-grade/${product.id}`} className="btn btn-info btn-sm">Grade</Link>
                                         <button className="btn btn-danger btn-sm" onClick={() => handleDelete(product.id)}>Delete</button>

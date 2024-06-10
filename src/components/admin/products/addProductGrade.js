@@ -63,7 +63,7 @@ const AddProductGrade = () => {
           <Button onClick={() => setShowModal(true)} className="btn btn-primary mr-2">
             Add Grade
           </Button>
-          <Link to="/dashboard" className="btn btn-secondary">
+          <Link to="/listProduct" className="btn btn-secondary ms-2">
             Back to Products
           </Link>
         </div>
@@ -103,7 +103,7 @@ const AddProductGrade = () => {
               <button onClick={() => handleUpdateClick(id, type.id, type.name_type, type)} className="btn btn-warning mr-2">
                 Update
               </button>
-              <button onClick={() => handleDelete(type.id)} className="btn btn-danger">
+              <button onClick={() => handleDelete(type.id)} className="btn btn-danger ms-2">
                 Delete
               </button>
             </div>
