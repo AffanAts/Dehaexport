@@ -31,7 +31,7 @@ const BlogDetail = () => {
     <div className="container mt-5">
       <div className="row">
         <div className="col-md-8">
-          <Link to="/main">
+          <Link to="/">
             <button type="button" className="btn btn-secondary mb-3">
               <span style={{ fontWeight: "bold", textDecoration: "none", color: "white" }}>Back To Homepage</span>
             </button>
