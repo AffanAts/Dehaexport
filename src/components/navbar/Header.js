@@ -118,10 +118,10 @@ const Header = () => {
           </button>
           <div className={`collapse navbar-collapse justify-content-center ${isMenuOpen ? "show" : ""}`} id="navbarNavAltMarkup">
             <div className="navbar-nav mx-auto">
-              <a className="nav-link active ms-4" aria-current="page" href="/main/#AboutUs" onClick={handleLinkClick} style={{ ...menuStyle, color: "white" }}>
+              <a className="nav-link active ms-4" aria-current="page" href="/#AboutUs" onClick={handleLinkClick} style={{ ...menuStyle, color: "white" }}>
                 About
               </a>
-              <a className="nav-link ms-4" href="/main/#Faq" onClick={handleLinkClick} style={{ ...menuStyle, color: "white" }}>
+              <a className="nav-link ms-4" href="/#Faq" onClick={handleLinkClick} style={{ ...menuStyle, color: "white" }}>
                 FAQ
               </a>
 
