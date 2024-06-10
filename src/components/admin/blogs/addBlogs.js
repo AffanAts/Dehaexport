@@ -32,7 +32,14 @@ const AddBlog = () => {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title</label>
-          <input type="text" className="form-control" value={title} onChange={(e) => setTitle(e.target.value)} required />
+          <input 
+            type="text" 
+            className="form-control" 
+            value={title} 
+            onChange={(e) => setTitle(e.target.value)} 
+            maxLength={30} // Batasi jumlah huruf menjadi 100 karakter
+            required 
+          />
         </div>
         <div className="form-group">
           <label>Description</label>
