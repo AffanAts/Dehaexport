@@ -27,6 +27,13 @@ const BlogDetail = () => {
 
   if (!blog) return <div>Blog not found</div>;
 
+  const truncateTitle = (title, maxLength) => {
+    if (title.length > maxLength) {
+      return title.substring(0, maxLength) + "...";
+    }
+    return title;
+  };
+
   return (
     <div className="container mt-5">
       <div className="row">
@@ -64,7 +71,7 @@ const BlogDetail = () => {
                   </div>
                   <div className="ml-2" style={{ display: "flex", flexDirection: "column" }}>
                     <a href={`/blog/${otherBlog.id}`} style={{ textDecoration: "none", color: "black", fontFamily: "'Inter', sans-serif", fontWeight: "700" }}>
-                      {otherBlog.title}
+                      {truncateTitle(otherBlog.title, 30)}
                     </a>
                     {otherBlog.image && <img src={otherBlog.image} alt={otherBlog.title} className="img-fluid mt-1" style={{ maxWidth: "100px" }} />}
                     <p className="mb-0">Created at: {new Date(otherBlog.created_at).toLocaleDateString()}</p>

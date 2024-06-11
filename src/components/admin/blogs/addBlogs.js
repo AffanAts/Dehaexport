@@ -37,7 +37,6 @@ const AddBlog = () => {
             className="form-control" 
             value={title} 
             onChange={(e) => setTitle(e.target.value)} 
-            maxLength={30} // Batasi jumlah huruf menjadi 100 karakter
             required 
           />
         </div>
