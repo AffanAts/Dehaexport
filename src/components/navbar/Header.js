@@ -139,13 +139,13 @@ const Header = () => {
               </a>
             </div>
             <div className="navbar-nav ml-auto">
-              <a className="nav-link" href="https://www.instagram.com/" onClick={handleLinkClick}>
+              <a className="nav-link" href="https://www.instagram.com/dehaexport?igsh=MTlhYXUyMWZmcmZuMg==" onClick={handleLinkClick}>
                 <FontAwesomeIcon icon={faInstagram} style={{ color: "white" }} />
               </a>
-              <a className="nav-link" href="https://www.linkedin.com/" onClick={handleLinkClick}>
+              <a className="nav-link" href="https://www.linkedin.com/in/deha-corp-529108301?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" onClick={handleLinkClick}>
                 <FontAwesomeIcon icon={faLinkedin} style={{ color: "white" }} />
               </a>
-              <a className="nav-link" href="https://www.facebook.com/" onClick={handleLinkClick}>
+              <a className="nav-link" href="https://www.facebook.com/profile.php?id=61558964555945" onClick={handleLinkClick}>
                 <FontAwesomeIcon icon={faFacebook} style={{ color: "white" }} />
               </a>
             </div>

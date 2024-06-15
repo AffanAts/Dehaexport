@@ -96,7 +96,7 @@ export default function Video() {
           >
             <iframe
               title="video"
-              src="https://www.youtube.com/embed/V0Enmg432fA"
+              src="https://www.youtube.com/embed/fj2xxbx_OHQ"
               frameBorder="0"
               allow="autoplay; encrypted-media"
               allowFullScreen

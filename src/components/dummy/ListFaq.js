@@ -29,5 +29,10 @@ const dataFaq = [
     answer:
       "Our product management meets international standards. Our partner companies are ISO 22000 certified, and our products can be exported worldwide.",
   },
+  {
+    question: "What if buyers are looking for products that are not listed in the product catalog?",
+    answer:
+      "The items listed in our catalog represent only the basic offerings. All products can be customized and tailored to meet buyers' specific requests.",
+  },
 ];
 export default dataFaq;

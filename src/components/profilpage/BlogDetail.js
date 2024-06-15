@@ -46,7 +46,7 @@ const BlogDetail = () => {
           <h1 className="mb-3" style={{ fontFamily: "'Bad Script', sans-serif", fontWeight: "bolder" }}>
             {blog.title}
           </h1>
-          <p>Dehaexport - {new Date(blog.created_at).toLocaleDateString()}</p>
+          <p>Dehaexport - {new Date(blog.created_at).toLocaleString()}</p>
           {blog.image && <img src={blog.image} alt={blog.title} className="img-fluid" />}
           <div className="mt-3" style={{ fontFamily: "Inter, sans-serif", lineHeight: "1.6" }}>
             <p>

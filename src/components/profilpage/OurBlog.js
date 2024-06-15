@@ -2,14 +2,13 @@ import React, { useState, useEffect, useRef } from "react";
 import Slider from "react-slick";
 import AOS from "aos";
 import "aos/dist/aos.css";
-import { useLazyQuery } from '@apollo/client';
-import { getAllBlogs } from "../../config/typeDef"; // Sesuaikan path sesuai struktur proyek Anda
+import { useLazyQuery } from "@apollo/client";
+import { getAllBlogs } from "../../config/typeDef";
 import { Link } from "react-router-dom";
 
 export default function Blog() {
   const [blogs, setBlogs] = useState([]);
-  const [expandedDescriptionId, setExpandedDescriptionId] = useState(null);
-  const [imageError, setImageError] = useState({}); // State untuk melacak kesalahan gambar
+  const [imageError, setImageError] = useState({});
   const sliderRef = useRef(null);
 
   const [getBlogs, { data, error }] = useLazyQuery(getAllBlogs);
@@ -44,7 +43,7 @@ export default function Blog() {
           slidesToShow: 2,
           slidesToScroll: 2,
           infinite: true,
-          dots: true
+          dots: true,
         },
       },
       {
@@ -63,9 +62,6 @@ export default function Blog() {
         },
       },
     ],
-    afterChange: (currentSlide) => {
-      setExpandedDescriptionId(null);
-    },
   };
 
   useEffect(() => {
@@ -85,28 +81,27 @@ export default function Blog() {
     }
   }, [data, error]);
 
-  const toggleDescription = (itemId) => {
-    if (expandedDescriptionId === itemId) {
-      setExpandedDescriptionId(null);
-    } else {
-      setExpandedDescriptionId(itemId);
-    }
-  };
-
   const handleImageError = (id) => {
     setImageError((prev) => ({ ...prev, [id]: true }));
   };
 
-  // Fungsi untuk mengekstrak konten dari tag <p> dalam deskripsi
   const extractParagraphs = (html) => {
-    const div = document.createElement('div');
+    const div = document.createElement("div");
     div.innerHTML = html;
-    const paragraphs = div.getElementsByTagName('p');
-    let content = '';
+    const paragraphs = div.getElementsByTagName("p");
+    let content = "";
     for (let i = 0; i < paragraphs.length; i++) {
       content += paragraphs[i].outerHTML;
     }
     return content;
+  };
+
+  const truncateDescription = (description) => {
+    const words = description.split(" ");
+    if (words.length > 30) {
+      return words.slice(0, 30).join(" ") + "...";
+    }
+    return description;
   };
 
   return (
@@ -137,14 +132,9 @@ export default function Blog() {
           className="pb-3"
           data-aos="fade-up"
         >
-          You can see our blog here, click to see blog detail. You can see our
-          daily activity or news about exported, product process and many more.
+          You can see our blog here, click to see blog detail. You can see our daily activity or news about exported, product process and many more.
         </p>
-        <div
-          className="slider-container"
-          style={{ width: "75%" }}
-          data-aos="fade-up"
-        >
+        <div className="slider-container" style={{ width: "75%" }} data-aos="fade-up">
           <Slider ref={sliderRef} {...settings}>
             {blogs.length > 0 &&
               blogs.map((item) => (
@@ -153,8 +143,8 @@ export default function Blog() {
                     className="card mb-3"
                     style={{
                       maxWidth: "340px",
-                      border: "none", // Hilangkan border
-                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)", // Tambahkan efek bayangan
+                      border: "none",
+                      boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",
                     }}
                     data-aos="zoom-in"
                   >
@@ -178,9 +168,9 @@ export default function Blog() {
                       ) : (
                         <div
                           style={{
-                            display: 'flex',
-                            justifyContent: 'center',
-                            alignItems: 'center',
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
                             width: "100%",
                             height: "200px",
                             backgroundColor: "#f0f0f0",
@@ -197,37 +187,27 @@ export default function Blog() {
                     <div className="card-body ">
                       <Link to={`/blog/${item.id}`} className="text-decoration-none">
                         <h5 className="card-title" style={{ ...titleStyle }}>
-                          {item.title}
+                          {truncateDescription(item.title)}
                         </h5>
                       </Link>
                       <p
                         className="card-text"
                         style={{
                           ...textStyle,
-                          textAlign: "justify", // Rata kanan dan kiri
+                          textAlign: "justify",
                         }}
                       >
+    
+                    <p className="mb-0" style={{fontWeight: "bold", fontFamily: "Inter, sans-serif", }}>Created At: {new Date(item.created_at).toLocaleString()}</p>
                         <a href={item.link}>
                           {" "}
                           <b>Article</b>
                         </a>{" "}
-                        
                         <br />
-                        {item.description.length > 190 ? (
-                          <>
-                            {expandedDescriptionId === item.id 
-                              ? <div dangerouslySetInnerHTML={{ __html: extractParagraphs(item.description) }} />
-                              : <div dangerouslySetInnerHTML={{ __html: extractParagraphs(`${item.description.substring(0, 190)}...`) }} />}
-                            <span
-                              style={{ color: "blue", cursor: "pointer" }}
-                              onClick={() => toggleDescription(item.id)}
-                            >
-                              {expandedDescriptionId === item.id ? " Read less" : " Read more"}
-                            </span>
-                          </>
-                        ) : (
-                          <div dangerouslySetInnerHTML={{ __html: extractParagraphs(item.description) }} />
-                        )}
+                        <div dangerouslySetInnerHTML={{ __html: truncateDescription(item.description) }} />
+                        <Link to={`/blog/${item.id}`} style={{textDecoration: "none", color: "black"}}>
+                          Read More
+                        </Link>
                       </p>
                     </div>
                   </div>
